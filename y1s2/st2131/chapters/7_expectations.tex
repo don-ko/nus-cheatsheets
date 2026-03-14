@@ -1,0 +1,79 @@
+\section{Properties of Expectation}
+\paragraph{Expectation for Joint Variables}
+Suppose jointly distributed random variables $X_1,\ldots,X_n$ and
+$Y=g(X_1,\ldots,X_n)$,\\
+\(E(Y)=E[g(X_1,\ldots,X_n)]\)\\
+\emph{Corollaries}:
+\begin{itemize}
+  \item Often can decompose $X$ into a sum of $n$ individual events. IMPT!\@
+    $E(X_1+X_2+\cdots+X_n)=E(X_1)+\cdots+E(X_n)$
+  \item For \textcolor{Bittersweet}{independent} variables and fixed functions $g$ and
+    $h$, $E[g(X)h(Y)]=E[g(X)]E[h(Y)]$
+\end{itemize}
+\paragraph{Co's}
+\textbf{Covariance} of jointly distributed random variables$X$ and $Y$ is\\
+\(\begin{aligned}[t]Cov(X,Y)=&E[(X-\mu_X)(Y-\mu_Y)]\\
+=&E(XY)-E(X)E(Y)\end{aligned}\)\\
+$Cov(X,Y)<0\Rightarrow X$ and $Y$ are inversely related\\
+$X$ and $Y$ are independent $\Rightarrow Cov(X,Y)=0$\\
+$X$ and $Y$ are independent $\nLeftarrow Cov(X,Y)=0$\\
+\emph{Results}:
+\begin{itemize}
+  \item $Cov(X,Y)=Cov(Y,X)$
+  \item $Cov(X,X)=Var(X)$
+  \item $Cov(aX,bY)=abCov(X,Y)$
+  \item $Cov(X, Y+Z)=Cov(X,Y)+Cov(X,Z)$
+  \item $Cov\left(\sum\limits_{i=1}^{n}b_{i}X_i,
+    \sum\limits_{j=1}^{m}d_{j}Y_j\right)=\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}b_{i}d_{j}Cov(X_i,
+    Y_j)$
+\end{itemize}
+\textbf{Correlation} of $X$ and $Y$ is defined when \\
+$\exists Var(X)\neq 0, Var(Y)\neq 0, Cov(X,Y)$
+\[\rho=\rho(X,Y)=\frac{Cov(X,Y)}{\sqrt{Var(X)Var(Y)}}\]
+$-1\le\rho\le1$, with equality $\iff \exists a,b\in\mathbb{R}, P(Y=a+bX)=1$\\
+Correlation is the measure of \emph{degree of linearity} between $X$ and $Y$.
+Intuitively, the standardised covariance.\\
+$\rho(X,Y)\to\pm1\Rightarrow$ high degree of linearity.
+$\rho(X,Y)=0\Rightarrow$ linearity is absent.\\
+For indicator variables $I_A,I_B$, $Cov(I_A,I_B)=P(B)[P(A|B)-P(A)]$\\
+\textbf{Conditional Expectation} of $Y$ given $X=x$ is\\
+\(\begin{aligned}[t]
+  E(Y|X=x)=&\sum\limits_{y}p_{Y|X}(y|x)\\
+  =&\int\limits_{y}yf_{Y|X}(y|x)\,dy
+\end{aligned}\)\\
+Alternatively, it is the expectation on a reduced sample space consisting of
+outcomes for which $Y=y$\\
+\textbf{Conditional Variance} of $Y$ given $X$ is\\
+\(\begin{aligned}[t]
+  Var(Y|X=x)=&E[{(Y-E(Y))}^2|X=x]\\
+            =&E(Y^{2}|X=x)-{[E(Y|X=x)]}^2\\
+    Var(Y|X)=&E[{(Y-E(Y))}^2|X]\\
+            =&E(Y^{2}|X)-{[E(Y|X)]}^2
+\end{aligned}\)
+$E(Y|X), Var(Y|X)$ are functions of the random variable $X$, and hence also
+random variables.
+\paragraph{Expectations!! Variances and Probabilities}
+\begin{itemize}
+  \item Law of Total Expectation
+    \[\begin{aligned}E(Y)=&E[E(Y|X)]\\
+    =&\sum\limits_{x}E(Y|X=x)p_{X}(x)\\
+    =&\sum\limits_{x}\left[\sum\limits_{y}yp_{Y|X}(y|x)\right]p_{X}(x)\\
+    =&\int\limits_{x}E(Y|X=x)f_{X}(x)\,dx\\
+    =&\int\limits_{x}\left[\int\limits_{y}yf_{Y|X}(y|x)\,dy\right]f_{X}(x)\,dx
+  \end{aligned}\]
+  \item $Var(Y)=Var[E(Y|X)]+E[Var(Y|X)]$
+  \item $P(E)=E[P(E|Y)]$
+\end{itemize}
+\paragraph{Moment Generating Functions}
+MGF of random variable $X$ is $M(t)=E(e^{tX})$, if defined.
+\[M(t)=\sum\limits_{x}e^{tx}p(x)=\int\limits_{-\infty}^{\infty}e^{tx}f(x)\,dx\]
+$M^{(r)}$ continuous$\Rightarrow M^{(r)}(0)=\dfrac{d^r}{dt^r}M(t)\Big|_{t=0}=E(X^r)$\\
+$X\sim Bin(n,p), M(t)={[pe^{t}+(1-p)]}^n$\\
+$X\sim Poisson(n,p), M(t)=e^{\lambda(e^{t}-1)}$\\
+$X\sim Gamma(\alpha,\lambda), M(t)=\lambda^{\alpha}{(\lambda-t)}^{-\alpha}$\\
+$X\sim N(\mu,\sigma^2), M(t)=e^{\mu t+\sigma^{2}t^{2}/2}$\\
+$Z=X+Y, M_{Z}(t)=M_{X}(t)M_{Y}(t)$ where mgf's exist\\
+If mgf exists for $a<0<b$, it uniquely determines pdf\\
+$Y=a+bX\Rightarrow M_{Y}(t)=e^{at}M_{X}(bt)$\\
+$M_{XY}(s,t)=E(e^{sX+tY})$. $M_{X}(s)=M_{XY}(s,0)$. $M_{XY}(s,t)=M_{X}(s)M_{Y}(t)$.\\
+$X$ and $Y$ are independent $\iff M_{XY}(s,t)=M_{X}(s)M_{Y}(t)$

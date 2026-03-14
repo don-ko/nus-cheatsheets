@@ -1,0 +1,76 @@
+\section{Axioms of Probability}
+\paragraph{Event $E\subseteq$ Sample Space $S$}
+\begin{itemize}
+  \item \textcolor{Blue}{Sample Space $S$} Set of all possible outcomes of an experiment
+  \item \textcolor{Blue}{Mutually Exclusive Events $E, F$} $\Leftrightarrow E\cap F=\phi$
+  \item $\begin{aligned}[t]
+      \textcolor{Blue}{E\subseteq F}&\iff\forall x\in E(x\in F)&&\\
+                                    &\iff E\cap F=E&&
+    \end{aligned}$
+  \item \textcolor{Blue}{\( E=F \)} \(\Leftrightarrow E\subseteq F\wedge F\subseteq E\)
+  \item \textcolor{Blue}{Properties of $\cup$ and $\cap$}:\\
+    Commutative. Associative. Distributive over the other.
+  \item \textcolor{Blue}{DeMorgan's Laws}
+    \[ {(\bigcup\limits^n_{i=1}E_i)}^c=\bigcap\limits_{i=1}^{n}E_i^c\text{ and }
+    {(\bigcap\limits^n_{i=1}E_i)}^c=\bigcup\limits_{i=1}^{n}E_i^c \]
+\end{itemize}
+\paragraph{Probability: Limiting Relative Frequency}
+For an experiment performed repeatedly many times under the same conditions,
+the probability of an event $E$ happening is defined:
+\[ P(E) = \lim_{n \to \infty} \frac{n(E)}{n} \]
+where $n(E) = $ frequency of $E$ in $n$ repetitions of the experiment
+\paragraph{Kolmogorov's Axioms of Probability}
+For any event \(E\), assume \(P(E)\) is defined and satisfies axioms:
+\begin{enumerate}
+  \item \( 0 \le P(E) \le 1 \)
+  \item \( P(S) = 1 \)
+  \item For any sequence of mutually exclusive events \(E_1,E_2,\ldots\),
+    \[ P(\bigcup\limits^{\infty}_{i=1} E_i) = \sum\limits_{i=1}^\infty P(E_i) \]
+\end{enumerate}
+\(P(\cdot)\) satisfying the three axioms is known as a probability function.
+\paragraph{Law of Large Numbers}
+For \(X_1,X_2,\ldots\) taken independently from a population,
+\(\sum\limits_{i=1}^{n}\frac{X_i}{n}\) almost surely (ie.\ with probability $1$) converges to \(E(X_i)\).
+\paragraph{Probabilities!!!}
+\begin{enumerate}
+  \item \(P(E^c) = 1 - P(E)\)
+  \item \(E\subseteq F\Rightarrow P(E) \le P(F) \)
+  \item $\begin{aligned}[t]
+      \bigcup\limits_{i=1}^{n}E_i=&E_1\cup E_1^{c}E_2\cup E_1^{c}E_2^{c}E_3\cup…\\
+                                  &\cup E_1^c\ldots E_{n-1}^{c}E_n
+    \end{aligned}$
+  \item Principle of Inclusion Exclusion (PIE)
+    \begin{equation*}
+      \begin{split}
+        P(\bigcup\limits_{i=1}^n E_i)	& =P(E_1\cup E_2\cup\ldots\cup E_n)\\
+          & =\sum\limits_{i=1}^{n}P(E_i)-\sum\limits_{i_1<i_2}P(E_{i_1}E_{i_2})+\ldots\\
+          & +{(-1)}^{r+1}\sum\limits_{i_1<i_2<\cdots<i_r}P(E_{i_1}E_{i_2}\ldots E{i_r})\\
+          & +\cdots+{(-1)}^{n+1}P(E_1E_2\ldots E_n)
+      \end{split}
+    \end{equation*}
+  \item $\begin{aligned}[t]
+      P(\bigcup\limits_{i=1}^n)E_i\le&\sum\limits_{i=1}^{n}P(E_i)\\
+      \ge&\sum\limits_{i=1}^{n}P(E_i)-\sum\limits_{j<i}P(E_{i}E_j)\\
+      \le&\sum\limits_{i=1}^{n}P(E_i)-\sum\limits_{j<i}P(E_{i}E_j)\\
+         &+\sum\limits_{k<j<i}P(E_{i}E_{j}E_{k})
+    \end{aligned}$
+\end{enumerate}
+\paragraph{Sample Space with Equally Likely Outcomes}
+\(S=\{e_1,e_2,\ldots,e_n\}\) where \(P(\{e_1\}) = \cdots = P(\{e_n\})\)\\
+\(P(\cdot)\) satisfies axioms \(\Rightarrow\forall E\subseteq S, P(E)=\frac{|E|}{|S|}\)
+\paragraph{Probability as a Continuous Set Function}
+\begin{itemize}
+  \item \(E_1,E_2,\ldots\) is an increasing sequence if \(E_1\subset E_2\subset\ldots\)
+  \item Increasing Sequence
+    \(\{E_n,n\ge1\}\Rightarrow\)
+    \[\lim\limits_{n\to\infty}P(E_n)=P(\lim\limits_{n\to \infty}E_n)\equiv
+    P(\bigcup\limits^\infty_{i=1}E_i)\]
+  \item \(E_1,E_2,\ldots\) is a decreasing sequence if \(E_1\supset E_2\supset\ldots\)
+  \item Decreasing Sequence
+    \(\{E_n,n\ge1\}\Rightarrow\)
+    \[\lim\limits_{n\to\infty}P(E_n)=P(\lim\limits_{n\to \infty}E_n)\equiv
+    P(\bigcap\limits^\infty_{i=1}E_i)\]
+\end{itemize}
+\paragraph{Probability as a Measure of Belief}
+Definition of probability as a measures of belief should still satisfy all of
+Kolmogorov's three axioms.

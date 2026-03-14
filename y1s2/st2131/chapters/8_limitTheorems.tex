@@ -1,0 +1,22 @@
+\section{Limit Theorems}
+\begin{itemize}
+  \item Markov's Inequality [$E(X)$ exists, and known], $\forall a>0$\\
+    $P(X\ge0)=1\Rightarrow P(X\ge a)\le \frac{E(X)}{a}$
+  \item Chebyshev's Inequality [Tighter, $\mu,Var(X)$ needed], $\forall k>0$\\
+    $P(|X-\mu|>k)\le \frac{\sigma^{2}}{k^{2}}$
+  \item Chernoff Bounds
+    $P(X\ge a)\le e^{-ta}M_{X}(t),\forall t>0$
+    $P(X\le a)\le e^{-ta}M_{X}(t),\forall t<0$
+  \item Jensen's Inequality for convex $f: \forall x, f''(x)\ge0$\\
+    $E(f(X))\ge f(E(X))$
+  \item For i.i.d random variables $X_1,X_2,\ldots$, $\forall\epsilon>0,\\
+    P(|\frac{X_1+\cdots+X_n}{n}-\mu|\ge\epsilon)\to0\text{ as }n\to\infty$
+  \item With probability $1$, $\frac{X_1+\cdots+X_n}{n}\to\mu\text{ as }n\to\infty$
+  \item For $Z_1,Z_2,\ldots$ with cdf, mgf $F_{Z_n}(t), M_{Z_n}(t)\wedge
+    \exists Z\text{ with }F_{Z}(t), M_{Z}(t)$, then where $F_{Z}(t)$ is
+    continuous,
+    \[\forall t, M_{Z_n}(t)\to M_{Z}(t)\Rightarrow F_{Z_n}(t)\to F_{Z}(t)\]
+\end{itemize}
+\paragraph{Central Limit Theorem}
+For i.i.d $X_1,X_2,\ldots$ where $E(X_i)=\mu, Var(X_i)=\sigma^{2}$,
+$\frac{X_1+\cdots+X_n-n\mu}{\sigma\sqrt{n}}\sim N(0,1)\text{ as }n\to\infty$

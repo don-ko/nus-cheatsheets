@@ -1,0 +1,39 @@
+\setcounter{section}{-1}
+\section{math voodoo}
+$\int u\,dv=uv-\int v\,du$, partial fractions,
+$f(x)=\sum_{n=0}^{\infty}\frac{f^{(n)}(a)}{n!}{(x-a)}^n$,$|x-a|<{(\lim\limits_{n\to\infty}|\frac{c_{n+1}}{c_n}|)}^{-1}$,$\sqrt{a^2-{(x+b)}^2}\Rightarrow
+x+b=a\sin{\theta}$
+$\frac{1}{1-x}=1+x+\cdots+x^{n}+\cdots, |x|<1$\\
+$e^{x}=1+\frac{x}{1!}+\cdots+\frac{x^{n}}{n!}+\cdots, x\in\mathbb{R}$
+\section{Combinatorial Analysis}
+\paragraph{Generalised Principle of Counting}
+For \( r \) experiments, where the \(i\)-th experiment can result in any of \(
+n_i \) possible outcomes, we have \( n_1\cdot n_2\cdot…\cdot n_r \) outcomes.
+
+\paragraph{Permutations}
+\begin{itemize}
+  \item $\Factorial{n}$ arrangements of \( n \) distinct objects
+
+  \item \(\frac{n!}{n_1!n_2!…n_r!} \) arrangements of \( n \) objects of which
+    \( n_1 \) are alike, \( n_2 \) are alike, …, \( n_r \) are alike
+\end{itemize}
+
+\paragraph{Combinations}
+\begin{itemize}
+  \item $\binom{n}{r} = \frac{n!}{(n-r)!r!}$, for $ r\le n$
+  \item \(\binom{n}{r}\) subsets of size \( r \) from a set of size \( n \).
+  \item \(\binom{n}{r}=\binom{n-1}{r-1}+\binom{n-1}{r},1\le r\le n\)
+  \item \( {(x + y)}^n = \sum_{k=0}^n \binom{n}{k}x^{k}y^{n-k} \)
+  \item \(\binom{n}{n_1,n_2,…,n_r}\) divisions of \(n\) distinct objects into
+    \(r\) \emph{distinct} groups sized \(n_1,n_2,…,n_r\) where \(n_1+n_2+…+n_r=n\).
+  \item For $n_1+…+n_r=n$ and $n_i\ge0,{(x_1+…+x_r)}^n=$
+    \[\sum_{(n_1,…,n_r):n_1+…+n_r=n}
+    \binom{n}{n_1,…,n_r}x_1^{n_1}x_2^{n_2}…x_n^{n_r} \]
+  \item Integer solutions for \(n_1+n_2+…+n_r=n, n_i>0\):
+    \begin{itemize}
+      \item \( \binom{n+r-1}{r-1} \) distinct vectors
+        $(n_1,n_2,…,n_r)\in{\mathbb{N}}^r$
+      \item \( \binom{n-1}{r-1} \) distinct vectors
+        $(n_1,n_2,…,n_r)\in{\mathbb{N}^{*}}^r$
+    \end{itemize}
+\end{itemize}

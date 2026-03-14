@@ -1,0 +1,40 @@
+\section{Conditional Probability and Independence}
+\paragraph{Conditional Probability}
+Probability \(E\) occurs given that \(F\) occurred is denoted \(P(E|F)\)
+\[P(E|F)=\frac{P(EF)}{(F)}, P(F)>0\]
+Conditional probability is a probability because it satisfies Kolmogorov's
+three axioms.
+\begin{itemize}
+  \item \( 0\le P(E|F) \le 1 \)
+  \item \( P(S|F) = 1 \)
+  \item If \( E_i \) for \( i = 1,2,… \) are mutually exclusive events, then
+    \[ P(\cup^\infty_{i=1}E_i|F) = \sum_{i=1}^{\infty}P(E_i|F) \]
+\end{itemize}
+Given that $F$ occurred, occurrence of $E$ is in $EF$. Only need to 
+focus on $F$, the \emph{reduced sample space}.
+\begin{itemize}
+  \item \( P(EF) = P(F) P(E|F) \)
+  \item \( P(E_{1}E_{2}…E_{n}) = P(E_{1}) P(E_{2}|E_{1})…P(E_n|E_{1}…E_{n-1})\)
+  \item For $F_1,F_2,…,F_n$ partitioning $S$,
+    \[ P(E) = \sum_{i=1}^{n} P(EF_i) = \sum_{i=1}^{n} P(F_i) P(E|F_i) \] 
+  \item \textcolor{Blue}{Baye's Theorem}: $E$ occurred. Which $F_j$ most likely led to $E$:
+    \begin{equation*}
+      \begin{split}
+        P(F_j|E) & = \frac{P(EF_j)}{P(E)} = \frac{P(F_j)P(E|F_j)}{P(E)}\\
+                 & = \frac{P(F_j)P(E|F_j)}{\sum_{i=1}^{n} P(F_i)P(E|F_i)}
+      \end{split}
+    \end{equation*}
+  \item \textcolor{Blue}{Odds} of $E=\frac{P(F)}{P(F^C)}$
+\end{itemize}
+\paragraph{Independent Events}
+\begin{itemize}
+  \item \(E\) is independent of
+    $\begin{aligned}[t]
+      F&\iff F \text{\ is independent of } E\\
+       &\iff P(E|F) = P(E)\\
+       &\iff P(EF)=P(E)P(F)\\
+       &\iff E\text{\ and }F^c\text{\ are independent}
+    \end{aligned}$
+  \item $n$ events $E_1,E_2,\ldots,E_n$ are independent $\iff$ Any subset of
+    the events are independent
+\end{itemize}

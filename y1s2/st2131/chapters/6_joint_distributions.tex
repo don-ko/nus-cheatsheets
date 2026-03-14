@@ -1,0 +1,38 @@
+\section{Random Multi-Variables}
+\paragraph{Joint Distribution Functions}
+\emph{Joint CDF} $F(x,y)=P(X\le x, Y\le y)$\\
+\emph{Marginal CDF} $F_X(x)=\lim\limits_{y\to\infty}F(x,y)$\\
+For \textbf{discrete }random variables $X$ and $Y$,$\forall(x,y)\in{\mathbb{Z}}^2$\\
+\emph{Joint PMF} $p(x,y)=P(X=x,Y=y)$\\
+\emph{Marginal PMF}
+\[P(X=x)= \sum\limits_{\{y:P(X=x,Y=y)>0\}}P(X=x,Y=y)\]\\
+\emph{Conditional Probability} of $X$ given that $Y=y$, $p_Y(y)>0$
+\[p_{X|Y}(x|y)=P(X=x|Y=y)=\frac{p(x,y)}{p_Y(y)}\]
+$p_X(x)=\sum\limits_{y}p_{X|Y}(x|y)p_{Y}(y)$\\
+$F_{X|Y}(x|y)=P(X\le x|Y=y)=\sum\limits_{a\le x}p_{X|Y}(a|y)$\\
+For \textbf{jointly continuous} random variables $X,Y$, $\forall(x,y)\in{\mathbb{R}}^2$\\
+$\exists f(x,y)>0,\forall
+C\subseteq{\mathbb{R}}^{2}$ \[P[(X,Y)\in C]=\iint_{C}f(x,y)\,dx\,dy\]
+\emph{Joint PDF} $f(x,y)=\dfrac{\partial^2}{\partial x\partial y}F(x,y)$\\
+\emph{Marginal PDF} $f_X(x)=\int\limits_{-\infty}^{\infty}f(x,y)\,dy=\dfrac{\partial}{\partial x}F(x,y)$\\
+\emph{Conditional Probability} of $X$ given $Y=y$, $f_Y(y)>0$
+\[f_{X|Y}(x|y)=\frac{f(x,y)}{f_Y(y)}\]
+$f_{X}(x)=\int_{-\infty}^{\infty}f_{X|Y}(x|y)f_{Y}(y)\,dy$\\
+$F_{X|Y}(a|y)=P(X\le a|Y=y)=\int\limits_{-\infty}^{a}f_{X|Y}(x|y)\,dx$\\
+\textbf{Independence }\(\begin{aligned}[t]
+  \iff&\forall A_1,A_2,\ldots,A_n\subseteq\mathbb{R}\\
+  \iff&P(X_1\in A_1,\ldots,X_n\in A_n)\\
+      &=\prod\limits_{i=1}^{n}P(X_i\in A_i)\\
+  \iff&f_{X|Y}(x|y)=f_X(x), \forall x,y
+\end{aligned}\)\\
+\textbf{For functions $U=g_{1}(X,Y), V=g_{2}(X,Y)$} of jointly continuous $X,Y$
+with $f_{XY}(x,y)$, if:
+\begin{itemize}
+  \item Transformation is uniquely invertible $x=h_{1}(u,v), y=h_{2}(u,v)$
+  \item $g_1,g_2$ have continuous partial derivatives
+  \item $\forall x,y$ the Jacobian Determinant $J(x,y)\neq0$
+    \[J(x,y)=\begin{vmatrix}\frac{\partial g_1}{\partial x}&\frac{\partial g_1}{\partial y}\\\frac{\partial g_2}{\partial x}&\frac{\partial g_2}{\partial y}\end{vmatrix}=
+  (\frac{\partial g_1}{\partial x})(\frac{\partial g_2}{\partial y})-(\frac{\partial g_1}{\partial y})(\frac{\partial g_2}{\partial x})\]
+\end{itemize}
+\[f_{UV}(u,v)=f_{XY}(x,y)\frac{1}{|J(x,y)|}\]
+\emph{EXTENDABLE TO >2 VARIABLESAAAAAAAAAAAAA}

@@ -1,0 +1,91 @@
+\section{Random Variables}
+Random variable maps sample space to a countable number of possible values.
+\[X: S\mapsto\mathbb{R}\]
+For some true value $x_0$ being measured by $X$, \textbf{mean squared error} $MSE=E[{(X-x_0)}^2]=Var(X-x_0)+{[E(X-x_0)]}^2=Var(X)+{(bias)}^2$
+\begin{itemize}
+  \item $Var(X + Y) = Var(X) + Var(Y) + 2Cov(X, Y)$ 
+  \item $\begin{aligned}[t]Var\left(\sum\limits_{i=1}^n X_i\right) =& \sum\limits_{i=1}^n Var(X_i)\\
+    &+ \sum\limits_{i,j\in\{1..n\}, i\neq j} Cov(X_i, X_j)\end{aligned}$
+  \item For independent $X_i$,\\$Var\left(\sum\limits_{i=1}^n X_i\right) =
+    \sum\limits_{i=1}^n Var (X_i)$
+\end{itemize}
+
+\subsection{Discrete Random Variables}
+PMF of a discrete random variable is \(p(a)=P(X=a)\).\\
+$p(a)>0$ for at most a countable number of values of \(a\), and $\sum\limits_{i=1}^{\infty}p(x_i)=1$\\
+CDF of a discrete random variable is $F(a)=P(X\le a)=\sum\limits_{\text{all}x\le a}p(x)$
+$F(a)$ is defined $\forall a\in\mathbb{R}$, and is a step function at every
+value of $a$ for which $p(a)>0$\\
+\(E(X)\) is the average of all possible values of \(X\), weighted by the
+probabilities. $E(X)=\sum\limits_{x}xp(x)$.\\
+For nonnegative integer-valued $X$, $E(X)=\sum\limits_{i=1}^{\infty}P(X\ge i)$.
+For real-valued function $g(x)$, $E[g(X)]=\sum\limits_{i}g(x_i)p(x_i)$
+\textcolor{Blue}{$E(aX+b)$}$=aE(X)+b, \text{for some }a,b\in \mathbb{K}$\\
+\textcolor{Blue}{$n$-th Moment} of \(X\): $E(X^n)= \sum\limits_{x}x^{n}p(x)$\\
+For random variable $X$ with mean $\mu=E(X)$,\\
+\begin{equation*}
+\begin{split}
+  Var(X)&=E[{(X-\mu)}^2]\\
+        &=\sum\limits_{x}{(x-\mu)}^{2}p(x)\\
+        &= E(X^2) - {[E(X)]}^2
+\end{split}
+\end{equation*}
+\textcolor{Blue}{\(Var(aX+b)\)}\(=a^2Var(X), \text{for some }a,b\in \mathbb{K} \)\\
+\textbf{Bernoulli} $X$ has probability of
+success \(p\) if
+\[
+P(X = x) = 
+\begin{cases}
+	p & x=1\\
+	1-p & x=0
+\end{cases}
+\]
+$X\sim Bernoulli(p)$, $E(X) = p$, $Var(X) = p(1-p)$
+\textbf{Binomial} $X$ is the number of successes in $n$
+independent Bernoulli trials, each trial resulting in success with probability
+\(p\).
+\begin{equation*}
+\begin{split}
+  P(X=k)&=\binom{n}{k}p^k{(1-p)}^{n-k}, \forall k\ge0\\
+        &=\frac{(n-k+1)p}{k(1-p)}P(X=k-1), \forall k\ge1
+\end{split}
+\end{equation*}
+$X\sim Bin(n,p)$, $E(X)=np$, $Var(X)=np(1-p)$\\
+$X\sim Bin(n,p),Y\sim Bin(m,p)\Rightarrow X+Y\sim Bin(n+m,p)$\\
+\textbf{Geometric} $X$ is the number of independent Bernoulli
+trials performed until a success is obtained (inclusive of the success), each
+trial resulting in success with probability $p$.
+\[P(X=k) = {(1-p)}^{k-1}p,\forall k\ge 1\] 
+$X\sim Geometric(p)$, $E(X)=\frac{1}{p}$, $Var(X)=\frac{1-p}{p^2}$\\
+\textbf{Negative Binomial} $X$ is the number of independent
+Bernoulli trials performed until $m$ successes are obtained (inclusive of the
+last success), each trial resulting in success with probability $p$. For $k\ge
+m$,
+\[P(X=k) = \frac{(k-1)!}{(m-1)!(k-m)!}{(1-p)}^{k-m}p^m\]
+$X\sim NB(m,p)$, $E(X) = n/p$, $Var(X)=\frac{m(1-p)}{p^2}$\\
+\textbf{Hypergeometric} $X$ is the number of white balls
+selected in a sample of $n$ balls without replacement from an urn of $N$ balls
+of which $m$ are white and $N-m$ are black. For $0\le i\le n \wedge n-(N-m)\le i\le \min(n,m)$,
+\[P(X=i)=\frac{\binom{m}{i}\binom{N-m}{n-i}}{\binom{N}{n}}\]
+$X\sim Hypergeometric(N,m,n)$, $E(X)=\frac{nm}{N}$,\\
+$Var(X)=np(1-p)(1-\frac{n-1}{N-1})$ where $p=\frac{m}{N}$\\
+$n << N\Rightarrow X\sim Bin(n,\frac{m}{N}), Var(X)\approx np(1-p)$\\
+\textbf{Poisson} $X$ has parameter $\lambda$ if for some
+$\lambda>0$, for $k\ge0$,
+\[P(X=k)=\frac{\lambda^{k}e^{-\lambda}}{k!}\] 
+$X\sim Poisson(\lambda)$, $E(X)=\lambda$, $Var(X)=\lambda$\\
+$X\sim Binomial(n,p)\wedge n$ is large $ \wedge p$ is small $\Rightarrow Var(X)\approx np=E(X)\Rightarrow
+X\sim Poisson(np)$, even if trials are weakly dependent\\
+\textbf{Poisson} $X$ is the number of events that occur in
+any interval of length $t$, with the following assumptions:
+\begin{enumerate}
+  \item Probability that $1$ event occurs in given interval of length $h$
+    equals $\lambda h+o(h)$, where $\lambda=$ occurrences per
+    unit time
+  \item Probability that $\ge2$ events occur in interval of length $h$ equals
+    $o(h)$, for some $\lim_{h\to 0}\frac{o(h)}{h}=0$
+  \item For $n, j_1, j_2, \ldots, j_n\in \mathbb{N}$, a set of $n$
+    nonoverlapping intervals and $E_i$ the event that $j_i$ of the events occur
+    in the $i$-th interval, $E_1, E_2,\ldots,E_n$ are independent
+\end{enumerate}
+$X\sim Poisson(\lambda t)$. If $X\sim Poisson(\lambda_1), Y\sim Poisson(\lambda_2) \Rightarrow X+Y\sim Poisson(\lambda_1+\lambda_2)$

@@ -1,0 +1,59 @@
+\subsection{Continuous Random Variables}
+$X$ is a continuous random variable if $\exists f(x)$ such that
+\[\forall x\in\mathbb{R}, f(x)\ge0\wedge P(X\in A)=\int_{A}f(x)dx\]
+$f(x)$ is the PDF of $X$. CDF is defined $\forall a\in\mathbb{R},\\
+F(a)=P(X\le a)=\int\limits_{-\infty}^{a}f(x)dx$\\
+$E(X)=\int\limits_{-\infty}^{\infty}xf(x)dx=\int\limits_{0}^{\infty}P(X>x)dx$ for $X>0$.\\
+For real-valued function $g(x)$, $E[g(X)]=\int\limits_{-\infty}^{\infty}g(x)f(x)dx$\\
+$Var(X)=E{(X-\mu)}^{2}=E(X^{2})-{[E(X)]}^{2}$\\
+\textbf{Uniform} $X$ on the segment $[\alpha,\beta]$, PDF is:
+\[f(x)=\begin{cases}
+  \frac{1}{\beta-\alpha} & \alpha<x<\beta\\
+  0 & \text{otherwise}
+\end{cases}\]
+$X\sim U(\alpha,\beta)$, $E(X)=\frac{\alpha+\beta}{2}$, $Var(X)=\frac{{(\beta-\alpha)}^{2}}{12}$\\
+\textcolor{Bittersweet}{Note}: $(\alpha-\beta)U+\alpha\sim U(\alpha, \beta)$,
+$F(X)\sim U(0,1)$, $F^{-1}(U)$ is a random variable with cdf $F(x)$\\
+\textbf{Normal} has PDF on two parameters
+$\mu\in\mathbb{R}, \sigma>0$:
+\[f(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}{(\frac{x-\mu}{\sigma})}^{2}}, x\in\mathbb{R}\]
+$X\sim N(\mu,\sigma^{2})$, $E(X)=\mu$, $Var(X)=\sigma^{2}$\\
+$Z\sim N(0,1)$, CDF of $Z$ denoted by $\Phi(z)=P(Z\le
+z)=\int\limits_{-\infty}^{z}\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}y^{2}}\,dy$, 
+$\phi(x)=\dfrac{d}{dx}\left[\Phi(x)\right]$\\
+\textcolor{Bittersweet}{Note}: $X\sim N(\mu,\sigma^2)\Rightarrow \frac{X-\mu}{\sigma}\sim N(0,1)$\\
+$Y\sim N(\mu,\sigma^2) \Rightarrow F_Y(a)\sim\Phi(\frac{a-\mu}{\sigma})$\\
+For independent $X_i\sim N(\mu_i,\sigma_{i}^{n})$,\\
+$\sum\limits_{i=1}^{n}X_{i}\sim N(\sum\limits_{i=1}^{n},\sum\limits_{i=1}^{n}\sigma_{i}^{2})$\\
+Demoivre-Laplace Limit:\\
+$S_n\sim Bin(n, p)\Rightarrow \frac{S_n-np}{\sqrt{np(1-p)}}\sim Z$, $np(1-p)\ge10$\\
+\textbf{Gamma} PDF on parameters $\alpha>0,\lambda>0$:
+\[f(x)=\begin{cases}
+  \frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x} & x\ge0\\
+  0 & x<0
+\end{cases}\]
+$\forall x>1, \Gamma(x)=\int\limits_{0}^{\infty}u^{x-1}e^{-u}\,du=(x-1)\Gamma(x-1)$\\
+$X\sim Gamma(\alpha, \lambda)$, $E(X)=\frac{\alpha}{\lambda}$, $Var(X)=\frac{\alpha}{\lambda^2}$\\
+For \textcolor{Blue}{independent random variables}:
+\begin{itemize}[noitemsep, topsep=-\parskip] 
+  \item $X_i\sim\Gamma(\alpha_i,\lambda)\Rightarrow\sum\limits_{i=1}^{n}X_i\sim\Gamma(\sum\limits_{i=1}^{n}\alpha_i,\lambda)$
+  \item $Z_i\sim N(0,1)\Rightarrow\sum\limits_{i=1}^{n}Z_{i}^{2}\sim
+    \Gamma(\frac{n}{2},\frac{1}{2})=\chi_{n}^{2}$
+  \item $X_i\sim
+    Exp(\lambda)\Rightarrow\sum\limits_{i=1}^{n}X_i\sim\Gamma(n,\lambda)$
+\end{itemize}
+\textcolor{Bittersweet}{Notably}, the \textbf{Exponential} distribution is the
+case where $\alpha=1$
+$F(x) = P\{X\le x\} = 1-e^{-\lambda x}, f(x) = \lambda e^{-\lambda x}, x\ge0$\\
+$X\sim Exp(\lambda)$, $E(X)=\frac{1}{\lambda}$, $Var(X)=\frac{1}{\lambda^2}$\\
+The uniquely memoryless distribution (Discrete version–Geometric):
+$P(X>s+t|X>t)=P(X>s) \forall s,t>0$\\
+\textbf{Beta} PDF on parameters $a>0, b>0$:
+\[f(u)=\frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}u^{a-1}{(1-u)}^{b-1}, u\in[0,1]\]
+$X\sim Beta(a,b)$, $E(X)=\frac{a}{a+b}$,\\
+$Var(X)=\frac{ab}{{(a+b)}^{2}(a+b+1)}$\\
+$B(a,b)=\frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}=\int\limits_{0}^{1}x^{a-1}{(1-x)}^{b-1}$\\
+\textcolor{Bittersweet}{Note}: $Beta(1,1)=U(0,1)$\\
+\textbf{Cauchy} PDF on parameter $\theta\in\mathbb{R}$:
+\[f(x)=\frac{1}{\pi}\frac{1}{1+{(x-\theta)}^{2}}, x\in\mathbb{R}\]
+$X\sim Cauchy(\theta)$, $\forall x\in\mathbb{N}, E(X^n)$ does not exist.
