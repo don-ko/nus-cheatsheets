@@ -1,0 +1,160 @@
+\section{Poisson Process}
+\paragraph{Poisson Distribution}
+$\textcolor{Blue}{X\sim Poi\left(\lambda\right)}$ if
+$p(x)=\frac{\lambda^x}{x!}e^{-\lambda}$ for $x=0,1,2,…$
+\[E\left[ X \right] =\lambda,\quad Var\left( X \right) =\lambda,\quad E\left[
+X^{2} \right] =\lambda^{2}+\lambda\]
+\[M_X\left( t \right) =E\left[ e^{tX} \right] =e^{\lambda\left( e^{t}-1 \right) }\] 
+Ind. $X$ and $Y\sim Poi\left( \mu \right)\implies
+X+Y=Poi\left(\lambda+\mu\right)$\\
+$Z|X\sim Bin\left( X, r \right) \implies Z\sim Poi\left( r\lambda \right)$
+\paragraph{Exponential Distribution}
+$\textcolor{Blue}{X\sim Exp\left( \lambda \right)}$ if
+\[f\left( x \right) =\lambda e^{-\lambda x}, F\left( x \right) =1-e^{-\lambda
+x}\text{ for }x\ge 0.\]
+\[E\left[ X \right] =\frac{1}{\lambda},\quad Var\left( X \right) =\frac{1}{\lambda^{2}}.\] 
+\[M_X\left( t \right) =E\left[ e^{tX} \right] =\frac{\lambda}{\lambda-t}, \qquad t<\lambda.\]
+\subsection{Poisson Process}
+A \textbf{\textcolor{Blue}{Poisson process} with rate $\lambda>0$} is an
+integer-valued stochastic process $\{X(t), t\geq 0\}$ s.t.
+\begin{itemize}
+  \item for any time points $t_0=0<t_1<t_2<\cdots<t_{n}$, the increments
+    \[X(t_1)-X(t_0), X(t_2)-X(t_1),\ldots, X(t_n)-X(t_{n-1})\]
+    are independent R.V.s
+  \item for $s\ge 0, t>0$, $X(s+t)-X(s)\sim Poi\left( \lambda t \right)$
+  \item $X(0)=0$
+\end{itemize}
+At any time point $t>0$:
+\[X\left( t \right) \sim Poi\left( \lambda t \right)\]
+\[E\left[ X\left( t \right)  \right] =\lambda t,\quad Var\left( X\left( t
+\right)  \right) =\lambda t\]
+\[M_{X\left( t \right) }\left( u \right) =e^{\lambda t\left( e^{t}-1 \right) }\] 
+
+\paragraph{Rare Events}
+A \textcolor{Blue}{{rare event}} is an event s.t.\ the total occurrences of the
+event $\epsilon_h$ in $h\rightarrow 0$ units of time is given by:
+\begin{itemize}
+  \item $P\left(\epsilon_h=0\right)=1-\lambda h+o\left( h \right) $
+  \item $P\left(\epsilon_h=1\right)=\lambda h+o\left( h \right) $
+  \item $P\left(\epsilon_h\ge 2\right)=o\left( h \right) $
+\end{itemize}
+For independent Bernoulli R.V.s $\epsilon_1, \epsilon_2, \ldots$ with $P\left(
+\epsilon_i \right) =p_i$, and their sum
+$S_{n}=\epsilon_1+\epsilon_2+\cdots+\epsilon_{n}$,
+\[\left| P\left( S_{n}=k \right) -\frac{\lambda^{k}e^{-\lambda}}{k\mathpunct{!}} \right| \le \sum_{i=1}^{n} p_i^{2}.\] 
+An R.V. $X\left( \left(\left.s,t\right.\right] \right)$ counting the
+\textcolor{Bittersweet}{number of occurrences of a rare event} in the time
+interval $(s,t]$ is a \textcolor{Blue}{\textbf{non-homogeneous Poisson process}} with
+rate $\textcolor{Bittersweet}{\lambda\left( t \right) >0}$ if:
+\begin{itemize}
+  \item for any time points $t_0=0<t_1<t_2<\cdots<t_{n}$, the process
+    increments
+    \[X\left( (t_0,t_1] \right) , X\left( (t_1, t_2] \right) ,\ldots, X\left(
+    (t_{n-1}, t_{n}] \right) \]
+    are independent R.V.s
+  \item $\exists$ a positive function$ \lambda\left( t \right) >0$ for which
+    the prob.\ of at least one event occurrence in a small time interval
+    $h\rightarrow 0$ is given by:
+    \begin{itemize}
+      \item $P\left( X\left( (t,t+h] \right) =1 \right) =\lambda\left( t
+        \right) h+o\left( h \right) $
+      \item $P\left( X\left( (t,t+h] \right) \ge 2 \right) =o\left( h \right) $
+    \end{itemize}
+\end{itemize}
+Each increment $X\left( (s,t] \right)$ of a non-homogeneous Poisson process
+follows
+\[X\left( (s,t] \right) \sim Poi\left( \int_{s}^{t} \lambda\left(u\right) du
+\right).\]
+If $\lambda\left( t \right) $ itself is a random process, then $X\left( (s,t]
+\right)$ is called a \textcolor{Blue}{doubly stochastic Poisson process} or a
+\textcolor{Blue}{Cox process}.
+
+A \textcolor{ForestGreen}{Poisson point process} is a special case of the
+non-homogeneous Poisson process with rate $\lambda\left( t \right) =\lambda$
+for all $t\ge 0$.
+
+\paragraph{Arrival Times}
+The \textcolor{Blue}{waiting time/arrival time} $W_n$ is the time of occurrence
+of the $n$-th event, supposing $W_0=0$. $W_{n}\sim Gamma \left( n,\lambda \right) $.
+\[P\left( W_{n}>t \right)=P\left( X\left( t \right) <n \right) \sum_{k=0}^{n-1}
+\frac{{\left( \lambda t \right) }^{k}}{k\mathpunct{!}}e^{-\lambda t}.\] 
+\[f_{W_{n}}\left( t \right) =\frac{\lambda^{n}t^{n-1}}{\left( n-1 \right)
+\mathpunct{!}}e^{-\lambda t}, \qquad n\in \mathbb{N}^{*}, t\ge 0.\] 
+
+The \textcolor{Blue}{sojourn time} $S_n$ for the $n$-th occurrence of a Poisson
+process is the time interval between the $(n-1)$-th and $n$-th occurrence.
+\[S_{n}=W_{n+1}-W_{n},\quad S_{n}\sim exp\left( \lambda \right).\]
+
+Suppose $\left\{ S_{n}:n\ge 0 \right\} $ of i.i.d.\ $exp\left( \lambda \right)$ R.V.s.
+A counting process defined by the arrival time of the $n$-th event
+\[W_{n}=S_0+S_1+\cdots+S_{n-1}\] 
+is a \textbf{\textcolor{Blue}{Poisson process} with rate $\lambda$}.
+
+\subsection{Properties}
+\textbf{Short-term Performance}
+\begin{itemize}
+  \item $X\left( t \right) \sim Poi \left( \lambda t \right)\qquad t\ge 0$
+  \item $X\left( t+s \right) |\left[ X\left( t \right) =k \right] \sim k + Poi\left( \lambda s \right) $ 
+  \item $P\left( X\left( t \right)=i| \left[ X\left( t+s \right) =k \right] \right)  $ is given by Bayes' theorem:
+    \[\frac{P\left( X\left( t \right) =i \right) P\left( X\left( t+s \right) -X\left( t \right) =k-i \right) }{P\left( X\left( t+s \right) =k \right) }\]
+\end{itemize}
+
+\paragraph{Conditional Distribution}
+Given $X\left( t \right) =n$, the arrival times $W_1,W_2,\ldots,W_{n}$ have the
+same distribution as the \textcolor{Bittersweet}{order statistics} of $n$
+i.i.d.\ $Uniform\left( 0,t \right)$ R.V.s. That is, for $x\in \left( 0,t
+\right), k\in \mathbb{N}^{*}_{\le n}$:
+\[f_k\left( x \right) =\frac{n!}{\left( k-1 \right) \mathpunct{!}\left( n-k
+\right) \mathpunct{!}}\left( \frac{x}{t} \right) ^{k-1}\left( 1-\frac{x}{t}
+\right) ^{n-k}\frac{1}{t}.\]
+
+\textcolor{Bittersweet}{\textbf{Note:}} The Poisson counting process is characterised by
+the waiting times, with a fixed jumping pattern, no revisits, no absorbing
+states, and no stationary distribution. 
+
+\subsection{Multiple Poisson Processes}
+\textbf{Merging Poisson Processes:} Consider independent poisson processes
+$\left\{ N_1\left( t \right) ,t\ge 0 \right\} , \ldots,\left\{ N_m\left( t
+\right) ,t\ge 0 \right\} $ with rates $\lambda_1, \ldots,\lambda_m$
+respectively. $N\left( t \right) :=\sum_{i=1}^{m} N_i\left( t \right)$.\\
+Then $\left\{ N\left( t \right) ,t\ge 0 \right\} $ is a P.P. with rate
+$\lambda=\sum_{i=1}^{m} \lambda_i$.
+
+\textbf{Splitting Poisson Processes:} Consider a Poisson process $\left\{
+N\left( t \right) ,t\ge 0 \right\} $ with rate $\lambda$. Each event occurrence
+is independently classified as a type i event with prob.\ $r_i$ for
+$i=1,2,\ldots,m$, where $\sum_{i=1}^{m} r_i=1$.\\
+For counting processes of type $i$ events $N_i\left( t \right) $, each $\left\{
+N_i\left( t \right) ,t\ge 0 \right\} $is a P.P. with rate $r_i\lambda$ for
+$i=1,2,\ldots,m$, and are independent P.P.s.
+
+\textbf{Waiting Time Comparison: } Consider two independent Poisson processes
+$\left\{ X\left( t \right) ,t\ge 0 \right\} $ and $\left\{ Y\left( t \right)
+,t\ge 0 \right\} $ with rates $\lambda_1$ and $\lambda_2$ respectively. Let
+$W_{n}^{(1)}$ be the waiting time of the $n$-th event of $X\left( t \right) $
+and $W_m^{(2)}$ be the waiting time of the $m$-th  event of $Y\left( t \right)
+$. The probability $P\left( W_{n}^{(1)}<W_m^{(2)} \right)$ is
+given by \[\sum_{k=n}^{n+m-1} \binom{n+m-1}{k}{\left(
+\frac{\lambda_1}{\lambda_1+\lambda_2} \right)} ^{k}{\left(
+\frac{\lambda_2}{\lambda_1+\lambda_2} \right)}^{n+m-1-k}.\] 
+
+\textcolor{Bittersweet}{Intuition: }Consider the merged poisson process. Each
+event is from $X\left( t \right) $ with probability
+$\frac{\lambda_1}{\lambda_1+\lambda_2}$. We consider bernoulli trials of
+obtaining $n$ "heads" before $m$ "tails".
+
+\subsection{Generalisations of Poisson Processes}
+\textbf{Non-homogeneous Poisson Process:} Consider a non-homogeneous Poisson process $\left\{ X\left( t \right) ,t\ge 0 \right\} $ with rate $\lambda\left( t \right) >0$. The probability of at least one event occurrence in a small time interval $h\rightarrow 0$ is given by:
+\begin{itemize}
+  \item $P\left( X\left( (t,t+h] \right) =1 \right) =\lambda\left( t \right) h+o\left( h \right) $
+  \item $P\left( X\left( (t,t+h] \right) \ge 2 \right) =o\left( h \right) $
+\end{itemize}
+
+\textbf{Compound Poisson Process:} Consider a Poisson process $\left\{N\left( t \right) ,t\ge 0 \right\} $ with rate $\lambda$. Let $\left\{ Y_n:n\in \mathbb{N}^{*} \right\} $ be i.i.d.\ R.V.s independent of $\left\{N\left( t \right) ,t\ge 0 \right\} $. The \textbf{\textcolor{Blue}{compound Poisson process}} $\left\{ X\left( t \right) ,t\ge 0 \right\} $ is defined by
+\[X\left( t \right) =\sum_{n=1}^{N\left( t \right) } Y_n.\]
+
+\textbf{Conditional (Mixed) Poisson Process:} Consider a random variable $\Lambda$ independent of a Poisson process $\left\{ X\left( t \right) ,t\ge 0 \right\} $ with rate $\Lambda$. The \textbf{\textcolor{Blue}{conditional (mixed) Poisson process}} $\left\{ Y\left( t \right) ,t\ge 0 \right\} $ is defined by
+\[Y\left( t \right) =X\left( t \right) |\left[ \Lambda \right] .\]
+
+\textbf{Multi-dimensional Poisson Process:} Consider a Poisson process $\left\{ N\left( t \right) ,t\ge 0 \right\} $ with rate $\lambda$. Let $\left\{ Y_n:n\in \mathbb{N}^{*} \right\} $ be i.i.d.\ R.V.s independent of $\left\{ N\left( t \right) ,t\ge 0 \right\} $ and taking values in $\mathbb{R}^{d}$ for some $d\in \mathbb{N}^{*}$. The \textbf{\textcolor{Blue}{multi-dimensional Poisson process}} $\left\{ X\left( t \right) ,t\ge 0 \right\} $ is defined by
+\[X\left( t \right) =\sum_{n=1}^{N\left( t \right) } Y_n.\]
