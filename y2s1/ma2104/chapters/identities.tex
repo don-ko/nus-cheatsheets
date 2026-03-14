@@ -1,0 +1,67 @@
+\section{General Math}
+\paragraph{Identities}
+\begin{itemize}
+  \item $\left| \mathbf{v}-\mathbf{u} \right| ^{2}=\left| \mathbf{u} \right|^{2} +\left| \mathbf{v} \right| ^{2}-2\left| \mathbf{u} \right| \left| \mathbf{v} \right| \cos{\theta}$
+  \item $\sec^{2}{\theta}=1+\tan^{2}{\theta},\qquad\csc^{2}{\theta}=1+\cot^{2}{\theta}$ 
+  \item $\sin{\left( \alpha\pm\beta \right)}
+    =\sin{\alpha}\cos{\beta}\pm\cos{\alpha}\sin{\beta}$
+  \item $\cos{\left( \alpha\pm\beta \right)}=\cos{\alpha}\cos{\beta}\mp\sin{\alpha}\sin{\beta}$
+  \item $\tan{\left( \alpha\pm\beta
+    \right)}=\frac{\tan{\alpha}\pm\tan{\beta}}{1\mp\tan{\alpha}\tan{\beta}}$
+  \item $\cos^{2}{\theta}=\frac{1}{2}\left( 1+\cos{\left( 2\theta \right) } \right)$
+
+\end{itemize}
+
+\paragraph{Coordinate Systems}
+In the \textbf{Cartesian coordinate system}, we use the
+\textcolor{Blue}{right hand rule} to identify the $x, y,z$ axes
+(Index towards the $x$, middle towards the $y$, thumb towards the $z$).\\
+We change to the other coordinate systems with:
+\[ r=\sqrt{x^{2}+y^{2}},\quad\tan{\theta}=\frac{y}{x},\quad z=z.\] 
+\[\rho=\sqrt{x^{2}+y^{2}+z^{2}},\quad\cos{\phi}=\frac{z}{\rho},\quad\tan{\theta}=\frac{y}{x}.\] 
+
+In the \textbf{Cylindrical coordinate system}, we represent each point $P$ by
+$\left( r,\theta,z \right) $, such that $r\ge 0$ is the length the projection
+of $\vv{OP}$ on the $xy$-plane and $\theta$ its angle with the $x$-axis.  We
+change to the other corrdinate systems with:
+\[x=r\cos{\theta},\quad y=r\cos{\theta},\quad z=z.\]
+\[\rho=\sqrt{r^{2}+z^{2}},\quad\cos{\phi}=\frac{z}{\rho},\quad\theta=\theta.\] 
+
+In the \textbf{Spherical coordinate system}, we represent each point $P$ by
+$\left( \rho,\phi,\theta \right) $ such that $\rho$ is the distance from the
+origin, $\phi\in \left[ 0,\pi \right]$ is the angle between $\vv{OP}$ and the
+$z$-axis. We change to the other coordinate systems with:
+\[r=\rho\sin{\phi},\quad\theta=\theta,\quad z=\rho\sin{\phi}.\] 
+\[x=\rho\sin{\phi}\cos{\theta},\quad y=\rho\sin{\phi}\sin{\theta}\quad z=\rho\sin{\phi}.\] 
+\paragraph{Vector Products}
+The \textbf{dot product} of two vectors $\mathbf{u},\mathbf{v}$ in $\mathbb{R}^{3}$ is defined:
+\[\mathbf{u}\cdot\mathbf{v}=u_1v_1+u_2v_2+u_3v_3=\left| u \right| \left| v \right| \cos{\theta}\]
+where $\theta$ is the angle between $\mathbf{u}$ and $\mathbf{v}$.
+\begin{itemize}
+  \item $\mathbf{u,v}\text{ are \textcolor{Bittersweet}{orthogonal}}\iff\mathbf{u}\cdot\mathbf{v}=0$.
+  \item $\forall \mathbf{v}, \left(\mathbf{0},\mathbf{v}\right)$ are orthogonal.
+  \item The \textcolor{Bittersweet}{projection} of $\mathbf{u}$ in the
+    direction of $\mathbf{v}$ is defined:
+    \[\proj_\mathbf{v}\mathbf{u}=\left( \frac{\mathbf{u}\cdot\mathbf{v}}{\left|
+    \mathbf{v} \right| }  \right) \hat{\mathbf{v}}.\] 
+    The scalar component can be negative, when $\theta\in \left.\left.\right]\frac{\pi}{2},\pi\right]$
+\end{itemize}
+
+The \textbf{cross product} of two vectors $\mathbf{b}=\left< b_1,b_2,b_3 \right> $ and $\mathbf{c}=\left< c_1,c_2,c_3 \right> $ is defined:
+\begin{align*}
+  \mathbf{b}\times \mathbf{c}&=\begin{vmatrix} \hat{\imath} & \hat{\jmath} & \hat{k}\\b_1&b_2&b_3\\c_1&c_2&c_3 \end{vmatrix}\\
+                             &=\left| \mathbf{u} \right| \left| \mathbf{v} \right| \left( \sin{\theta} \right) \mathbf{n}.
+\end{align*}
+where $\theta$ is the angle between $\mathbf{u}$ and $\mathbf{v}$ and
+$\mathbf{n}$ is the unit vector in the direction according to the right hand
+rule.
+\begin{itemize}
+  \item $\forall \mathbf{a}\in \mathbb{R}^{3}, \mathbf{a} \cdot \left( \mathbf{b}\times \mathbf{c}  \right) = \begin{vmatrix} a_1&a_2&a_3\\b_1&b_2&b_3\\c_1&c_2&c_3 \end{vmatrix}=\left( \mathbf{b}\times \mathbf{c} \right) \cdot\mathbf{a}$
+  \item Cross product is defined in $\mathbb{R}^{2}$ by taking them as vectors
+    on the xy-plane of $\mathbb{R}^{3}$.
+  \item $\mathbf{u},\mathbf{v}$ are \textcolor{Bittersweet}{parallel} $\iff
+    \mathbf{u}\times \mathbf{v}=\mathbf{0}$
+  \item The cross product is the \textcolor{Bittersweet}{area of the parallelogram}.
+  \item $\left| \mathbf{u}\times \mathbf{v} \right| =\left| \mathbf{u} \right| \left| \mathbf{v} \right| \sin{\theta} $
+\end{itemize}
+

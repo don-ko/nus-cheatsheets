@@ -1,0 +1,290 @@
+\section{Multivariate Calculus}
+We call functions $f:D\to\mathbb{R}, D\subseteq \mathbb{R}^{n}$ a
+\textbf{real-valued function} on $D$. $f$ is a \textcolor{Bittersweet}{function
+of $n$ independent variables} $x_1$ to $x_{n}$.
+\[w=f\left( x_1,x_2,\ldots,x_{n} \right).\] 
+We say $w$ is a \textcolor{Bittersweet}{dependent variable} of $f$.
+
+Consider the set
+\[\left\{ \left( x_1,\ldots,x_{n}, w \right) : \mathbf{x}=\left(
+x_1,\ldots,x_{n} \right) \in D,w= f(\mathbf{x}) \right\}\]
+This set is known as the \textcolor{Bittersweet}{graph} of $f$.
+
+Given a constant value $c$, consider the set 
+\[\left\{ f(\mathbf{x})=c : \mathbf{x}\in \mathbb{R}^{n}\right\}\]
+This set is known as the
+\textcolor{Bittersweet}{level set} of $f$. The level set is a hypersurface for
+non-critical points of $f$. If $f$ is continuous, the level set has to be
+closed.
+
+In the case of \textcolor{ForestGreen}{$z=f(x,y)$}, the graph is a surface of
+which the \textcolor{Blue}{projection onto the $xy$-plane is the domain $D$},
+and the level sets are curves on the $xy$-plane. A level set can be interpreted
+as the \textcolor{Blue}{intersection between the plane $z=c$ and the graph of
+$f$}.
+
+\paragraph{Interior and Boundary Points}
+For $R$ a domain of $f$ in the $xy$-plane
+\begin{itemize}
+  \item A point is an \textcolor{Blue}{interior point} of $R$ if it is
+    the center of a small disk wholly contained in $R$.
+  \item A point is a \textcolor{Blue}{boundary point} of $R$ if every disk centered
+    at the point is partially in $R$ and partially outside $R$.
+\end{itemize}
+
+\paragraph{Limits}
+For $n$-variable function $f:D\to\mathbb{R}$, we extend the definition of
+\textcolor{Bittersweet}{\textbf{limits} for multivariable functions} as follows:
+$\lim_{(x,y) \to (x_0,y_0)} f(x,y)=L\iff\forall\epsilon>0\exists\delta>0$ such
+that $\forall (x,y)\in D\setminus\left\{(x_0,y_0)\right\}$,
+\[ \sqrt{{\left( x-x_0 \right)}^{2}+{\left( y-y_0 \right)}^{2}}<\delta\\\iff\left| f(x,y)-L \right| <\epsilon.\]
+Suppose $L,M,k\in \mathbb{R}$ such that
+\[\lim_{(x,y) \to (x_0,y_0)} f(x,y)=L\quad \lim_{(x,y) \to (x_0,y_0)} g(x,y)=M.\]
+and $r\in \mathbb{Z}, s\in \mathbb{Z}^{*}$ with no common factors\\
+\textcolor{Bittersweet}{Properties} of Limits of n-Variable functions:
+\begin{itemize}
+  \item $\lim_{(x,y) \to (x_0,y_0)} \left( f(x,y)+g(x,y) \right) =L+M$
+  \item $\lim_{(x,y) \to (x_0,y_0)} \left( f(x,y)\cdot g(x,y) \right) =L\cdot M$
+  \item $\lim_{(x,y) \to (x_0,y_0)} \left( kf(x,y) \right) =kL$
+  \item $M\neq 0 \implies\lim_{(x,y) \to (x_0,y_0)} \left( \frac{f(x,y)}{g(x,y)} \right) =\frac{L}{M}$
+  \item $L^{r/s}\in \mathbb{R} \implies \lim_{(x,y) \to (x_0,y_0)} {\left( f(x,y) \right)}^{\frac{r}{s}}=L^{r/s}$
+  \item $f,g$ are polynomials in $x,y$ and $g(a,b)\neq 0$, then
+    \[\lim_{(x,y) \to (a,b)} f(x,y)=f(a,b)\]
+    \[\lim_{(x,y) \to (a,b)} \frac{f(x,y)}{g(x,y)}=\frac{f(a,b)}{g(a,b)}.\] 
+\end{itemize}
+
+Limits in 2 variables is more complicated as $(x,y)$ could approach $(x_0,y_0)$
+from many directions.\\
+We may compute by \textcolor{Blue}{comparison} (by ``squeezing''), or
+conversion to other \textcolor{Blue}{coordinate systems}.
+
+To show the non-existence of a limit, we then use the \textbf{two-path test}.
+If a function $f(x,y)$ has \textcolor{Blue}{different limits along two
+different paths} as $(x,y)$ approaches $(x_0,y_0)$, then the limit $\lim_{(x,y)
+\to (x_0,y_0)} f(x,y)$ does not exist.
+
+\subsection{Multivariate Derivatives}
+The \textcolor{Bittersweet}{partial derivatives} of $f(x,y)$ wrt $x$,
+$f_x\left(  x_0,y_0 \right)$ is
+\[\left.\frac{\partial f}{\partial x} \right|_{x_0,y_0}=\lim_{\triangle x \to
+  0} \frac{f\left( x_0+\triangle x,y_0 \right) -f\left( x_0,y_0 \right)
+}{\triangle x},\] provided it exists.  We may interpret a partial derivative as
+the gradient of the tangent line to the graph $z=f(x,y_0)$ at $x=x_0$.
+Similarly, we have the partial derivatives wrt $y$
+\[\left.\frac{\partial f}{\partial y} \right|_{x_0,y_0}=\lim_{\triangle y \to
+  0} \frac{f\left( x_0,y_0 +\triangle y \right) -f\left( x_0,y_0 \right)
+}{\triangle y}.\]
+If the first partial derivatives are defined in an open region $R$ containing
+$\left( x_0,y_0 \right) $, and are continuous at $\left( x_0,y_0 \right) $, the
+\textcolor{Blue}{change $\triangle z$ of $f$} by moving from $\left(
+x_0,y_0 \right) $ to $\left( x_0+\triangle x,y_0+\triangle y \right) \in R$
+satisfies an equation of the form
+\[\triangle z=f_x\left( x_0,y_0 \right) \triangle x+f_y\left( x_0,y_0 \right)
+\triangle y+\epsilon_1\triangle x+\epsilon_2\triangle y\]
+where $\triangle x,\triangle y\to 0 \implies\epsilon_1,\epsilon_2\to 0$.\\
+We further define \textcolor{Bittersweet}{higher partial derivatives}
+$f_{yx}=\frac{\partial^{2} f}{\partial x\partial y} $.
+If $f\left( x,y \right) $ and its partial derivatives $f_x, f_y,f_{xy},f_{yx}$
+are defined throughout an open region containing $\left( a,b \right) $ and are
+continuous at $\left( a,b \right) $,
+\[f_{xy}\left( a,b \right) =f_{yx}\left( a,b \right).\] 
+
+\paragraph{Directional Derivatives}
+The \textcolor{Bittersweet}{gradient} of $f\left( x_1,\ldots,x_{n} \right) $ at
+$P_0\left( a_1,\ldots,a_{n} \right) $ is 
+\[\nabla f=\left<f_{x_1},f_{x_2},\ldots,f_{x_{n}} \right>.\] 
+$\nabla f\left( P_0 \right) $ is perpendicular to the level set
+$f\left(P_0\right)=c$.\\
+\textcolor{Bittersweet}{Properties} of gradients:\\
+For $k,l\in \mathbb{R}$, $\nabla(kf)\pm \nabla(lg)=k\nabla f\pm l\nabla g$.
+\[\nabla(fg)=f\nabla g+g\nabla f,\quad \nabla\left( \frac{f}{g} \right)
+=\frac{g\nabla f-f\nabla g}{g^{2}}.\] 
+\textcolor{Bittersweet}{Directional derivatives} generalise partial derivatives
+to any direction with unit vector $\mathbf{u}=u_1 \hat{\imath}+u_2\hat{\jmath}$
+\begin{align*}
+  {\left( \frac{df}{ds} \right)}_{\mathbf{u},P_0} =&\lim_{s \to 0} \frac{f\left(
+x_0+su_1,y_0+su_2 \right) -f\left( x_0,y_0 \right) }{s}\\
+      =&\mathbf{u}\cdot \nabla f\left( x_0,y_0 \right)=D_\mathbf{u} f\left(
+      x_0,y_0 \right).
+\end{align*}
+The rate of \textcolor{Blue}{increase/decrease} is greatest when $\mathbf{u}$
+is \textcolor{Blue}{in the direction of $\pm\nabla f$}.
+$D_\mathbf{u}f=\pm\sqrt{f_x^{2}+f_y^{2}}$. The rate of change is $0$ when
+$\mathbf{u}$ is perpendicular to $\nabla f$, equivalently, parallel to the
+level set.
+
+\paragraph{Tangent Space}
+The \textcolor{Bittersweet}{tangent plane} to $f\left( x,y,z \right) =c$ at
+$P_0\left( x_0,y_0,z_0 \right) $ is
+\[f_x\left( P_0 \right)\left( x-x_0 \right) +f_y\left( P_0 \right)\left(
+y-y_0 \right) +f_z\left( P_0 \right) \left( z-z_0 \right)=0.\] 
+In general, the \textcolor{Bittersweet}{tangent space} is defined by the
+specified point, and a orthogonal vector to all directional derivatives at the
+point.\\
+The tangent space is an \textcolor{Bittersweet}{approximation of the graph}.
+The approximation is better in directions \textcolor{Blue}{parallel to the
+axes}.
+
+\paragraph{Continuity}
+At $(c_0,c_1,\ldots,c_{n})$, the $n$-variable function $f: D\to \mathbb{R}$ is
+\textcolor{Bittersweet}{\textbf{continuous}} if:
+\begin{itemize}
+  \item $(c_0,c_1,\ldots,c_{n})\in D$,
+  \item $L:=\lim_{(x,\ldots,x_{n}) \to (c_0,\ldots,c_{n})} f(x_0,\ldots,x_{n})$ exists, and
+  \item $L=f(c_0,\ldots,c_{n})$.
+\end{itemize}
+$f$ is \textcolor{Bittersweet}{continuous} $\iff f$ is continuous $\forall
+\left( c_0,c_{n} \right) \in D$.
+Equivalently, $f$ is differentiable $\implies$ continuous at the point if:
+\begin{itemize}
+  \item All first order partial derivatives exist at the point,
+  \item The tangent space is a good approximation near the point.
+\end{itemize}
+$f$ is \textcolor{Bittersweet}{differentiable} $\iff f$ is differentiable
+$\forall \left( c_0,\ldots,c_{n} \right) \in D$.
+
+\paragraph{Chain Rule}
+For a differentiable function $w=f\left( x_1,\ldots,x_{n} \right)$
+where each $x_i=x_i\left( t_1,\ldots,t_m \right) $ is differentiable,
+\[w(t_1,\ldots,t_m)=f(x_1( t_1,\ldots,t_m),\ldots,x_{n}( t_1,\ldots,t_m ))\]
+is differentiable and
+\[\frac{\partial w}{\partial t_j} =\frac{\partial f}{\partial x_1}
+\frac{\partial x_1}{\partial t_j}+\frac{\partial f}{\partial x_2}
+\frac{\partial x_2}{\partial t_j} +\cdots+\frac{\partial f}{\partial x_{n}}
+\frac{\partial x_{n}}{\partial t_j}.\] 
+\[
+  \begin{pmatrix}
+    \frac{\partial w}{\partial t_1} ,\ldots \frac{\partial w}{\partial t_m} 
+    
+  \end{pmatrix}=\begin{pmatrix}
+    \frac{\partial w}{\partial x} ,\ldots,\frac{\partial w}{\partial x_{n}} 
+  \end{pmatrix} \begin{pmatrix}
+  \frac{\partial x_1}{\partial t_1} & \cdots & \frac{\partial x_1}{\partial t_m} \\
+  \vdots & \ddots & \vdots\\
+  \frac{\partial x_{n}}{\partial t_1} & \cdots & \frac{\partial x_{n}}{\partial t_m} 
+  \end{pmatrix}
+\]
+\paragraph{Extreme Values}
+For a $n$-variable function $f$ defined on a region $R$ containing $P$:
+\begin{itemize}
+  \item $f\left( P \right) $ is a \textcolor{Bittersweet}{local maximum value}
+    if $f(P)>f(P')$ for all $P'$ in an open set centred at $P$
+  \item $f\left( P \right) $ is a \textcolor{Bittersweet}{local minimum value}
+    if $f(P)<f(P')$ for all $P'$ in an open set centred at $P$
+  \item $P$ is a \textcolor{Bittersweet}{local extreme point} if it is a local
+    maximum or minimum.
+  \item $P$ is a \textcolor{Bittersweet}{saddle point} if in every open set
+    centred at $P$, there exist $P'$ where $f\left( P \right) >f\left( P'
+    \right) $, $P''$ where $f\left( P \right) <f\left( P'' \right) $.
+\end{itemize}
+An interior point is a \textcolor{Bittersweet}{critical point} if one of the
+partial derivatives are $0$ or undefined.  \textcolor{Blue}{Extrema must occur
+at critical or boundary points.}\\
+We define the \textcolor{Bittersweet}{discriminant} $D=f_{xx}f_{yy}-{\left(
+f_{xy} \right)}^{2}$ that describes the local shape of the graph. If the first
+and second partial derivatives are continuous in a open set centred at $P$ and
+the first-order partial derivatives are $0$, with the \textbf{Second Derivative
+Test},
+\begin{itemize}
+  \item $D<0$ at $P\implies P$ is a \textcolor{Blue}{saddle point}.
+  \item $f_{xx}<0\text{ and }D>0$ at $P\implies P$ is a \textcolor{Blue}{local maximum}.
+  \item $f_{xx}>0\text{ and }D>0$ at $P\implies P$ is a \textcolor{Blue}{local minimum}.
+  \item $D=0$ at $P\implies$The test is \textcolor{Blue}{inconclusive}.
+\end{itemize}
+
+\paragraph{Lagrange Multipliers}
+Within a constraint $g\left( x_1,x_2,\ldots,x_{n} \right) =0$, to find the
+maximum value of $f\left( x_1,x_2,\ldots,x_{n} \right) $. At the maximal point
+$P_0$, their gradients are \textcolor{Blue}{parallel}. For some
+\textcolor{Bittersweet}{Lagrange multiplier} $\lambda$,
+\[\nabla f\left( P_0 \right) =\lambda\nabla g\left( P_0 \right).\]
+For $\nabla g\neq \mathbf{0}$,
+$P_0$ is the \textcolor{Blue}{solution to the system of equations}
+\[\begin{cases}g\left( x_1,x_2,\ldots,x_{n} \right) =0\\\nabla f\left( x_1,x_2,\ldots,x_{n} \right) =\lambda\nabla g\left( x_1,x_2,\ldots,x_{n} \right) \end{cases}.\]
+
+\paragraph{Taylor's Expansion}
+Consider $f\left( x,y \right) $. We define for $a,b\in \mathbb{R}$, $n\in \mathbb{N}^{*}$,
+\[{\left( a \frac{\partial}{\partial x} +b \frac{\partial}{\partial y}  \right)
+}^{n} f=\sum_{k=0}^{n} \binom{n}{k}a^{n-k}b^{k}\frac{\partial ^{n}f}{\partial
+x^{n-k}\partial y^{k}}.\] 
+The Taylor's expansion for $f\left( x,y \right) $ at the origin is
+\begin{align*}
+  f&\left( x,y \right)=f+xf_x+yf_y\\
+                     &+\frac{1}{2\mathpunct{!}}\left( x^{2}f_{xx}+2xyf_{xy}+y^{2}f_{yy} \right)\\
+                     &+\frac{1}{3\mathpunct{!}}\left( x^{3}f_{xxx}+3x^{2}yf_{xxy}+3xy^{2}f_{xyy}+y^{3}f_{yyy} \right) \\
+                     &+\cdots+\frac{1}{n\mathpunct{!}}{\left( x \frac{\partial }{\partial x} +y \frac{\partial }{\partial y}  \right)} ^{n} f+error
+\end{align*}
+with each partial derivative evaluated at $\left( 0,0 \right) $, and a small
+error term (for ``nice'' functions and large $n$)
+\[error=\left.\frac{1}{(n+1)\mathpunct{!}}{\left( x \frac{\partial }{\partial
+  x} +y \frac{\partial }{\partial y}  \right)} ^{n} f\right|_{\left( cx,cy
+\right)}.\]
+
+\subsection{Multivariate Integrals}
+The \textcolor{Bittersweet}{Riemann Integral} of $f\left( x,y \right) $ over a
+region $R$ is the limit of partitioning $R$ into $n\to \infty$ divisions of
+area $\Delta A_k\to 0$ for \textcolor{Blue}{the volume} of $z=f\left( x,y
+\right) $.  That of $f\left( x,y,z \right) $ over a volume $D$ is the limit of
+partitioning $D$ each of volume $\Delta V_k$ for a \textcolor{Blue}{summation
+of $f$ over $D$}.  If this limit exists, $f$ is \textit{Riemann integral over
+$R$}.\\
+\textcolor{Bittersweet}{Properties} of Riemann Integrals:
+\begin{itemize}
+  \item $\int_R c_1f \pm c_2g \: d{A}=c_1\int_R f \: d{A}\pm c_2\int_R g \: d{A}$
+  \item $\forall \left( x,y \right) \in R, f>g\implies\int_R f \: d{A}>\int_R
+    g\: d{A}$
+  \item For a partition of $R=R_1\cup R_2$,
+    \[\int_R f \: d{A}=\int_{R_1} f \: d{A}+\int_{R_2} f \: d{A}\]
+\end{itemize}
+By \textbf{Fubini's theorem}, we can compute the Riemann integral of $f$
+continuous over a region $R$, by \textcolor{Blue}{iterating the integration
+with respect to each axis}.
+% \[R=\left\{ (x,y):x\in \left[ a,b \right],y\in \left[ g_1(x),g_2(x) \right]\right\}.\]
+% \begin{align*}
+%   \iint_{{R}}^{{}} {f(x,y)} \: d{A}=\int_{{a}}^{{b}} {\int_{{g_1(x)}}^{{g_2(x)}} {f(x,y)} \: d{y} {}} \: d{x} {}
+% \end{align*}
+% \[R=\left\{ (x,y):x\in \left[ h_1(y),h_2(y) \right],y\in \left[ c,d \right]\right\}.\]
+% \begin{align*}
+%   \iint_{{R}}^{{}} {f(x,y)} \: d{A}=\int_{{c}}^{{d}} {\int_{{h_1(y)}}^{{h_2(y)}} {f(x,y)} \: d{x} {}} \: d{y} {}
+% \end{align*}
+% where $g_1,g_2$ are continuous over $\left[ a,b \right] $ and $h_1,h_2$, over
+% $\left[ c,d \right] $.
+\paragraph{Applications}
+We find the \textcolor{Bittersweet}{area/volume of the region} by setting $f=1$
+and the \textcolor{Bittersweet}{average value of $f$ over $R$} with
+$\frac{1}{Area\ of\ R}\iint_R f\: d{A}$.\\
+
+The \textcolor{Bittersweet}{surface area of the graph} consists areas $\Delta
+G_k=\frac{\Delta A_k}{\mathbf{n}\cdot \mathbf{k}}$, where $\mathbf{n\cdot
+k}=\frac{\left<-f_x,-f_y,1 \right> }{\sqrt{1+f_x^{2}+f_y^{2}}}\cdot\left<0,0,1
+\right>\implies$ \[Area=\iint_R \sqrt{1+f_x^{2}+f_y^{2}}\: d{x}d{y}.\]
+For an object occupying $D$ in 3-dim space with density $\delta(x,y,z)$,
+\begin{itemize}
+  \item \textcolor{Bittersweet}{Mass} $M=\iiint_D\delta\left( x,y,z \right) \:d{V}$
+  \item Moment about $yz$-plane $M_{yz}=\iiint_D x\delta\left( x,y,z \right) \:d{V}$
+  \item Moment about $xz$-plane $M_{xz}=\iiint_D y\delta\left( x,y,z \right) \:d{V}$
+  \item Moment about $xy$-plane $M_{xy}=\iiint_D z\delta\left( x,y,z \right) \:d{V}$
+  \item \textcolor{Bittersweet}{Center of mass}: $\bar{x}=\frac{M_{yz}}{M}$, $\bar{y}=\frac{M_{xz}}{M}$, $\bar{z}=\frac{M_{xy}}{M}$
+\end{itemize}
+
+\paragraph{Substitutions}
+In \textcolor{Blue}{polar/cylindrical coordinates}, $\Delta A_k=r_k\Delta
+r_k\theta_k$, and in \textcolor{Blue}{spherical coordinates}, $\Delta
+V=\rho^{2} \sin{\phi}\:\Delta\rho\Delta\phi\Delta\theta$.
+\[d{A}=rd{r}d{\theta},\quad d{V}=rd{r}d{\theta}d{z}=\rho^{2}\sin{\phi}\:d{\rho}d{\phi}d{\theta}.\] 
+% \[\iint_{{R}}^{{}} {f(x,y)} \: d{A}=\iint_R {f(r\cos{\theta},r\sin{\theta})} r \: d{r} d{\theta} {}\]
+% \[\iiint_{{D}}^{{}} {f(x,y,z)} d{A}=\iiint_R {f(r\cos{\theta},r\sin{\theta},z)} r d{r} d{\theta} d{z} \]
+To perform substitutions for a function $F$,
+\[x=g\left( u,v,w \right),\quad y=h\left( u,v,w \right),\quad z=k\left( u,v,w
+\right)\]
+\[H(u,v,w)=F(g(u,v,w), h(u,v,w), z(u,v,w))\]
+The map from the $uvw$-coordinate space to the domain of integration $T:\left( u,v,w \right)\mapsto \left<g(u,v,w), h(u,v,w), k(u,v,w)
+\right>$ must be a bijection, and the \textcolor{Bittersweet}{Jacobian} yields
+the multiple \[J\left( u,v,w \right)=\begin{vmatrix}
+  x_u & x_v & x_w\\
+  y_u & y_v & y_w\\
+  z_u & z_v & z_w
+\end{vmatrix}\]
+\begin{align*}
+  \iiint_R &F(x,y,z)\:dx\:dy\:dz\\&=\iiint_D H(u,v,w)\left| J(u,v,w) \right|\:du\:dv\:dw
+\end{align*}
