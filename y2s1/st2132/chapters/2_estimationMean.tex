@@ -1,0 +1,151 @@
+\section{Estimation of Population Mean}
+
+\subsection{The Population}
+\paragraph{Gauss Model}
+A statistical model encompasses a set of statistical assumptions concerning the
+generation of sample data. There is no definitive method to check the
+assumption, but we assume data-generating protocols, or plot data over time for
+a systematic pattern.\\
+\textbf{The estimates are only as good as the statistical model.}
+
+We assume the \textbf{\textcolor{ForestGreen}{Gauss model}}, such that
+$x_1,\ldots,x_{n}$ are realisations from IID RVs
+$X_1,\ldots,X_{n}$ with expectation $\mu$ and variance $\sigma^{2}$.
+
+\paragraph{Population}
+Consider a \textcolor{Bittersweet}{population variable} denoted $x$, of which
+each of the $N$ subjects in the population $i$ has a fixed value $x_i$. 
+$x$ is \textcolor{Blue}{not a RV}.\\
+$x$ has a distribution, comprised of its possible values and proportions. It can also be
+summarised using the \textcolor{Bittersweet}{mean and variance} (often unknown):
+\[\mu_1:=\frac{1}{N}\sum_{i=1}^{N} x_i,\quad\sigma^{2}:=\frac{1}{N}\sum_{i=1}^{N} {\left( x_i-\mu \right) }^{2}=\mu_2-\mu_1^{2}.\]
+The unknown summary statistic is known as a \textcolor{Bittersweet}{parameter}.
+Typically the parameter of interest is the mean $\mu$.\\
+We may also be interested in several popvars, of which we may approximate
+using a \textcolor{Bittersweet}{multivariate distribution}. The
+\textcolor{Bittersweet}{covariance} between popvars $x$ and $y$ is defined:
+\[Cov(x,y)=\frac{1}{N}\sum_{i=1}^{N} \left( x_i-\mu_x \right) \left( y_i-\mu_y \right).\] 
+
+\textbf{PopVars and RVs} are \textcolor{Blue}{mathematically identical},
+with proportion replaced by probability. However, there is no randomness,
+hence \textcolor{Blue}{probability does not apply}.\\
+Making a random draw from a popvar of mean $\mu$ and variance $\sigma^{2}$, the
+$x$-value of the chosen subject $X$ is a RV with the
+\textcolor{Bittersweet}{same distribution} as that of the popvar.
+\[E(X)=\mu,\qquad Var(X)=\sigma^{2}.\]
+In cases where the population is not apparent
+(\textcolor{ForestGreen}{Coin-tossing}), we consider RV $X$, with $E(X)$ the
+variable of interest.\\
+\textbf{Continuous vs Discrete} PopVars: Since $x$ takes finitely many values
+($\le N$), there is \textcolor{Blue}{no clear distinction} between continuous
+and discrete popvars. Sometimes, it would simply be convenient to approximate
+with continuous distributions.
+
+
+\subsection{Estimating Population Parameters}
+Making $n$ random draws \textcolor{Blue}{\textbf{with replacement}} from a
+population with popvar of mean $\mu$ and variance $\sigma^{2}$. Let $x_i$ be
+the $i$-th outcome of the draws.\ \textcolor{Bittersweet}{Each $x_i$ is a
+realisation of IID $X_i$} (replacement), and $X_i$ has the same distribution as
+the popvar.
+\[E(X_i)=\mu,\qquad Var(X_i)=\sigma^{2}.\]
+
+\paragraph{Estimating $\mu$}
+We may consider the sample sum $s_{n}=\sum_{i=1}^{n} x_i$ and mean $\bar{x}$
+\textcolor{Blue}{realisations} of the random sum and mean 
+\[S_{n}=\sum_{i=1}^{n}X_i,\quad E(S_{n})=n\mu,\quad Var(S_{n})=n \sigma^{2}.\] 
+\[\bar{X}=\frac{S_{n}}{n},\quad E(\bar{X})=\mu,\quad Var(\bar{X})=\frac{\sigma^{2}}{n}.\] 
+We say the \textcolor{Bittersweet}{estimate} $\bar{x}$ is a realisation of the
+\textcolor{Bittersweet}{estimator} $\bar{X}$.
+
+\paragraph{Standard Error}
+We measure the average size of error with the \textcolor{Bittersweet}{standard
+error} in $\bar{x}$.  Since $\bar{x}$ is a realisation of $\bar{X}$, on average
+$\bar{x}$ is about \[SE:=SD(\bar{X})=\frac{\sigma}{\sqrt{n}}\] away from $\mu$.
+By Jensen's inequality, $E \left( \left| \bar{X}-\mu \right|  \right)<SD(\bar{X})$.
+SE is a \textbf{constant}.
+
+\paragraph{Estimating $SE$ --- The Bootstrap}
+We estimate $SE$ by estimating $\sigma^{2}$ with the
+\textcolor{Bittersweet}{sample variance}, and then taking the square root. The
+sample variance $s^{2}$ is used
+\[E\left( S^{2} \right) E \left\{ \frac{1}{n-1}\sum_{i=1}^{n} {\left( X_i-\bar{X} \right) }^{2} \right\}=\sigma^{2}\] 
+over the variance of the sample data $v$ as
+\[E(\hat{\sigma}^{2})=\frac{n-1}{n}\sigma^{2}.\] 
+We only have $n-1$ realisations of ${\left( X_i-\bar{X} \right) }^{2}$, if
+$n-1$ deviations are known, the last one is known as well as the deviations sum
+to zero.\\
+The \textcolor{Bittersweet}{estimate} $SE$ is a realisation of the
+\textcolor{Bittersweet}{estimator} $\frac{s}{\sqrt{n}}$.
+Note that \textcolor{Bittersweet}{$S$ is biased for $\sigma$}, but bias is small for large $n$.
+
+\textbf{Informally, we have}
+\[\mu\approx\bar{x}\pm \frac{s}{\sqrt{n}}.\] 
+
+\paragraph{Estimating $p$}
+In the special case of estimating $\mu$ where $X\sim Bernoulli(p)$, $\mu=p$ and
+$\sigma^{2}=p(1-p)$.  We have \textcolor{Bittersweet}{the estimate $\hat{p}$
+from the estimator $\hat{p}=\frac{S_{n}}{n}$}, and $SD(\hat{p})$ is estimated
+as $\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$.
+\[p\approx \hat{p}\pm \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}.\] 
+where $\hat{p}$ (here) is the realisation.
+
+\subsection{Estimation Bias}
+Consider a parameter $\theta$ estimated by estimator $\hat{\theta}$, based on
+IID RVs $X_1,\ldots,X_{n}$.\ \textcolor{Bittersweet}{MSE} is defined for an
+estimator $\hat{\theta}$ wrt to an unknown parameter $\theta$ as:
+\[MSE:=E \left\{ {\left( \hat{\theta}-\theta \right) }^{2}
+\right\}={Bias}^{2}+{SE}^{2}.\]
+where \textcolor{Bittersweet}{$Bias$}$:= E\left( \hat{\theta} \right) -\theta$.
+$\hat{\theta}$ is \textbf{\textcolor{Bittersweet}{unbiased}} for $\theta$ if:
+\begin{itemize}
+  \item $Bias=0$
+  \item $E\left( \hat{\theta} \right) =\theta$, or
+  \item $MSE={SE}^{2}$
+\end{itemize}
+\textcolor{Blue}{Note: MSE has the same form for prediction of a RV with a constant.}
+
+\paragraph{Measurement Bias}
+We assume a modified \textcolor{ForestGreen}{Gauss model}, such that
+$x_1,\ldots,x_{n}$ are realisations from IID RVs of expectation $\mu+b$ and
+variance $\sigma^{2}$, where $b$ is a bias parameter.\\
+$E(\bar{X})=\mu+b$, $\bar{x}$ is a biased estimate of $\mu$, and $SE$ is a
+measure of how far $\bar{x}$ is from $\mu+b$. $MSE\to b^{2}$ as $n\to \infty$.\\
+\textcolor{Bittersweet}{Bias cannot be reduced, or detected even from an
+\textbf{infinite} amount of measured data.} Corrected by comparing to known
+standards.
+
+\subsection{Confidence Interval}
+We consider the construction of a confidence interval for $\mu$
+For $\bar{X}$ with \textcolor{Blue}{normal distribution and known $\sigma^{2}$},
+\[P\left( -z_{\frac{\alpha}{2}}\le \frac{\bar{X}-\mu}{\sigma/\sqrt{n}}\le z_{\frac{\alpha}{2}}\right)=1-\alpha.\] 
+\[P\left(\mu-z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}}\le \bar{X}\le \mu+z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}}\right)=1-\alpha.\]
+\[P\left(\bar{X}-z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}}\le \mu\le \bar{X}+z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}}\right)=1-\alpha.\]
+\[\left(\bar{X}-z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}}, \bar{X}+z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}}\right)\]
+is a $\left( 1-\alpha \right)$-CI for $\mu$.\\
+Since $\frac{\bar{X}-\mu}{S/\sqrt{n}}\sim t_{n-1}$, for $\bar{X}$ with
+\textcolor{Blue}{normal distribution with unknown $\sigma^{2}$},
+\[P\left(-t_{\frac{\alpha}{2},n-1}\le \frac{\bar{X}-\mu}{S/\sqrt{n}}\le t_{\frac{\alpha}{2},n-1}\right)=1-\alpha.\]
+\[P\left(\bar{X}-t_{\frac{\alpha}{2}.n-1}\frac{S}{\sqrt{n}}\le \mu\le \bar{X}+t_{\frac{\alpha}{2},n-1}\frac{S}{\sqrt{n}}\right)=1-\alpha.\] 
+\[\left(\bar{X}-t_{\frac{\alpha}{2}.n-1}\frac{s}{\sqrt{n}}, \bar{X}+t_{\frac{\alpha}{2},n-1}\frac{s}{\sqrt{n}}\right)\] 
+is a $\left( 1-\alpha \right) $-CI for $\mu$.\\
+By CLT, for large $n$, $\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}\sim N(0,1)$. For
+$\bar{X}$ with \textcolor{Blue}{any distribution with unknown $\sigma^{2}$},
+\[P\left(\bar{X}-z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}}\le \mu\le \bar{X}+z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}}\right)\approx1-\alpha.\]
+\[P\left(\bar{X}-z_{\frac{\alpha}{2}}\frac{S}{\sqrt{n}}\le \mu\le \bar{X}+z_{\frac{\alpha}{2}}\frac{S}{\sqrt{n}}\right)\approx1-\alpha.\]
+\[\left(\bar{X}-z_{\frac{\alpha}{2}}\frac{s}{\sqrt{n}}, \bar{X}+z_{\frac{\alpha}{2}}\frac{s}{\sqrt{n}}\right)\]
+is an \textbf{approximate} $\left( 1-\alpha \right) $-CI for $\mu$.\\
+For $X \sim Bernoulli(p)$, we have the special case $s=\sqrt{\hat{p}\left( 1-\hat{p} \right) }$
+\[\left(\bar{X}-z_{\frac{\alpha}{2}}\frac{\sqrt{\hat{p}\left( 1-\hat{p} \right) }}{\sqrt{n}}, \bar{X}+z_{\frac{\alpha}{2}}\frac{\sqrt{\hat{p}\left( 1-\hat{p} \right) }}{\sqrt{n}}\right)\]
+is an approximate $\left( 1-\alpha \right) $-CI for $p$.
+
+
+\paragraph{Interpretation}
+Suppose the experiment is \textcolor{Blue}{repeated many times}, each time
+taking a random sample and computing a $\left( 1-\alpha \right)\%$-CI\@. The
+CIs have the same length of different centres, \textcolor{Bittersweet}{each a
+realisation of a random interval} containing $\mu$ with probability $95\%$.
+\textbf{Around $\left( 1-\alpha \right)\%$ of the CIs contain $\mu$.}
+We say that we are $(1-\alpha)\%$ \textcolor{Bittersweet}{confident} that $\mu$ is between 
+$\bar{X}-z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}}$ and $\bar{X}+z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}}$.\\
+If the model is inaccurate, the level of confidence is less than $1-\alpha$.

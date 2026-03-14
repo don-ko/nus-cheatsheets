@@ -1,0 +1,168 @@
+\section{Probability}
+\subsection{Random Variables}
+A \textcolor{Bittersweet}{random variable} maps the sample space
+to a measurable space, typically a subset of the reals:
+\[X:\Omega\to \mathbb{R}\]
+Interpreting RVs arisen from \textcolor{Blue}{random expriments}, their
+outcomes or data are obtained as \textbf{realisations}. In
+general, we denote RVs with capital letters, and its realisations small
+letters.
+
+\paragraph{Distribution of the RV}
+Obtaining $r$ realisations and creating a histogram, as $r\to \infty$, the
+limiting histogram converges to the \textcolor{Bittersweet}{distribution} of the RV\@.
+
+
+\subsection{Summary Statistics}
+\paragraph{Summary of Sample}
+Given $x_1,\ldots,x_{n}$ realisations of a real-valued RV, we have the
+\textcolor{Bittersweet}{mean}, \textcolor{Bittersweet}{mean-square},
+\textcolor{Bittersweet}{variance} and \textcolor{Bittersweet}{standard
+deviation}:
+\[\bar{x}:=\frac{1}{n}\sum_{i=1}^{n} x_i,\qquad \bar{x^{2}}:=\frac{1}{n}\sum_{i=1}^{n} x_i^{2}\]
+\[v:=\frac{1}{n}\sum_{i=1}^{n} {\left( x_i-\bar{x} \right) }^{2},\qquad SD:=\sqrt{v}\] 
+We say $x_1,\ldots,x_{n}$ are \textcolor{Bittersweet}{centred at $\bar{x}$} and
+the \textcolor{Bittersweet}{spread} is $SD$.\\
+We have, algebraically, the result $v=\bar{x^{2}}-{\bar{x}}^{2}$.
+
+\paragraph{Summary of Random Variable}
+Given RV $X$, we have the \textcolor{Bittersweet}{expectation} and
+\textcolor{Bittersweet}{variance:}
+\[E(X):=\begin{cases}\sum_{i=1}^{k} x_i P(X=x_i)&\text{discrete}\\\int_{{-\infty}}^{{\infty}} {x f(x)} \: d{x} {}& \text{continuous}\end{cases}.\]
+\[Var(X):=E \left\{ {\left( X-\mu \right) }^{2} \right\}=E(X^{2})-E(X)^{2}.\]
+The \textcolor{Bittersweet}{standard deviation} is $SD(X):=\sqrt{Var(X)}$. For
+any $h:\mathbb{R}\to\mathbb{R}$, we have:
+\[E \left\{ h(X) \right\}:=\begin{cases}\sum_{i=1}^{k} h(x_i) P(X=x_i)&\text{discrete}\\\int_{{-\infty}}^{{\infty}} {h(x) f(x)} \: d{x} {}& \text{continuous}\end{cases}.\]
+
+With the \textbf{linearity of expectation}, given RVs $X,Y$ and constants $a,b,c$:
+ \[E(aX+bY+c)=aE(X)+bE(Y)+c.\] 
+ \paragraph{Law of Large Numbers}
+ For $x_1,\ldots,x_r$ realisations from $X$, 
+ \[\frac{1}{r}\sum_{i=1}^{r} h(x_i)=E \left\{ h(X) \right\}\]
+ In particular, \textcolor{ForestGreen}{$\bar{x}\to E(X)$} and
+ \textcolor{ForestGreen}{$SD_x\to SD(X)$}.
+The law of large numbers motivate \textcolor{Blue}{Monte Carlo approximations},
+which approximates $E \left\{ h(X) \right\}$ with large number of realisations.
+
+
+\subsection{Distributions}
+\paragraph{Bernoulli}
+Given $X\sim Bernoulli(p)$ for some $p\in [0,1]$,
+\[p_X(x)=\begin{cases}p&x=1\\1-p&x=0\end{cases}.\]
+\[E(X)=p,\qquad Var(X)=p(1-p).\] 
+$X$ has probability of success (of being $1$) $p$.
+
+\paragraph{Binomial}
+Given $X\sim Bin(n, p)$ for some $n\in \mathbb{N},p\in [0,1]$,
+\[p_X(x)=\binom{n}{x}p^{x}{\left( 1-p \right) }^{n-x},\qquad k\in \mathbb{R}^{+}.\] 
+\[E(X)=np,\qquad Var(X)=np(1-p).\]
+$X$ is the sum of $n$ IID RVs $X_1,\ldots,X_{n}\sim Bernoulli(p)$.
+\[Y\sim(m,p)\implies X+Y\sim Bin(n+m,p).\]
+\[X\dot\sim N(np, np(1-p))\text{ as }n\to \infty.\]
+
+\paragraph{Multinomial}
+Let $\Omega=\left\{ \left\lVert x \right\rVert_1=n : x\in \mathbb{N}^{k}
+\right\}$. Then given $\mathbf{X}\sim Multinomial(n,\mathbf{p})$ for some $n\in
+\mathbb{N},\mathbf{p}\in [0,1]^{k}$, such that $\left\lVert \mathbf{p}
+\right\rVert_1 =1$,
+\[p_\mathbf{X}(\mathbf{x})=\binom{n}{x_1,x_2,\ldots,x_k}\prod_{i=1}^{k} p_i^{x_i}.\] 
+\[E(X_i)=np_i,\qquad Var(X_i)=np_i(1-p_i).\] 
+\[Cov(X_i,X_j)=-np_ip_j,\quad 1\le 1,j\le k,i\neq j.\] 
+
+\paragraph{Normal}
+Given $X\sim N(\mu, \sigma^{2})$ for some $\mu\in \mathbb{R},\sigma>0$,
+\[f_X(x)=\frac{1}{\sigma \sqrt{2\pi}}\exp{\left\{-\frac{{\left( x-\mu \right)
+}^{2}}{2\sigma^{2}}\right\}},\quad x\in \mathbb{R}\]
+In particular, the \textcolor{Blue}{standard normal} RV $Z\sim N(0,1)$ has PDF
+\[\phi(x)=\frac{1}{\sqrt{2\pi}}\exp{\left\{-\frac{x^{2}}{2}\right\}},\quad x\in \mathbb{R}\]
+$X\sim N(\mu, \sigma^{2})\implies \frac{X-\mu}{\sigma}\sim N(0,1)$
+
+\paragraph{Gamma}
+Given $X\sim Gamma(\alpha,\lambda)$ for some $\alpha>0,\lambda>0$,
+\[f_X(x)=\frac{\lambda^{\alpha}}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x},\qquad x\in \mathbb{R}^{+}\]
+where $\Gamma(x)=\int_{{0}}^{{\infty}} {u^{x-1}e^{-u}} \: d{u} {}$.
+\[E(X)=\frac{\alpha}{\lambda},\qquad Var(X)=\frac{\alpha}{\lambda^{2}}.\] 
+$\Gamma(x)=(x-1)\Gamma(x-1)$ is the number such that the density integrates to
+$1$.
+\[X_i\sim G(\alpha_i,\lambda)\implies \sum_{i=1}^{n} X_i \sim Gamma\left(\sum_{i=1}^{n} \alpha_i, \lambda\right).\] 
+\[Exponential(\lambda)=Gamma(1,\lambda).\] 
+
+\paragraph{Chi-Square}
+Given $X\sim\chi^{2}_k$ for some $k\in \mathbb{N}^{*}$,
+\[f_X(x)=\frac{1}{2^{{k}/2 }\Gamma\left( k/2 \right)}x^{\left( k/2 \right) -1}e^{-x/2},\qquad x>0.\] 
+\[E(X)=k,\qquad Var(X)=2k.\] 
+\textcolor{Blue}{$Z\sim N(0,1)\implies Z^{2}\sim\chi^{2}_1$} and $X\sim Gamma(\frac{k}{2},\frac{1}{2})$
+$X=\sum_{i=1}^{k} X_i$, for $X_1,X_2,\ldots,X_k$ IID $\chi_1^{2}$ RVs.
+
+\paragraph{$t$ Distribution}
+Given $X\sim t_{n}$ for some $n\in \mathbb{R}$ (almost always $n\in \mathbb{Z}$),
+\[f_X(x)=\frac{\Gamma\left( \frac{n+1}{2} \right) }{\sqrt{\pi n}\Gamma\left( \frac{n}{2} \right) }{\left( 1+\frac{x^{2}}{n} \right) }^{-\frac{n+1}{2}}.\] 
+\[E(X)=0,\qquad Var(X)=\begin{cases}\frac{n}{n-2}&n>2\\\infty&1<n\le 2\end{cases}.\] 
+For independent $Z\sim N(0,1)$ and $V\sim\chi_{n}^{2}$,
+\[t_{n}=\frac{Z}{\sqrt{V/n}}.\] 
+As $n\to \infty$, the $t_{n}\to N(0,1)$
+
+\subsection{Multi-RVs}
+Given two RVs $X,Y$, we have the \textcolor{Bittersweet}{joint PDF} $f:\mathbb{R}^{2}\to[0,\infty)$
+\[\int_{{-\infty}}^{{\infty}} {\int_{{-\infty}}^{{\infty}} {f(x,y)} \: d{x} {}} \: d{y} {}=1,\] 
+and the \textcolor{Bittersweet}{marginal density} of $X$ (similarly for $f_Y(y)$)
+\[f_X(x)=\int_{{-\infty}}^{{\infty}} {f(x,y)} \: d{y} {},\quad x\in \mathbb{R}.\] 
+For $h:\mathbb{R}^{2}\to\mathbb{R}$,
+\[E \left\{ h(X,Y) \right\}=\int_{{-\infty}}^{{\infty}}
+{\int_{{-\infty}}^{{\infty}} {h(x,y) f(x,y)} \: d{x} {}} \: d{y} {}\]
+
+\paragraph{Covariance}
+We define the covariance between $X,Y$
+\begin{align*}
+  Cov(X,Y):=&E \left\{ \left( X-\mu_X \right) \left( Y-\mu_Y \right) \right\}\\
+  =&E(XY)-\mu_X\mu_Y
+\end{align*}
+We have the results:
+\[Var(X)=Cov(X,X).\] 
+\[Cov\left( \sum_{i=1}^{n} a_iX_i ,\sum_{j-1}^{m} b_jY_j\right)=\sum_{i=1}^{n} \sum_{j=1}^{m} a_ib_jCov\left(X_i,Y_j\right).\]   
+
+\begin{align*}
+  \text{\textbf{Independence}}\iff& \forall x,y\quad f_{X|Y}(x|y)=f_X(x)\\
+                              \iff&\forall A_1,\ldots,A_{n}\subseteq \Omega\\
+                                  &\qquad P(X_1\in A_1,\ldots,X_{n}\in A_{n})\\
+                                  &\qquad=\prod_{i=1}^{n} P(X_i\in A_i) \\
+                              \iff&\forall s, t\quad M_{XY}(s,t)=M_X(s)M_Y(t)\\
+                              \implies&E \left[ g( X ) h( Y )  \right]=E[g(X)]E[h(Y)]\\
+                              \implies&Var\left( \sum_{i=1}^{n} X_i \right) =\sum_{i=1}^{n} Var\left( X_i \right) \\
+                              \implies&Cov(X,Y)=0\quad\text{Uncorrelated RVs.}
+\end{align*}
+\textcolor{Blue}{Normal} $X,Y\wedge Cov(X,Y)=0 \implies$ Independence
+
+\paragraph{Independent and Identically Distributed RVs}
+Given IID RVs $X_1,\ldots,X_{n}$ of expectation $\mu$ and variance
+$\sigma^{2}$, we have the \textcolor{Bittersweet}{expectation and variance} of the sum
+$S_{n}=\sum_{i=1}^{n} X_i$:
+\[ E(S_{n})=n\mu\qquad Var(S_{n})=n\sigma^{2}.\]
+In addition, we define the \textcolor{Bittersweet}{sample variance}
+\[S^{2}=\frac{1}{n-1}\sum_{i=1}^{n} {\left( X_i-\bar{X} \right)}^{2}.\] 
+\[E\left( S^{2} \right)=\sigma^{2},\quad Var\left(S^{2}\right)=\frac{2\sigma^{4}}{n-1}.\] 
+By the \textcolor{Bittersweet}{Central Limit Theorem}, as $n\to \infty$,
+\[S_{n} \dot\sim N(n\mu,n\sigma^{2}).\] 
+
+\paragraph{IID Normal RVs}
+The \textcolor{Bittersweet}{expectation and variance} of the sample mean
+$\bar{X}=\frac{1}{n}\sum_{i=1}^{n} X_i$:
+\[E(\bar{X})=\mu,\qquad Var(\bar{X})=\frac{\sigma^{2}}{n}.\] 
+With the following results:
+\begin{itemize}
+  \item $\frac{(n-1)S^{2}}{\sigma^{2}}=\frac{\sum_{i=1}^{n} {\left( X_i-\bar{X} \right) }^{2}}{\sigma^{2}}\sim\chi_{n-1}^{2}$
+  \item $\bar{X}$ and $S^{2}$ are independent.
+\end{itemize}
+We have
+\[\frac{\bar{X}-\mu}{S/\sqrt{n}}\sim t_{n-1}.\] 
+
+
+\paragraph{Random Vector}
+For $\mathbf{X}=\left( X_1,\ldots,X_k \right)$ a random vector of $k$ RVs,
+we define
+\[E(\mathbf{X})=\begin{pmatrix} E(X_1)\\E(X_2)\\\vdots\\E(X_k) \end{pmatrix},\quad V=Var(\mathbf{X})=\]
+\[\begin{pmatrix} Var(X_1)&Cov(X_1,X_2)&\cdots&Cov(X_1,X_k)\\Cov(X_2,X_1)&Var(X_2)&\cdots&Cov(X_2,X_k)\\\vdots&\vdots&\ddots&\vdots\\Cov(X_k,X_1)&Cov(X_k,X_2)&\cdots&Var(X_k)\end{pmatrix}\]
+$V$ is symmetric ($\exists$ a spectral decomposition).\\
+For IID $X_1,\ldots,X_k$, $V=diag(\sigma^{2},\ldots,\sigma^{2})$.\\
+$\mathbf{X}\sim \mathcal{N}\left( \mathbf{\mu},\mathbf{\Sigma} \right)\wedge
+V_{ij}=0\iff \text{} X_i,X_j$ are independent.

@@ -1,0 +1,23 @@
+\section{General Estimation}
+\subsection{Family of Distributions}
+A \textcolor{Bittersweet}{family of distributions} is a set of distributions
+that can be characterised by a \textcolor{Blue}{finite number of parameters}.
+The \textcolor{Bittersweet}{parameter space} $\Theta$ is the set of all
+possible values of the parameters. If a bijective correspondence exists
+between $\Theta$ and the family of distributions, the parameters are
+\textbf{identifiable} (eg. unidentifiable when
+\textcolor{ForestGreen}{predictors are collinear in regression}). Within the
+parameter space, we find the estimator $\hat{\theta}: \Omega\to\Theta$ of the
+parameter $\theta$ approximating the true distribution.
+
+\subsection{Method of Moments}
+The \textcolor{Bittersweet}{$k$-th moment}, where $k\in \mathbb{N}^{*}$, of a
+random variable $X$ is defined as $\mu_k := E[X^k]$. It is estimated by the
+\textcolor{Bittersweet}{sample moment} 
+\[\hat{\mu}_k := \frac{1}{n}\sum_{i=1}^{n} X_i^k,\qquad
+SD(\hat{\mu_k})=\frac{\sqrt{\mu_{2k}-\mu_k^{2}}}{\sqrt{n}}\]
+
+By equating the sample moments to the population moments and solving for the
+parameters, we obtain the \textcolor{Bittersweet}{method of moments estimator}
+(MME)
+\[\hat{\theta}_{MM} := g(\hat{\mu}_1, \hat{\mu}_2, \ldots, \hat{\mu}_k)\]
