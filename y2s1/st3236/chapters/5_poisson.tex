@@ -1,0 +1,57 @@
+\section{Poisson Process}
+For independent events over $\left[ 0,t_0 \right] $ decomposed into $n\to
+\infty$ intervals of length $h=\frac{t_0}{n}$, $N\left(\left( \left.  kh, kh+h
+\right] \right.\right) \sim Bern(p_{n})$ and $N\left(\left[ 0,t_0
+\right]\right) \sim Bin(n,p_{n})$. If $p_{n}\in o\left(h\right)$, $np_{n}\to
+\lambda$,
+\begin{align*}
+  P(X=x)=&\binom{n}{x}\frac{\lambda}{n}^{x}{(1-\frac{\lambda}{n})}^{n-x}\\
+  =&\frac{n\mathpunct{!}/(n-1)\mathpunct{!}}{n^{x}} \frac{\lambda^{x}}{x\mathpunct{!}} {\left( 1-\frac{\lambda}{n} \right)} ^{n-x}
+  \to \frac{\lambda^{x}}{x\mathpunct{!}} e^{-\lambda}
+\end{align*}
+We have the \textbf{\textcolor{Bittersweet}{Poisson Distribution}} $X\sim
+Pois\left( \lambda \right) $with $\lambda>0$,
+\[ P\left( X=x \right) =\frac{\lambda^{x}}{x\mathpunct{!}}e^{-\lambda}, \quad x\in \mathbb{N}.\] 
+\[E\left[ X \right] =Var\left( X \right) =\lambda,\qquad M_X\left( t \right) =e^{\lambda\left( e^{t}-1 \right) }.\] 
+
+A \textbf{\textcolor{Bittersweet}{Poisson process}} of
+\textcolor{Blue}{rate/intensity} $\lambda>0$ is a continuous-time,
+discrete-state stochastic process $\left\{ X(t)|t\ge 0 \right\} $ where
+\begin{itemize}
+  \item $X(t_1)-X(t_0),X(t_2)-X(t_1),\ldots,X(t_{n})-X(t_{n-1})$
+    are independent RVs, for any $t_0=0<t_1<\cdots<t_{n}$
+  \item $X(s+t)-X(s)\sim Pois\left( \lambda t \right), \quad s\ge 0, t>0$
+  \item $X(0)=0$
+\end{itemize}
+
+Alternatively, by \textcolor{Blue}{the law of rare events}, $N\left( \left(
+\left. s,t \right] \right. \right) $ is a \textcolor{Bittersweet}{Poisson
+process} of intensity $\lambda>0$ if
+\begin{itemize}
+  \item $N\left( \left( \left. t_0,t_1 \right] \right. \right),\ldots,N\left(
+    \left( \left. t_{n-1}, t_{n} \right] \right. \right)$
+  \item $\exists \lambda,\quad P\left( N\left( \left( \left. t,t+h \right]
+    \right.  \right) \ge 1 \right)=\lambda h+o(h),\quad h\to 0$
+  \item $\exists \lambda,\quad P\left( N\left( \left( \left. t,t+h \right]
+    \right.  \right) \ge 2 \right)=o(h),\quad h\to 0$
+\end{itemize}
+This allows generalisation: $\lambda\to\lambda(t)$ yields a
+\textcolor{ForestGreen}{non-homogeneous Poisson process}, $h\to Vol(A)$ a
+\textcolor{ForestGreen}{Poisson point process}.\\
+For a Poisson process $X(t)$ of rate $\lambda$, the
+\textcolor{Bittersweet}{waiting time} of the $n$-th event $W_{n}\sim
+Exp(\lambda)=\Gamma(n,\lambda)$. Further, the
+\textcolor{Bittersweet}{sojourn times} $S_{n}=(W_{n+1}-W_{n})\sim
+Exp(\lambda)$.\\
+This gives the alternative definition: the counting process with waiting times
+$W_{n}=S_0+S_1+\cdots+S_{n-1}$ is a \textcolor{Bittersweet}{Poisson process} of
+rate $\lambda$ if
+\[\left\{ S_{n}:n\ge 0 \right\} \text{ are IID RVs, } S\sim Exp(\lambda)\]
+With the memoryless property, given that $X(t)=n$, each of the events occur at
+any $t\in \left[ 0,t_0 \right]$ with equal probability. That is, The
+\textbf{\textcolor{Blue}{conditional distribution}} of $W_1,W_2,\ldots,W_{n}$,
+given $X(t)=n$, is the same as the \textcolor{Blue}{order statistics} corresponding
+to $n$ IID uniform RVs over $\left( 0,t \right) $.
+\vspace{-1mm}
+\[f_{W_k}(x)=\frac{n\mathpunct{!}}{(n-k)\mathpunct{!}(k-1)\mathpunct{!}}\frac{1}{t}{\left( \frac{x}{t} \right)}^{k-1}{\left( \frac{t-x}{t} \right)}^{n-k}.\] 
+

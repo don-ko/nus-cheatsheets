@@ -1,0 +1,82 @@
+\section{Pre-Requisites}
+\subsection{Distributions}
+\textcolor{Blue}{Binomial} $X\sim Bin(n,p)$: $M(t)={\left( pe^{t}+1-p \right)
+}^{n}$
+
+\textcolor{Blue}{Geometric} $X\sim Geometric(p)$: $M(t)={\frac{pe^{t}}{1-(1-p)e^{t}}}$
+
+\textcolor{Blue}{Gamma} $X\sim \Gamma(\alpha, \lambda)$:
+\[f_X\left( x \right) =
+\frac{\lambda^{\alpha}}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x}.\] 
+
+\textcolor{Blue}{Multinomial} $X\sim Multinomial(n, \mathbf{p})$:
+\[P(\mathbf{X}=\mathbf{x})=\binom{n}{x_1,\ldots,x_k}\prod_{i=1}^{k} p_i^{x_i},\left\lVert \mathbf{x} \right\rVert_1 =n.\]
+\[Cov(X_i,X_j)=-n p_i p_j, \quad i,j\in [1,k], i\neq j.\] 
+
+\textcolor{Blue}{Hypergeometric} $X\sim Hypergeometric(N,m,n)$:\\
+For $i\in \left[ \max{\left( 0,n+m-N \right) },\min{\left( n,m \right) } \right]$,
+\[P\left( X=x \right) =\frac{\binom{m}{i}\binom{N-m}{n-i}}{\binom{N}{n}}.\] 
+\[E(X)=\frac{nm}{N},Var(X)=\frac{nm}{N}\frac{N-m}{N}\frac{N-n}{N-1}.\] 
+
+\subsection{Random Variables}
+\paragraph{Expectation and Variance}
+\vspace{-4mm}
+\[Cov(X,Y)=E \left\{ \left( X-\mu_X \right) \left( Y-\mu_Y \right)  \right\}.\]
+\[Corr(X,Y)=\frac{Cov(X,Y)}{\sqrt{Var(X)Var(Y)}}.\]
+The \textcolor{Blue}{moment generating function} is defined:
+\[M_X(t)=E\left( e^{tX} \right)=\phi_X\left( e^{t} \right).\] 
+\textcolor{Bittersweet}{Properties} of MGF:\@
+\begin{itemize}
+  \item A MGF uniquely identifies a distribution
+  \item $E \left[ X^{k} \right]=\frac{d^{k}}{d t^{k}}M_X(t)|_{t=0}$
+  \item $M_{aX+b}\left( t \right) =e^{bt}M_X\left( at \right)$
+\end{itemize}
+The \textcolor{Blue}{probability generating function} is defined for discrete RVs:
+\[\phi_X\left( t \right) =E\left[ t^{X} \right]=M_X\left( \ln{t} \right).\] 
+\textcolor{Bittersweet}{Properties of PGF}:
+\begin{itemize}
+  \item A PGF uniquely identifies a discrete RV's distribution
+  \item $P\left( X=0 \right) =\phi_X\left( 0 \right)$
+  \item $P(X=k)=\frac{1}{k\mathpunct{!}}\frac{d^{k}}{dx^{k}}\phi_X\left( t
+    \right) |_{t=0},\quad k\in \mathbb{N}^{*}$
+\end{itemize}
+\begin{align*}
+  \text{\textbf{Independence}}\iff& \forall x,y\quad f_{X|Y}(x|y)=f_X(x)\\
+                              \iff&\forall s, t\quad M_{XY}(s,t)=M_X(s)M_Y(t)\\
+                              \iff&\forall s, t\quad \phi_{X+Y}(s,t)=\phi_X(s)\phi_Y(t)\\
+                              \implies&E \left[ g( X ) h( Y )  \right]=E[g(X)]E[h(Y)]\\
+                              \implies&Cov(X,Y)=0
+\end{align*}
+\textcolor{Blue}{Normal} $X,Y\wedge Cov(X,Y)=0 \implies$ Independence
+
+\paragraph{Conditional Distributions}
+We say $X_1,\ldots,X_{n}$ are conditionally independent given $Y$ if $\forall \left<x_1,\ldots,x_{n}, y\right>\in \mathbb{R}^{n+1}$,
+\begin{align*}
+ P\left(X_1=x_1,\ldots,X_{n}=x_{n}|Y=y\right)\\
+                =\prod_{i=1}^{n} P\left( X_i=x_i|Y=y \right)
+\end{align*}
+\[p_{Y|X}\left(y|x\right)=\frac{p_{X|Y}\left( x|y \right) p_Y\left( y \right) }{\sum_{y} p_{X|Y}\left( x|y \right) p_Y\left( y \right)}.\] 
+With the conditional probability, we may fix $Y=y$ such that we have a
+\textcolor{Bittersweet}{conditional RV}
+$X|Y=y$.
+\[p_{X|Y=y}=\frac{P\left(X=x,Y=y\right)}{P\left(Y=y\right)},\]
+with \textcolor{Bittersweet}{conditional expectation} $E \left[ X|Y=y \right]$.
+
+We may take $Y$ as the random variable, to obtain the RVs
+\textcolor{Blue}{conditional expectation} $E \left[ X|Y \right]$, and
+\textcolor{Blue}{conditional variance} $Var\left( X|Y \right)$.
+
+\paragraph{Random Sum}
+For IID RVs $X_1,X_2,\ldots$, and discrete RV $N$ independent of $X_i s$, the random sum is defined
+\[Y=\sum_{i=1}^{N} X_i.\]
+By the laws of total expectation/variance, we have the results:
+\[E \left[ Y \right]=E\left( N\mu \right) =\mu E\left( N \right) \] 
+\begin{align*}
+  Var(Y)&=E \left[ N\sigma^{2} \right] + Var(N\mu)\\
+        &=\sigma E \left[ N \right] + \mu^{2} Var\left( N \right) 
+\end{align*}
+\begin{align*}
+  M_Y(t)&=E \left[ e^{t \sum_{i=1}^{N} X_i} \right] = E \left[ E \left[ e^{t \sum_{i=1}^{N} X_i} | N\right] \right]\\
+        &=E \left[ {\left( M_X(t) \right) }^{N} \right] = E \left[ e^{N \ln{M_X(t)}} \right]\\
+        &=M_{N}\left( \ln{\left[ M_X(t) \right]} \right) 
+\end{align*}

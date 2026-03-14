@@ -1,0 +1,167 @@
+\section{Markov Chains}
+\subsection{Stochastic Processes}
+A \textcolor{Bittersweet}{stochastic process} is a collection of indexed random
+variables $\left\{ X(t,\omega) : t\in T\right\}$.
+\begin{itemize}
+  \item Given an outcome $\omega$, $X\left( \cdot,\omega \right) :T\to S$ is a sample path.
+  \item Given a index $t$, $X\left( t,\cdot \right):\Omega\to S$ is a distribution on $S$.
+\end{itemize}
+It is defined with a \textcolor{Blue}{state space $S$} that contains all
+possible states, and a \textcolor{Blue}{probability measure $P$}.
+\paragraph{Classification}
+If $T$ is countable, we have a \textcolor{Blue}{\textbf{discrete-time}} stochastic
+process. Otherwise, it is a \textcolor{Blue}{continuous-time} stochastic
+process.\\
+If $S$ is countable, we have a \textcolor{Blue}{\textbf{discrete-state}} stochastic
+process.  Furthermore if $S$ is finite, it is a \textcolor{Blue}{finite-state}
+stochastic process.  Otherwise, it is a \textcolor{Blue}{real-state} stochastic
+process.
+\paragraph{Specification}
+The probability measure for each outcome, of the joint distribution of
+$\left(X_{n_1}, X_{n_2},\ldots,X_{n_k}\right)$ is too difficult to specify in
+general.
+
+\subsection{Markov Chain}
+A stochastic process satisfies the \textcolor{Bittersweet}{Markovian property}
+if given current state $X_{n}$, the next state $X_{n+1}$ is independent of all
+past states $X_{n-1},\ldots,X_0$.
+\[P\left( X_{n+1}=j|X_{n}=i,X_{n-1}=i_{n-1},\ldots,X_0=i_0 \right)\] \[=P\left(
+X_{n+1}=j|X_{n}=i \right).\] 
+This $p_{ij}^{n, n+1}$ is known as the \textcolor{Bittersweet}{(one-step)
+transition probability}.\\
+$\left\{ X_{n}:n\in T \right\}$ is called a \textcolor{Bittersweet}{Markov
+Chain} if it is a \textcolor{Blue}{discrete-time discrete-state stochastic
+process satisfying the Markovian property}.
+\paragraph{Specification}
+A Markov Chain can be \textcolor{Blue}{specified} (to find the joint
+distribution of $X_{n}$ at any $k$ time points) with
+\begin{enumerate}
+  \item The index set $T$
+  \item The state space $S$ 
+  \item The one-step transition probability $\forall i,j\in S,n\in T$ 
+\end{enumerate}
+We define the \textcolor{Bittersweet}{one-step transition probability matrix}
+$\mathbf{P^{n,n+1}}$ where each $\mathbf{P}_{ij}^{n,n+1}=P\left(
+X_{n+1}=j|X_{n}=i \right) $. The row vector yields the conditional distribution
+$X_{n+1}|X_{n}=i$.
+\paragraph{Chapman-Kolmogorov Equations}
+For any $m,n\ge 0$, we have the equations
+\[\mathbf{P}^{n,n+m+1}=\mathbf{P}^{n,n+1}\mathbf{P}^{n+1,n+m+1},\] 
+\[\mathbf{P}^{n,n+m+1}=\mathbf{P}^{n,n+m}\mathbf{P}^{n+m,n+m+1}.\] 
+\[p_{ij}^{n,n+m}=\sum_{k_1,k_2,\ldots,k_{m-1}} p_{ik_1}^{n,n+1}\cdots p_{k_{m-1},j}^{n+m-1,n+m}.\] 
+
+\subsection{Stationary MC}
+With certain problems, we may further assume that $p_{ij}^{n,n+1}$ does not
+depend on $n$.  We have the \textcolor{Bittersweet}{stationary transition
+probability}
+\[p_{ij}^{n,n+1}=p_{ij},\qquad i,j\in S,n\in T.\]
+We only require $S, T, \mathbf{P}$ for the specification of a
+\textcolor{Blue}{stationary MC}.
+\[\mathbf{P}^{(m+n)} = \mathbf{P}^{(m)}\mathbf{P}^{(n)}\quad\text{for
+stationary MCs}.\] 
+Finite-state stationary MCs can be represented with
+\textcolor{Bittersweet}{graphs}, where nodes represent state, and edges
+represent possible transitions.
+
+\paragraph{Random Walks}
+Suppose $\left\{ \xi_{n} \right\}_{n\in \mathbb{N^{*}}}$ a sequence of IID
+random vectors with $\xi_{i}\sim p$. A stationary MC $\left\{
+X_{n} \right\}_{n\in \mathbb{N}}$, with $T=\mathbb{N}, S=\mathbb{Z}$ where
+\[X_0=x_0\in \mathbb{Z}^{n},\quad X_{n+1}=X_{n}+\xi_{n+1},n\in \mathbb{N}.\]
+is known as a \textcolor{Bittersweet}{random walk}.
+\[X_{n}=X_0+\sum_{i=1}^{n} \xi_i,\quad \left( \xi_i+1 \right) /2\sim Bernoulli(p).\] 
+If $X_0=0$, $\left( X_{n}+n \right) /2\sim Bin(n,p)$.
+
+\textcolor{Bittersweet}{Special Cases} of ($1$-dim) random walks:
+\begin{itemize}
+  \item Symmetric/Simple: $P\left( \xi_{n} =1\right) =\frac{1}{2}$
+  \item Biased: $P\left( \xi_{n}=1 \right) =p\neq \frac{1}{2},\quad P\left( \xi_{n}=-1 \right)=q$
+  \item Lazy: $\xi_{n}\in \left\{ -1,1,0 \right\},P\left( \xi_{n} =0\right) =r>0$
+  \item with Reflecting Boundaries: for $a,b\in \mathbb{R},a<b$,
+    \[P\left( X_{n+1}=a+1|X_{n}=a \right)=1\]\[P\left( X_{n+1}=b-1|X_{n}=b
+  \right) =1.\] 
+\end{itemize}
+A random walk in $\mathbb{Z}^{d}$, where $\xi_{n}$ is a step towards one of its $2d$
+nearest neighbours, is known as a \textcolor{Blue}{$d$-dimensional random
+walk}.
+
+\paragraph{Brownian Motion}
+Consider a random walk where in each step, the walker moves $\Delta x\to 0$ in
+$\Delta t\to 0$ time. This describes a continuous path.  If $\Delta t=c\Delta
+x^{2}$ for some constant $c$, it is a \textcolor{Bittersweet}{Brownian motion}.
+
+\subsection{Short-Term Analysis}
+For a MC with state space $S$, index set $\mathbb{N}$ and transition probability matrix $\mathbf{P}$,
+we have the following results:
+\begin{itemize}
+  \item $P\left( X_1=j|X_0=i \right)=p_{ij}$ 
+  \item Distribution of the \textcolor{Blue}{next state}: $\left( X_1|X_0=i \right) \sim \mathbf{P}_{i,\cdot}$ 
+  \item Distribution of \textcolor{Blue}{$n$-th state}: $\left( X_{n}|X_0=i \right) \sim\left( \mathbf{P}^{n} \right)_{i,\cdot}$
+  \item Joint distribution of \textcolor{Blue}{two timepoints} $n\ge m\ge 0$
+    \[P\left( X_{n}=j, X_m=k|X_0=i \right)={\left( \mathbf{P}^{n-m} \right)}_{kj}{\left( \mathbf{P}^{m} \right)}_{ik}\]
+  \item \textcolor{Blue}{Random initial state} $X_0\sim\mathbf{\pi}$ 
+    \[\left(X_{n}=j|X_0\sim\mathbf{\pi}\right)\sim\mathbf{\pi P}^{(n)}.\] 
+  \item \textcolor{Blue}{Past state conditional} on current and initial state
+    \[P\left( X_m |X_{n}=j,X_0=i \right)=\frac{{\left( \mathbf{P}^{n-m} \right)}_{kj}{\left( \mathbf{P}^{m} \right) }_{ik}}{{\left( \mathbf{P}^{n} \right) }_{ij}}.\] 
+\end{itemize}
+
+\subsection{First Step Analysis}
+\paragraph{Definitions}
+For strategy-related questions involving the time index $t$, we first define a
+RV $T:\Omega\to \left\{ 0,1,2,\ldots,\infty \right\} $ such that $\forall n\ge
+0$,
+\[\left\{ T=n \right\} \text{ depends solely on } X_1,X_2,\ldots,X_{n},\] 
+\[\left\{ T\le n \right\} \text{ depends solely on } X_1,X_2,\ldots,X_{n}.\] 
+$T$ is a \textcolor{Bittersweet}{stopping time}.
+Further, a state $i$ is an \textcolor{Bittersweet}{absorbing state} if 
+\[\forall j\in S-\left\{ i \right\}, p_{ij}=0\]
+
+\paragraph{First Step Analysis}
+Using First Step Analysis, we may solve \textbf{problems related to stopping
+time} $T$, such as the state at time $T$, $E\left[ T \right]$, functions of
+$T$. Consider $a_i\left( T \right)=h\left( i,\ldots,X_T|X_0=i \right) $:
+\begin{enumerate}
+  \item Consider the first step, where
+    \begin{align*}
+      a_i\left( T \right)=\sum_{k\in S}h&\left(i,k,X_2,\ldots,X_T|X_0=i,X_1=k \right)\times \\
+      &P\left( X_1=k|X_0=i \right).
+    \end{align*}
+  \item Consider the probabilistic equivalent process $\left\{ Y_{n} \right\}
+    $.
+    \[h\left( i,k,X_2,\ldots,X_T|X_0=i,X_1=k \right)\]\[=g\left( h\left( k,X_1,\ldots,X_T|X_0=k \right) \right).\] 
+    where $g$ depends on the specified problem.
+  \item Define $a_i\left( T \right) =h\left( i,\ldots,X_T|X_0=i \right) $ for each state $i\in S$, and express
+    the equation as
+    \[a_i\left( T \right) =\sum_{k\in S} g\left( a_k\left( T \right) \right) P\left( X_1=k|X_0=i \right).\] 
+  \item Solving the system of equations of $a_i, \forall i\in S$, we obtain the
+    desired result.
+\end{enumerate}
+
+\paragraph{Strategy-Related Problems}
+To obtain $P(X_T=S_A|X_0=S_i)$, we take the first step of the MC with the
+Chapman-Kolmogorov equations. Consider $Y_{n}=X_{n+1}$. $\left\{ Y_{n} \right\}
+$ has the \textcolor{Blue}{same probabilistic structure} as $\left\{ X_{n}
+\right\} $. 
+\[P(X_T=A|X_1=i)=P(Y_{T-1}=0|Y_0=i).\]
+$T_Y:=\min\left\{n:Y_{n}= S_A \right\}$. $T_Y$ is a stopping time of
+$\left\{ Y_{n} \right\} $.
+\[P\left( Y_{T_Y}=0|Y_0=i \right)=P\left( X_T=0|X_0=i \right).\] 
+\begin{align*}
+  \therefore\ &\textcolor{Blue}{P\left( X_T=0|X_1=1 \right)} = P\left( Y_{T-1}=0|Y_0=1 \right)\\
+          =& P\left( Y_{T_Y}=0|Y_0=1 \right) = \textcolor{Blue}{P\left( X_T=0|X_0=1 \right) }
+\end{align*}
+Defining $u_i=P\left( X_T=S_A|X_0=S_i \right) $, we have a system of equations
+in $u_i$, $\forall i\in S$.
+
+\paragraph{General Gambler's Ruin}
+Suppose a gambler who will stop with $N$, or $0$ dollars in hand. In each game,
+they win with probability $p$, and lose with $q=1-p$. Beginning with $0<k<N$ in
+hand, the \textcolor{Blue}{probability of stopping at $0$}
+$u_k=P\left( X_T=0|X_0=k \right) $ is
+\[\begin{cases}u_k=1-\frac{k}{N}&p=q\\ u_k=1-\frac{1-{\left( q/p \right)}
+^{k}}{1-{\left( q/p \right)}^{N} }&p\neq q\end{cases}\]
+
+The \textcolor{Blue}{expected number of games} played $v_k=E\left[ T|X_0=k \right] $ is
+\[\begin{cases} v_k=k(N-k)&p=q\\ v_k=\frac{1}{p-q}\left[ \frac{N\left(
+1-{\left( q /p \right) }^{k} \right) }{1-{\left( q /p \right)} ^{N}}
+-k\right]&p\neq q\end{cases}\] 
