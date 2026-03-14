@@ -1,0 +1,40 @@
+\section{Distributions}
+\paragraph{Mean and Variance of Random Variable $X$}
+\textcolor{Blue}{Discrete:}\\
+$E(X)=\mu_X=\sum xP(X=x)$\\
+$Var(X)=\sum(x-\mu)^2P(X=x)$\\
+\textcolor{Blue}{Continuous:}\\
+$E(X)=\mu_X=\int xP(X=x)dx$\\
+$Var(X)=\int(x-\mu)^2P(X=x)dx$\\
+Expected Value $E(X)$:\\
+Average in a long run of observations, \textcolor{Bittersweet}{NOT} the expected
+value of a single observation!\\
+\textbf{Normal Distribution}
+\[Norm(\mu,\sigma^2)\qquad \mu\in\mathbb{R},\sigma\in\mathbb{R}^+\]
+\begin{enumerate}
+	\item Symmetric
+	\item Bell-shaped\\
+		$0.68$ in $(\mu-\sigma,\mu+\sigma)$\\
+		$0.95$ in $(\mu-2\sigma,\mu+2\sigma)$\\
+		$0.997$ in $(\mu-3\sigma,\mu+3\sigma)$\\
+	\item Approximates many discrete distributions (with large n)
+\end{enumerate}
+$Z-Score=\frac{x-\mu}{\sigma}$ (No. of standard deviations a value falls from the mean)
+Standard Normal: $Norm(0,1)$\\
+\textbf{Binomial Distribution}\\
+Let $X=$ no. of successes in $n$ trials.
+\[X\sim Binom(n, p)\qquad n\in\mathbb{N},p\in[0,1]\]
+\begin{enumerate}
+	\item Binary Outcomes
+	\item Independent $n$ trials\\
+		If sampling without replacement,\\
+		$n<10\%$ of Population
+	\item $P(success)=p$ is a constant\\
+		\textcolor{Gray}{Binomial is perfectly symmetric $\iff p=0.5$}
+\end{enumerate}
+For $x\in\mathbb{N}_{\le n}$,
+\[P(X=x)=\frac{n!}{x!(n-x)!}p^x(1-p)^{n-x}\]
+\[E(X)=np\qquad Var(X)=np(1-p)\]
+\textcolor{Blue}{Approximation by Normal Distribution}\\
+$np(1-p)\ge5\vee(np\ge15\wedge n(1-p)\ge15)$\\
+$\Rightarrow X\rsimdots Norm(np, np(1-p))$

@@ -1,0 +1,75 @@
+\section{Confidence Intervals}
+Getting from Sample Dist. to Parameters: Estimations
+\paragraph{Point Estimate}
+Ideal Properties:
+\begin{itemize}
+	\item Unbiased (Centred at parameter)
+	\item Small Standard Deviation ($\therefore$ Sample Mean over Median)
+\end{itemize}
+\paragraph{Confidence Interval}
+\begin{itemize}
+	\item Indicates precision
+	\item Interval around the point estimate (Margin of Error)
+	\item Associated with certain degree of confidence ($\approx0.95$)\\
+		The probability that it contains $p$
+\end{itemize}
+If we generated a $(1-\alpha)$ interval using the same method over many random
+samples, to estimate many population parameters, in the long run, $(1-\alpha)$ of
+those intervals will contain the population parameter.
+\paragraph{Confidence Interval: Proportions}
+\textcolor{Bittersweet}{Assumptions}:
+\begin{itemize}
+	\item Data obtained by randomisation
+	\item Distribution is $\rsimdots$ Normal ($np(1-p)\ge5$)\\
+		For Binomial $\approx$ Normal, $s_{\hat{p}}\approx se$ approximation,
+\end{itemize}
+$(1-\alpha)$ Confidence Interval:
+\begin{align*}
+	\hat{p}\pm &\underbrace{q_{1-\frac{\alpha}{2}}(se)}\quad\textcolor{Bittersweet}{s_{\hat{p}}\approx se}=\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\\
+	&\text{Margin of Error}
+\end{align*}
+\[\textcolor{Blue}{\textup{Margin of Error} \le W}\iff n\ge\frac{q_{1-\frac{\alpha}{2}}^2}{W^2}\hat{p}(1-\hat{p})\]
+\begin{align*}
+	n \Uparrow&\Rightarrow MoE\Downarrow\\
+	(1-\alpha)\Uparrow&\Rightarrow MoE\Uparrow\\
+	p\Uparrow&\Rightarrow \hat{p}\Uparrow\Rightarrow MoE\Uparrow
+\end{align*}
+$n$ ultimately depends on costs and limitations. Rectify:\\
+If $p\approx0\vee p\approx1, +2 successes, +2 failures$
+\paragraph{Confidence Interval: Mean}
+\textcolor{Bittersweet}{Assumptions}:
+\begin{itemize}
+	\item Data obtained by randomisation
+	\item Population Distribution $\rsimdots$ Normal\\
+		Robust, but not to \textcolor{Bittersweet}{outliers}:
+		\begin{itemize}
+			\item Summary statistics $\overline{X}$ and $s_X$ sensitive to outliers.
+			\item $\overline{X}$ no longer $\approx\mu_{\overline{X}}=\mu$
+		\end{itemize}
+\end{itemize}
+\textcolor{OliveGreen}{Robustness}
+Confidence Interval is robust wrt. the normality assumption
+$\Rightarrow$ Performs adequately even when assumption is \textcolor{Bittersweet}{modestly} violated\\
+$(1-\alpha)$ Confidence Interval:
+\begin{align*}
+	\overline{X}\pm&\underbrace{t_{df=n-1,1-\frac{\alpha}{2}}(se)}\quad s_{\overline{X}}\approx se=\frac{s_X}{\sqrt{n}}\\
+	&\quad\text{Margin of Error}
+\end{align*}
+\textcolor{Gray}{$s_X$ is a point estimator of $\sigma$.}\\
+For $df\ge30$ ($n>30$), and $\mu\pm3\sigma\approx Range(X)$
+\[\textcolor{Blue}{\textup{Margin of Error} \le W}\iff n\ge\frac{\sigma^2q_{1-\frac{\alpha}{2}^2}}{W^2}\]
+\begin{align*}
+	n \Uparrow&\Rightarrow MoE\Downarrow\\
+	(1-\alpha)\Uparrow&\Rightarrow MoE\Uparrow\\
+	\sigma^2\Uparrow&\Rightarrow s^2\Uparrow\Rightarrow MoE\Uparrow
+\end{align*}
+\paragraph{t-Distribution}
+Distribution to allow generalisation for small sample sizes but assumes normal distribution
+\[t_{df}\qquad df\in\mathbb{R}\]
+\[lim_{df\to\infty}t_{df}=Norm(0,1)\]
+\[t_{df=30}\approx Norm(0,1)\]
+\begin{enumerate}
+	\item Bell-shaped
+	\item Slightly thicker tails than normal
+	\item Shows more variability than normal
+\end{enumerate}

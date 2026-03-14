@@ -1,0 +1,98 @@
+\section{Significance Tests}
+\begin{center}
+\textbf{Assumptions}\\
+Certain conditions or assumptions that the test requires, or makes
+$\Downarrow$\\
+\textbf{Hypotheses}\\
+$H_0$: statement that the parameter takes a particular value (Usually no effect)\\
+$H_a$: statement that the parameter falls in some alternative range of values. (Usually represents an effect)\\
+\begin{itemize}
+	\item Assumed to be true until sufficient evidence against the hypothesis
+	\item One/two-sided test ($>$ or $<$ or $\neq$)
+\end{itemize}
+$\Downarrow$\\
+\textbf{Test Statistic}\\
+How far the point estimate of the parameter falls from the $H_0$ value, usually in no. of $se$\\
+Is a random variable, each sample is an observation\\
+Distribution under $H_0$ is the \textcolor{Blue}{null distribution}\\
+\textbf{P-Value}\\
+Probability that the test statistic equals, or is more extreme, than the observed. Calculated by assuming $H_0$.\\
+Smaller P-Value $\Rightarrow$ Stronger evidence against $H_0$\\
+$\Downarrow$\\
+\textbf{Conclusion}\\
+Interpretation of the P-Value, and in context
+\end{center}
+\textcolor{Blue}{Significance level $\alpha$}: the number such that we reject $H_0$ if the P-Value $\le$\\
+\textcolor{Blue}{Statistically Significant}: The results are statistically significant, if the data provides sufficient evidence to reject $H_0$ and support $H_a$
+\paragraph{Types of Errors}
+\begin{tabular}{c c c}
+	&\multicolumn{2}{c}{Decision}\\
+	\cmidrule{2-3}
+	Reality&Do not reject $H_0$&Reject $H_0$\\
+	\midrule
+	$H_0$&Correct Conclusion&Type I Error\\
+	$H_a$&Type II Error&Correct Conclusion\\
+\end{tabular}
+\textcolor{Bittersweet}{P(Type I Error)}: Significance level $\alpha$\\
+\textcolor{Bittersweet}{P(Type II Error)}: Complex, but inversely related to P(Type I Error). For fixed $\alpha$, prob. decreases:
+\begin{itemize}
+	\item as parameter moves further into $H_a$, away from $H_0$
+	\item as sample size increases
+\end{itemize}
+Plot: Probability against $p_0$ for fixed $\alpha, n$\\
+Power of a test$=1-P(\text{Type II Error})$
+\paragraph{Misinterpretations}
+\begin{itemize}
+	\item "Do not reject $H_0$"$\neq$ \dq Accept $H_0$"\\
+	\item Small P-Value does not imply confidence interval is far
+\end{itemize}
+\paragraph{Significance Test for p}
+\textcolor{Bittersweet}{Assumptions}
+\begin{itemize}
+	\item Categorical Variable
+	\item Data obtained using randomisation
+	\item Sample size is sufficiently large ($np(1-p)\ge5$)
+		Sample size is small $\Rightarrow$ two-sided test is robust.\\Otherwise null-dist$=Binom(n,p_0)$
+\end{itemize}
+\textcolor{Blue}{Hypotheses}:
+\[H_0:p=p_0\quad H_a:p\neq p_0, p>P_0, p<p_0\]
+\textcolor{Blue}{Test Statistic}:\\
+$z-score_{\hat{p}}$ supposing $H_0$
+\[z=\frac{\hat{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}\]
+\textcolor{Blue}{P-Value}:\\
+Null Distribution: $Norm(0,1)$
+\[	P-Value=\begin{cases}
+	P(Z<z)&left\text{-}sided\\
+	P(Z>z)&right\text{-}sided\\
+	2\times P(Z>z)&two\text{-}sided
+	\end{cases}
+\]
+\textcolor{Blue}{Conclusion}:
+If P-Value is $>\alpha$, strong evidence against $H_0$. Otherwise, we do not have strong evidence against $H_0$.
+\paragraph{Significance test for $\overline{X}$}
+\dq One Sample t-Test"\\
+\textcolor{Bittersweet}{Assumptions}
+\begin{itemize}
+	\item Quantitative Variable
+	\item Data obtained using randomisation
+	\item Population distribution $\approx$ Normal\\
+		Two-sided test is robust (because CLT)\\
+		Except when $n$ is small and $H_a$ is one-sided, sampling distribution is no longer $t$ dist.
+\end{itemize}
+\textcolor{Blue}{Hypotheses}
+\[H_0:\mu=\mu_0\quad H_a:\mu\neq \mu_0, \mu>\mu_0, \mu<\mu_0\]
+\textcolor{Blue}{Test Statistic}
+$T-Score_{\overline{X}}$ supposing $H_0$
+\[T=\frac{\overline{X}-\mu_0}{\frac{s}{\sqrt{n}}}\]
+\textcolor{Blue}{P-Value}:\\
+Null Distribution: $t_{df=n-1}$
+\[ P\text{-}Value=\begin{cases}
+	P(t_{df}<T)&left\text{-}sided\\
+	P(t_{df}>T)&right\text{-}sided\\
+	2\times P(t_{df}>T)&two\text{-}sided\\
+\end{cases}
+\]
+\textcolor{Blue}{Conclusion}
+If P-Value is $>\alpha$, strong evidence against $H_0$. Otherwise, we do not have strong evidence against $H_0$.
+\paragraph{Two-sided Test vs. Confidence Interval}
+$\text{Two-sided test P-Value}\le \alpha\iff(1-\alpha)\text{ Conf-Int does not contain }H_0\text{ value}$

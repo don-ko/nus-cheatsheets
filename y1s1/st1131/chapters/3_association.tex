@@ -1,0 +1,51 @@
+\section{Association between Variables}
+\paragraph{Categorical x Categorical}
+\textcolor{Blue}{Association:}\\
+\begin{itemize}
+	\item Difference in Proportions
+	\item Relative Risk $\frac{Occurrence\ in\ Exposed}{Occurrence\ in\ Unexposed}$
+\end{itemize}
+\textcolor{Blue}{Graphical Summaries:}
+\begin{itemize}
+	\item Contingency Table\\
+		Conditional Proportions on [Explanatory] for [Response]\\
+	 	Columns: Response, Rows: Explanatory\\
+		$\sum$ proportions across row $=1$\\
+		$Marginal\ Proportion=\frac{+\ Response}{Total\ Data}$
+	\item Bar Charts (Stacked/Clustered)
+\end{itemize}
+\paragraph{Categorical x Quantitative}
+\textcolor{Blue}{Association:}
+\begin{itemize}
+	\item Medians
+	\item Skewness, Spread
+	\item Outliers [Small/Large]
+\end{itemize}
+\textcolor{Blue}{Graphical Summary:} Side-by-side Boxplots
+\paragraph{Quantitative x Quantitative}
+\textcolor{Blue}{Association:}
+\begin{itemize}
+	\item Presence of Association [+/-]
+	\item Type of Association [Linear/Non-Linear]
+	\item Variance of Points
+	\item Unusual Departure from Overall Trend\\
+		\textcolor{Gray}{Non-Constant Variance, Suspected Outliers}
+	\item Correlation Coefficient (Linear only)
+		\[R=\frac{1}{n-1}\sum(\frac{X_i-\overline{X}}{s_X})(\frac{Y_i-\overline{Y}}{s_Y})\]\\
+		Interpretation:\\
+		\begin{center}
+			\begin{tabular}{c c}
+				\midrule
+				$\left|R\right|>=0.8$ & Very Strong\\
+				$0.5<\left|R\right|<0.8$ & Strong\\
+				$\left|R\right|<=0.5$ & Not Strong\\
+				\midrule
+			\end{tabular}
+		\end{center}
+\end{itemize}
+Correlation != Causation$\Downarrow$
+\paragraph{Lurking and Confounding Variables}
+\textcolor{Bittersweet}{Lurking Variables}: Unobserved variable that influences association between
+variables of interest. Has potential for confounding.\\
+\textcolor{Bittersweet}{Confounding Variables}: Explanatory variables which are associated with response,
+but also to each other. \textcolor{Gray}{Condition by confounding variable}

@@ -1,0 +1,57 @@
+\section{Bivariate Inference Methods}
+\paragraph{Sampling Distribution of $(p_1-p_2)$}
+$\mu_{\hat{p_1}-\hat{p_2}}=p_1-p_2$\\
+$s_{\hat{p_1}-\hat{p_2}}=\sqrt{\frac{p_1(1-p_1)}{n_1}+\frac{p_2(1-p_2)}{n_2}}$\\
+\paragraph{Confidence Interval for $(p_1-p_2)$}
+\textcolor{Bittersweet}{Assumptions}
+\begin{itemize}
+	\item Categorical Response variable observed 
+	\item Independent random samples for the two groups
+	\item Large sample sizes, $np>10\wedge n(1-p)>10$ for each group
+\end{itemize}
+$(1-\alpha)$ Confidence Interval:
+\[\hat{p_1}-\hat{p_2}\pm q_{1-\frac{\alpha}{2}}(se)\]
+\[se=\sqrt{\frac{\hat{p_1}(1-\hat{p_1})}{n_1}+\frac{\hat{p_2}(1-\hat{p_2})}{n_2}}\]\\
+If confidence interval contains 0, it is plausible that $(p_1-p_2)=0$, and the proportions might be equal.\\
+Sign of values: $p_1>p_2\text{ or }p_1<p_2$\\
+Magnitude of values: The size of the true difference in proportions
+\paragraph{Significance Test for $(p_1-p_2)$}
+Same \textcolor{Bittersweet}{assumptions} as confidence interval\\
+\textcolor{Blue}{Hypotheses}
+\[H_0\colon p_1=p_2,H_a:p_1\neq p_2, p_1>p_2, p_1<p_2\]
+\textcolor{Blue}{Test Statistic}, $\hat{p}$ is the pooled estimate
+\[z=\frac{(\hat{p_1}-\hat{p_2})-0}{se_0},se_0=\sqrt{\hat{p}(1-\hat{p})(\frac{1}{n_1}+\frac{1}{n_2})}\]
+\textcolor{Blue}{P-Value}\\
+Null Distribution: $Norm(0,1)$\\
+\textcolor{Blue}{Conclusion}
+Groups are (statistically) significantly different if P-Value is small
+\paragraph{Sampling Distribution of $(\mu_1-\mu_2)$}
+$\mu_{\overline{X_1}-\overline{X_2}}=\mu_1-\mu_2\quad s_{\overline{X_1}-\overline{X_2}}=\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}$
+Null Distribution: $t_{df}$. $df$ is complex.
+\paragraph{Confidence Interval for $(\mu_1-\mu_2)$}
+\textcolor{Bittersweet}{Assumptions}
+\begin{itemize}
+	\item Quantitative response variable observed 
+	\item Independent random samples for the two groups
+	\item Approximately normal population dist. for each group\\
+		Robust, except to outliers [Confidence Interval: Mean]
+\end{itemize}
+$(1-\alpha)$ Confidence Interval:
+\[(\overline{X_1}-\overline{X_2})\pm t_{df,1-\frac{\alpha}{2}}(se),se=\sqrt{\frac{s_1^2}{n_1}+\frac{s_1^2}{n_2}}\]
+\paragraph{Significance Test for $(\mu_1-\mu_2)$}
+Same \textcolor{Bittersweet}{assumptions} as confidence interval\\
+\textcolor{Blue}{Hypotheses}
+\[H_0\colon \mu_1=\mu_2,H_a:\mu_1\neq \mu_2\mu_1>\mu_2\mu_1<\mu_2\]
+\textcolor{Blue}{Test Statistic}, $se$ same as confidence interval
+\[t=\frac{(\overline{X_1}-\overline{X_2})-0}{se_0}\]
+\textcolor{Blue}{P-Value} Null Distribution: $t_{df}$\\
+\textcolor{Blue}{Conclusion}
+Groups are (statistically) significantly different if P-Value is small
+\paragraph{Significance Test for $(\mu_1-\mu_2)$, $\sigma_1=\sigma_2$}
+$F$ test for comparing standard deviation: P-Value$<\alpha=0.05$\\
+$\Uparrow$ NOT robust to population normality assumption\\
+\textcolor{Blue}{Assumptions, Test Statistic, P-Value, Conclusion} are all the
+same as for non-equal std. dev, but with:
+\[se=s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}\]
+\[s_p=\sqrt{\frac{(n_1-1)s_1^2+(n_2-1)s_2^2}{x_1+n_2-2}}\]
+$df=n_1+n_2-2$

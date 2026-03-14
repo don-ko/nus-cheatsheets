@@ -1,0 +1,106 @@
+\section{Linear Regression}
+\[Y=\overline{Y}-b(\overline{X})+R(\frac{s_Y}{s_X})X+\epsilon\]
+\textcolor{OliveGreen}{Y-intercept} $\overline{Y}-b\overline{X}$\\
+Predicted value of $y$ when $x=0$, Might have no interpretative value (if no
+observations near x=0).\\
+\textcolor{OliveGreen}{Slope} $R(\frac{s_Y}{s_X})$\\
+Same sign as R. Amount that $\hat{y}$ changes with one unit increase of $x$
+$R^2$ is the \% of variability in the response variable that can be explained by
+the linear relationship with the explanatory variable.\\
+\textcolor{OliveGreen}{Error term} $\epsilon$\\
+\textcolor{Bittersweet}{Assumptions}
+\begin{itemize}
+	\item Data obtained by randomisation
+	\item Relationship between X and Y is linear
+	\item Error term $\epsilon\sim Norm(0,\sigma^2)$ where $\sigma$ is a constant
+\end{itemize}
+\paragraph{Implications of Assumptions}
+$\forall X(Y\sim Norm(\beta_0+\beta_1X,\sigma^2))$\\
+\paragraph{Ordinary Least Squares Estimation}
+Best fit regression is the minimalisation of $\sum_{i=0}^{n-1}e_i^2$\\
+\paragraph{Interpreting Info of Linear Regression Models}
+$\hat{Y}=\hat{B_0}-\hat{B_1}X$\\
+\textcolor{Blue}{Residuals}\\
+Quartiles of the residuals of each point with the model
+\textcolor{Blue}{Estimate} $\hat{\beta_i}$\\
+$\Rightarrow$ Point Estimates of each coefficient in the model\\
+\textcolor{Blue}{Std. Error}\\
+Standard error of each coefficient. Can be used to obtain a confidence interval\\
+\textcolor{Blue}{Residual Standard Error}\\
+The standard error of $\hat{\sigma}$
+For each point $x_i$, $e_i=y_i-\hat{y_i}$
+\begin{itemize}
+	\item Could be normalised, to get standard residuals $SR\sim Norm(0,1)$
+	\item $\sigma$ is the measure of how far the observations can deviate from best-fit line
+\end{itemize}
+$\sigma^2$ is the measure of how far the observations can deviate from the best-fit line\\
+\textcolor{Blue}{Multiple R-squared}\\
+Coefficient of Determination of linear model
+\paragraph{Hypothesis Testing on Linear Models}
+\textbf{t-Test}\\
+The significance of one regressor.\\
+\textcolor{Bittersweet}{Assumptions} Same as assumptions of model\\
+\textcolor{Blue}{Hypothesis}
+$H_0\colon\beta_i=0\text{ OR Regressor }i\text{ is NOT sigificant}$\\
+$H_a\colon\beta_i\neq0\text{ OR Regressor }i\text{ is significant}$\\
+\textcolor{Blue}{Test Statistic}
+\[t=\frac{\hat{B_i}}{se}\]
+\textcolor{Blue}{P-Value}\\
+Null-Distribution: $t$ Distribution, $df=n-$no. of coefficients\\
+\textcolor{Blue}{Conclusion}\\
+The coefficient is (not) significantly different from 0 at $\alpha$-level\\
+\textbf{F-test}\\
+\textcolor{Bittersweet}{Assumptions} Same as assumptions of model\\
+\textcolor{Blue}{Hypothesis}\\
+$H_0\colon$ model is NOT significant OR all the coefficients except $\beta_0$ are zero\\
+$H_a\colon$ model is significant OR at least one of the coefficients except $\beta_0$ are non-zero\\
+\textcolor{Blue}{Test Statistic} F-statistic from R output\\
+$F=t^2$ for Simple Linear Regression\\
+\textcolor{Blue}{P-Value}\\
+Null-Distribution: $F$ Distribution,\\
+$df1=$no. of coefficients$-1$\\
+$df2=n-$no. of coefficients\\
+Find right-sided P-Value on $F$ Distribution\\
+\textcolor{Blue}{Conclusion}\\
+The data provides (in)sufficient evidence that the built model is significant.\\
+$P-Value<\alpha\Rightarrow$ ALL regressors used in the model are not significant, $Y=\beta_0$
+\paragraph{Checking Assumptions of Linear Model}
+Before fitting model, scatterplot of Y against X:
+\begin{enumerate}
+	\item Linearity (No curved bands)
+	\item Constant Variance (Funnel shape)
+\end{enumerate}
+To verify the assumption $\epsilon\sim Norm(0,\sigma^2)$
+\begin{enumerate}
+	\item SR against $\hat{Y_i}$
+	\item SR against $X$\\
+		Points scatter randomly around 0, within $(-3, 3)$
+		Funnel shaped observed $\Rightarrow$ Constant variance assumption violated
+	\item Histogram of SR
+	\item QQ Plot of SR\\
+		SR has a normal distribution
+		Skewed Distribution $\Rightarrow$ Normality assumption violated
+\end{enumerate}
+Possible Fixes
+\begin{itemize}
+	\item Add higher order terms
+	\item Transform response into $\ln(Y),\sqrt{Y},\frac{1}{Y}$
+	\item Add more regressors
+	\item Non-linear model required
+\end{itemize}
+$\left|SR\right|>3\Rightarrow$Potential outlier\\
+Cook's Distance$>1\Rightarrow$Potential influential point\\
+Avoid Extrapolation (Estimation using regressors outside domain)
+\paragraph{Coefficient of Determination}
+\textcolor{Blue}{Interpretation}:\\
+The proportion of total variation of the response (of sample mean
+$\overline{Y}$) that is explained by the model.\\
+For simple model: $\sqrt{R^2}=\left|Cor(X,Y)\right|$\\
+$R^2=1\Rightarrow\forall i(\hat{Y_i}=Y_i)$
+Adding regressors will always increase, or not change $R^2$. Use adjusted $R^2$
+\[R_{adj}^2=1-\frac{(1-R^2)(n-1)}{n-\text{no. of coefficients}}\]
+\paragraph{Indicator Variables}
+Each indicator splits the model into two equations, on whether the indicator is $1$ or $0$\\
+$n$ categories require $n-1$ indicators\\
+Identify the reference category when every indicator is $0$.
+Use anova P-Value for significance of categorical variables

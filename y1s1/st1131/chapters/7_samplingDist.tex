@@ -1,0 +1,31 @@
+\section{Sampling Distribution}
+\textcolor{OliveGreen}{Probability distribution that specifies probabilities for the possible values of the statistic}
+\begin{tabular}{p{0.2\linewidth} p{0.2\linewidth} p{0.4\linewidth}}
+	Population&Data&Sampling\\
+	\toprule
+	Where a sample comes from&is THE sample&Describes how a sample is likely to look like\\
+\end{tabular}
+\paragraph{Categorical}
+\begin{center}
+	Population: proportion \textcolor{Blue}{$p$}\\
+	$\Downarrow$\\
+	Sample: $n$ observations with proportion \textcolor{Blue}{$\hat{p}$}
+\end{center}
+Sampling Distribution:
+\[successes\sim Binom(n,p)\quad\hat{p}=\frac{successes}{n}\]
+$\therefore\mu_{\hat{p}}=p\quad s_{\hat{p}}=\sqrt{\frac{p(1-p)}{n}}$
+\textcolor{Blue}{$np(1-p)\ge5\Rightarrow\hat{p}\rsimdots Norm(p,\frac{p(1-p)}{n})$}
+\paragraph{Quantitative}
+\begin{center}
+	Population:\\
+	Mean \textcolor{Blue}{$\mu$}, Standard deviation: \textcolor{Blue}{$\sigma$}\\
+	$\Downarrow$\\
+	Sample $\rsimdots$ Distribution of Population:\\
+	$n$ observations with mean \textcolor{Blue}{$\overline{X}$},\\
+	Standard deviation: \textcolor{Blue}{$s_X$}
+\end{center}
+Sampling Distribution:
+\[\mu_{\overline{X}}=\mu\quad s_{\overline{X}}=\frac{\sigma}{\sqrt{n}}\]
+\textcolor{Bittersweet}{Central Limit Theorem}
+\textcolor{Blue}{$n>30\vee pop\sim Norm(\mu,\sigma^2)$\\
+$\Rightarrow\overline{X}\sim Norm(\mu,\frac{\sigma^2}{n})$}
