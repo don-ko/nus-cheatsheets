@@ -1,0 +1,85 @@
+\section{Prerequisites and Definitions}
+\begin{definition}[Alphabet]
+  \textit{Alphabets} are finite non-empty sets of symbols, denoted $\Sigma$.
+   Ambiguous alphabets like $\left\{ a,ab,b \right\}$ are not used.
+\end{definition}
+\begin{definition}[String]
+  \textit{Strings} are finite sequences of symbols chosen from a given
+  alphabet. 
+\end{definition}
+\begin{notation}
+  We denote empty strings as $\epsilon$, and the length (number of
+  symbols) of string $\left| \omega \right| $. For strings $x$ and $y$, $xy$ denotes
+  the \textit{concatenation} of $x$ and $y$.
+\end{notation}
+\begin{example}[Powers of an Alphabet]
+   We define $\Sigma^{k}$ to be the the set of all strings of length $k$ over
+   the alphabet. For alphabet $\Sigma=\left\{ 0,1 \right\}$,
+     \[\Sigma^{0}=\left\{ \epsilon \right\},\quad
+     \Sigma^{1}=\left\{ 0,1 \right\},\quad
+     \Sigma^{2}=\left\{ 00,01,10,11 \right\},\quad
+     \Sigma^{\le 2}=\Sigma^{0}\cup \Sigma^{1}\cup \Sigma^{2}.\] 
+   In addition, we have the set of all strings given an alphabet
+   \[\Sigma^{*}=\Sigma^{0}\cup \Sigma^{1}\cup \Sigma^{2}\cup \cdots.\]
+   To exclude the empty string, we denote $\Sigma^{+}$.
+  $\Sigma^{*}=\Sigma^{+}\cup \left\{ \epsilon \right\}$.
+\end{example}
+\begin{definition}[Language]
+  \textit{Languages} are sets of strings all of which are chosen from some
+  $\Sigma^{*}$ where $\Sigma$ is a particular alphabet. If $\Sigma$ is an alphabet,
+  and $L\subseteq \Sigma^{*}$, then $L$ is a language over $\Sigma$.
+\end{definition}
+\begin{notation}
+  We denote $L_1\cdot L_2=L_1L_2=\left\{ xy:x\in L_1, y\in L_2 \right\}$. For
+  language $L$,
+  \[L^{*}=\left\{ x_1x_2\ldots x_{n}:x_1,x_2,\ldots,x_{n}\in L,n\in
+  \mathbb{N}\right\}=\left\{ \epsilon \right\}\cup L\cup LL\cup\cdots.\]
+  \[L^{+}=\left\{ x_1x_2\ldots x_{n}:x_1,x_2,\ldots,x_{n}\in L,n\in
+  \mathbb{N}^{*}\right\}=L\cup LL\cup LLL\cup \cdots.\]
+  \[L^{+}=LL^{*}.\qquad qL^{*}=L^{+}\iff\epsilon\in L.\] 
+\end{notation}
+\begin{corollary}
+  If $L$ is a language over $\Sigma$, $L$ is a language over any alphabet $K\supseteq L$.
+\end{corollary}
+\begin{theorem}
+  Number of strings over any fixed finite alphabet $\Sigma$ is countable, as
+  the union of countably many countable sets is countable.
+\end{theorem}
+\begin{theorem}
+  Number of languages over any non-empty alphabet is uncountable.
+\end{theorem}
+\begin{proof}
+  Consider the alphabet $\Sigma=\left\{ a \right\}$, and the binary representation
+  of any real number in $\left[\left.0,1\right)\right.:0.b_0b_1b_2\ldots$. Let
+  $L=\left\{ a^{i}:b_i=1 \right\}$. $L$ corresponds to each $x\in
+  \left[\left.0,1\right.\right)$. Hence the numnber of languages is at least as
+  large as the set of real numbers, which is uncountable.\ \qed%
+\end{proof}
+\begin{definition}[Reverse]
+  The \textit{reversal} of a string $\omega$ denoted $\omega^{R}$ is given by induction
+  on the length of the string:
+  \begin{enumerate}
+    \item If $\left| \omega \right| =0$, then $\omega^{R}=\omega=\epsilon$
+    \item If $\left| \omega \right| =n+1>0$, then $\omega=ua$ for some $a\in \Sigma$, and $\omega^{R}=au^{R}$
+  \end{enumerate}
+  We further define, for a language $L$, $L^{R}=\left\{ \omega^{R}:\omega\in L \right\}$.
+\end{definition}
+\begin{prop}
+  For any strings $\omega$ and $x$, ${\left( \omega x \right)}^{R}=x^{R}\omega^{R}$
+\end{prop}
+\begin{proof}\\
+  \textit{Basis Step.} $\left| x \right| =0$. Then $x=\epsilon$, ${\left(\omega
+  x\right)}^{R}={\left( w\epsilon
+  \right)}^{R}=\omega^{R}=\epsilon\omega^{R}=\epsilon^{R}\omega^{R}=x^{R}\omega^{R}$.\\
+  \textit{Induction Hypothesis.} If $\left| x \right| \le n$, then ${\left(
+  \omega x\right) }^{R}=x^{R}\omega^{R}$. \\
+  \textit{Induction Step.} Let $\left| x \right| =n+1$. Then $x=ua$ for some $u\in \Sigma^{*}$ and $a\in \Sigma$ s.t. $\left| u \right| =n$. 
+  \begin{align*}
+    {\left( \omega x \right) }^{R}=&{\left( \omega\left( ua \right)  \right) }^{R}\\
+    =&{\left( \left( \omega u \right) a \right) }^{R}\\
+    =&a{\left( \omega u\right) }^{R}\\
+    =&au^{R}\omega^{R}\\
+    =&{\left( ua \right) }^{R}\omega^{R}\\
+    =&x^{R}\omega^{R}\quad\qquad\qed
+  \end{align*}
+\end{proof}

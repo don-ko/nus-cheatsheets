@@ -1,0 +1,425 @@
+\section{Complexities and Classes}
+Within the recursive class of languages accepted by TMs and hence our
+computers, we consider the time and space complexities of their computations.
+We so define on an TMs with multiple, but fixed, number of tapes, with finite
+tape alphabets. This allows us to divide the class into the \textit{tractable}
+and the \textit{intractable} problems.
+
+\subsubsection{Complexity Measures}
+In measuring the complexity of a program, we want to find a function $\Phi:
+\mathbb{N}\times \mathbb{N}\to \mathbb{N}$ that measures the ``complexity'', or
+cost of a TM on some input. We denote $\Phi\left( i,x \right)=\Phi_i\left( x
+\right)$ for the complexity of TM $M_i$ with the input $x$. We hence have the
+first of Blum's complexity axioms:
+\[Dom\left( \phi_i \right)=Dom\left( \Phi_i \right).\]
+where $\phi$ is the $i$-th program/TM.  Further, the complexity measure should
+be computable for practicality. We have the second of Blum's complexity axioms:
+\[\text{The set }\left\{ i,x,B  \in \mathbb{N}^{3}|\Phi_i\left( x \right)
+<B\right\}\text{ is recursive}.\]
+
+\begin{definition}[Blum Complexity Measure]
+  A \textit{Blum complexity measure} $\iff$ $\Phi\left( i,x \right) $ is a
+  partial recursive function that satisfies the two Blum's complexity axioms.
+\end{definition}
+
+\subsubsection{Time/Space Complexity Measures}
+
+\begin{definition}[Running Time]
+  The \textit{running time} of a TM $M$ on input $\omega$, $Time_M\left(
+  \omega \right)$, is the number of steps made by $M$ before halting. If $M$
+  does not halt on input $x$, $Time_M\left( x \right) =\infty$.
+\end{definition}
+
+\begin{definition}[Time Complexity]
+  The \textit{time complexity} of a TM $M$ is the function $T(n)$ that is
+  the maximum of the running time of $M$ on  all inputs $\omega$
+  of length $n$.
+  \begin{center}
+    $M$ is $T(n)$ time bounded $\iff\forall$ inputs $\omega$ of length $n$,
+    $Time_M\left( \omega \right) \le T(n)$
+  \end{center}
+\end{definition}
+
+We may further define its analogues for space.
+\begin{definition}[Space Consumption]
+  The \textit{space consumption} of a TM $M$ on input $\omega$, $Space_M\left(
+  \omega \right) $, is the maximum number of cells ``touched'' by $M$ on any of
+  its worktapes before halting. If $M$ does not halt on an input $x$,
+  $Space_M\left( x \right) =\infty$.
+\end{definition}
+
+\begin{definition}[Space Complexity]
+  The \textit{space complexity} of a TM $M$ is the function $S(n)$ that is
+  the maximum of the space consumption of $M$ on all inputs $\omega$
+  of length $n$.
+  \begin{center}
+    $M$ is $S(n)$ space bounded $\iff\forall$ inputs $\omega$ of length $n$,
+    $Space_M\left( \omega \right) \le S(n)$
+  \end{center}
+\end{definition}
+
+\begin{prop}[Existence of Arbitrary Difficult Problems]
+  Suppose a recursive function $f$. We define
+  \begin{lstlisting}[mathescape]
+  g$\left( x \right)$:
+    Simulate $M_x$ on input $x$.
+    if $M_x$ does not halt within $f\left(\left|x\right|\right)$ steps, output $0$.
+    else output $M_x(x)+1$. // or anything not $M_x(x)$
+  endg
+  \end{lstlisting}
+  $g$ cannot be computed by any $f(n)$ time bound TM.
+\end{prop}
+\begin{proof}
+  Suppose not. Consider the $f(n) $ time bound TM $M_y$ that computes $g$.
+  Consider $M_y\left( y \right)$. $M_y$ must halt within $f(\left| y \right|)$
+  steps since it is $f(n)$ time bound. Hence $M_y\left( y \right) $ outputs
+  $M_y(y)+1$. A contradiction.\qed
+\end{proof}
+
+\begin{definition}[Space Constructible Functions]
+  A function $S(n)$ is \textit{fully space constructible} if there exists a
+  $S(n)$ space bounded TM $M$ such that on all inputs of length $n$, it uses
+  space exactly $S(n)$.
+\end{definition}
+
+\begin{definition}[Time Constructible Functions]
+  A function $T(n)$ is \textit{fully time constructible} if there exists a
+  $T(n)$ time bounded TM $M$ such that on all inputs of length $n$, it halts
+  and uses time exactly $T(n)$.
+\end{definition}
+
+\subsection{Definitions}
+\begin{definition}[P]
+  A language $L$ is in the class \textit{P} if there exists a
+  \textbf{deterministic} TM $M$ and a polynomial time complexity $T(n)$ such
+  that $L=L(M)$ and $M$ is $T(n)$ time bounded.
+\end{definition}
+
+\begin{definition}[NP]
+  A language $L$ is in the class \textit{NP} if there exists a
+  \textbf{nondeterministic} TM $M$ and a polynomial time complexity $T(n)$ such
+  that $L=L(M)$ and $M$ is $T(n)$ time bounded.
+\end{definition}
+
+\begin{definition}[co-NP]
+  A language $L$ is in the class \textit{co-NP} if its complement $\bar{L}$ is
+  in NP.
+\end{definition}
+
+\begin{definition}[Certificate]
+  A \textit{certificate} (witness) is a string that certifies the answer to a
+  computation, or membership of some string in a language. Intuitively, a
+  certificate is the ``answer'' to the problem at hand.
+\end{definition}
+\begin{prop}
+  $L$ is in NP $\iff$ there exists a polynomial $q\left( \cdot \right) $ and a
+  polynomial-time bounded TM $M$ such that 
+  \[x\in L \iff \exists \text{ a certificate } c, \left| c \right| \le
+  q\left(\left| x \right| \right) \text{$M$ accepts the pair $\left( x,c
+\right) $}.\]
+  That is, we can verify a solution of the problem in polynomial time.
+\end{prop}
+
+\subsection{NP-Completeness}
+\begin{definition}[NP Hard]
+  A language (problem) $L$ is \textit{NP hard} if for every language $L'\in
+  NP$ there is a polynomial time reduction of $L'$ to $L$.
+\end{definition}
+
+\begin{definition}[NP Complete]
+  A language (problem) $L$ is \textit{NP complete} if $L$ is in NP, and it is
+  NP hard. That is, for every language $L'\in NP$ there is a polynomial time
+  reduction of $L'$ to $L$.
+\end{definition}
+
+\begin{definition}[Karp Reducibility]
+  A problem $P_1$ is \textit{Karp reducible} to $P_2$, $P_1\le _m^{p} P_2$, if
+  there exists a polynomial time computable recursive function $f$ such that
+  \[x\in P_1\iff f(x)\in P_2.\]
+  We say that $P_1$ is polynomial time, many-one reducible to $P_2$.
+\end{definition}
+
+\begin{remark}
+  We may further define an alternative notion of reducibility known as a
+  \textit{Cook reducibility}.  A problem $P_1$ is \textit{Cook reducible} to
+  $P_2$, $P_1\le _T^{p} P_2$, if, given an oracle for $P_2$, there exists a
+  polynomial time recursive algorithm that solves $P_1$. This presents another
+  type of NP-completeness known as Cook-completeness. In the course and in many
+  conventions, we use the more retricted notion of Karp-completeness.
+\end{remark}
+
+Since the reducible relation is reflexive and transitive, it is sufficient to
+prove that if $L$ is NP complete, $L'\in NP$, $L\le^{p}_m L'$, then $L'$ is NP
+complete. We can hence prove the NP-completeness of some problem $P$ with a
+known NP-complete problem $P'$ that Karp-reduces to $P$ and that $P$ is NP.
+
+\begin{theorem}
+  If  one of the NP complete problems is solvable in polynomial time, all the
+  problems in NP are solvable in polynomial time. That is, $P=NP$.
+\end{theorem}
+
+\subsection{Known NP-Complete Problems}
+\subsubsection{Satisfiability} Suppose a set $U$ of variables and a collection $C$
+of clauses over $U$. Does there exist a satisfying truth assignment for $C$?
+\begin{example}[Instance of Satisfiability]
+  Let $U=\left\{ A,B,C,D,E,F \right\} $ be a set of variables. Consider
+  the expression
+  \[\left( A\vee B \vee \neg C\vee E\right)\wedge \left( E\vee F\vee \neg A
+  \right) \left( C\vee F \right) \wedge \ldots.\]
+  Is there a truth assignment to the literals such that the expression is true?
+\end{example}
+The 3-SAT problem is the Satisfiability problem, with each clause containing
+exactly 3 literals.
+
+\subsubsection{3-Dimensional Matching} Suppose $3$ disjoint finite sets $X,Y,Z$ of
+equal cardinality $n$,  and a set $S\subseteq X\times Y\times Z $. Does $S$
+contain a matching (a subset $S'\subseteq S$ of cardinality $n$ such that for
+any two distinct $\left( x_1,y_1,z_1 \right) , \left( x_2,y_2,z_2 \right) \in
+S'$, $x_1\neq x_2$, $y_1\neq y_2$, and $z_1\neq z_2$)?\\
+
+\subsubsection{Vertex Cover} Suppose a graph $G=\left( V,E \right) $ and a
+positive integer $K\le \left| V \right| $. Is there a vertex cover $V'$ of size
+$\le K$?\\
+
+\begin{proof}
+  Given a graph $\left( V,E \right) $, guess a $V'\subseteq V$ and verify if
+  $\left| V' \right| \le k$ and $\forall \left( v,w \right) \in E$, at least
+  one of $v,w$ is in $V'$. Vertex Cover is in NP.\\
+
+  Suppose an instance of 3SAT, with the set of variables $U=\left\{
+  x_1,x_2,\ldots,x_{n} \right\} $, the set of clauses $C=\left\{
+c_1,c_2,\ldots,c_m \right\} $ where $c_i=\left( l_{i,1}\vee l_{i,2}\vee l_{i,3}
+\right) $.
+
+  Consider a vertex cover instance $G=\left( V,E \right) $, where:
+  \begin{gather*}
+    V=\left\{ u_i,w_i|1\le i\le n \right\} \cup \left\{ z_{j,1},z_{j,2},z_{j,3}
+    | 1\le j\le m\right\} \\
+    E=\left\{ \left( u_i,w_i \right) | 1\le i\le n \right\} \cup \left\{ \left(
+    z_{j,1}, z_{j,2} \right), \left( z_{j,1}, z_{j,3} \right), \left( z_{j,2},
+z_{j,3} \right) | 1\le j\le m \right\}\cup \left\{ \left( z_{j,r}, u_i \right)
+| l_{j,r}=x_i \right\} \cup \left\{ \left( z_{j,r}, w_i \right) | l_{j,r}=\neg
+x_i \right\}\\
+  K=2m+n
+  \end{gather*}
+  Each $u_i$ represents $x_i$, $w_i$ represents $\neq x_i$, and $z_{j,r}$
+  represents the $l_{j,r}$. This reduction can be done in polynomial time. We
+  want to show that the 3SAT instance has a solution $\iff$ the vertex cover
+  instance has a solution.\\
+
+  In a vertex cover, 
+  \begin{itemize}
+    \item For each $1\le i\le n$, at least one of $u_i, w_i$ is in the cover.
+      (A pair representing a variable and its complement)
+    \item For each $1\le j\le m$, at least two of $z_{j,1},z_{j,2},z_{j,3}$ is
+      in the cover. (A triangle representing each clause)
+  \end{itemize}
+  Since we have the size bound $K=2m+n$, \textit{exactly} one and two
+  (respectively) of the vertices are in the cover.\\
+
+  ($\implies$) Suppose the 3SAT instance is satisfiable. By choosing $u_i$
+  $\iff$ $x_i$ is true and $x_i$ $\iff$ $x_i$ is false, and choosing two of
+  $z_{j,a}$ such that the one left out represents the true literal, we have a
+  vertex cover of $G$.
+
+  ($\impliedby$) Suppose the vertex cover instance has a solution. Consider the
+  truth assignment such that $x_i$ is true $\iff$ $u_i$ is in the vertex cover.
+  It can be shown that if $z_{j,r}$ is not in the vertex cover then $l_{j,r}$
+  must be true.\\
+
+  Hence Vertex Cover is NP Complete.\qed
+\end{proof}
+
+\subsubsection{MAX-CUT} Suppose an undirected graph $G=\left( V,E \right) $ and a
+positive integer $K\le \left| E \right| $. Does there exist a cut of $G$ with
+size $>K$? 
+
+\subsubsection{Clique} Suppose a graph $G=\left( V,E \right) $ and a positive
+integer $K\le \left| V \right| $. Does $G$ contain a clique of size $\ge K$ (a
+subset larger than $K$ of $V$ that can form a complete graph with edges in
+$E$)?
+
+\subsubsection{Independent Set} Suppose a graph $G=\left( V,E \right) $ and a
+positive integer $K\le \left| V \right| $. Does $G$ contain an independent set
+of size $\ge K$ (a subset larger than $K$ of $V$ such that no distinct pair of
+vertices are adjacent)?\\
+
+\begin{proof}
+  Given a graph $\left( V,E \right) $, guess a $V'\subseteq V$ and verify if
+  $\left| V' \right| \le K$ and that it is a complete graph. Clique is in NP.
+  Similarly for Independent Set.\\
+
+  Suppose $G=\left( V,E \right) $. $V'$ is a vertex cover of $G$ $\iff$ $V-V'$
+  is an independent set of $G$ $\iff$ $V-V'$ is a clique of $G'$, where $G'$ is
+  the complement of $G$. That is, the graph has a vertex cover of size $k$
+  $\iff$ $G$ has an independent set of size $\left| V \right| -k$ $\iff$ $G'$
+  has a clique of size $\left| V \right| -k$.\\
+
+  Hence Clique/Independent Set is NP Complete.\qed
+\end{proof}
+
+\subsubsection{Hamiltonian Circuit} Suppose a graph $G=\left( V,E \right) $. Does
+$G$ contain a Hamiltonian circuit (a simple circuit that goes through all
+vertices of $G$)?
+
+\subsubsection{Partition} Suppose a finite set $A$ and a size function $s: A\to
+\mathbb{R}^{*}_{+}$. Is there a subset $A'\subseteq A$ such that
+\[\sum_{a\in A'}s(a)=\sum_{a\in A-A'}s(a)?\]
+
+\subsubsection{Set Cover} Suppose a finite set $A$, a collection of sets from $A$
+$\left\{ S_1,S_2,\ldots,S_m \right\} \subseteq \mathcal{P}\left( A \right) $,
+and $k\in \mathbb{N}$. Does there exist a subset $Y\subseteq \left\{
+1,2,\ldots,m \right\} $, $\left| Y \right| \le k$ such that
+\[A\subseteq  \bigcup_{i \in Y} S_i?\]
+
+\subsubsection{Travelling Salesman Problem} Suppose a complete weighted graph
+$G=\left( V,E \right) $, and a bound $B\in \mathbb{R}^{*}_{+}$. Is there a
+hamiltonian circuit of total weight $\le B$?
+
+\subsection{Modifications to TMs}
+\begin{theorem}[Tape Compression]
+  Suppose a constant $c\in \mathbb{R}^{*}_{+}$. If a language $L$ is accepted
+  by a $S(n)$ space bounded TM $M$ with $k$ tapes, there exists a TM $M'$ with
+  $k$ tapes that is $\lceil cS(n)\rceil$ space bounded that accepts $L$.
+\end{theorem}
+\begin{proof}
+  Suppose a TM $M$ that is $S(n)$ space bounded and accepts a language $L$.\\
+
+  Consider the TM $M'$, where each cell of a worktape of $M'$ encodes $m$ cells
+  of the corresponding tape of $M$. Then the tape alphabet
+  $\Gamma_{M'}={\Gamma_M}^{m}$. Through variable storage in the finite control
+  of $M'$, we keep track of which of the $m$ cells is the currently scanned
+  cell. Hence $M'$ is able to simulate $M$, and accepts $\iff$ $M$ accepts.\\
+
+  The space used by $M'$ on input $x$ is:
+  \[\lceil \frac{Space_M\left( x \right) }{m}\rceil.\]
+  Taking $m>\frac{1}{c}$, $M'$ is $\lceil cS(n) \rceil$ space bounded.\qed
+\end{proof}
+
+\begin{theorem}[Linear Speedup]
+  Suppose a constant $c\in \mathbb{R}^{*}_{+}$. Suppose a language $L$ is accepted
+  by a $T(n)$ time bounded TM $M$ with $k\ge 2$ tapes, where
+  \[\lim_{n \to \infty} \frac{T(n)}{n}=\infty.\]
+  Then there exists a TM $M'$ with $k$ tapes that is $\lceil cT(n)\rceil$ time
+  bounded that accepts $L$.
+\end{theorem}
+
+\begin{corollary}[Linear Speedup]
+  Suppose a constant $c\in \mathbb{R}^{*}_{+}$. Suppose a language $L$ is accepted
+  by a $T(n)$ time bounded TM $M$ with $k\ge 2$ tapes, where
+  \[T(n)=dn,\qquad d\in \mathbb{R}^{*}_+.\]
+  Then there exists a TM $M'$ with $k$ tapes that is $\left( 1+c \right) n$
+  time bounded that accepts $L$.
+\end{corollary}
+
+\subsection{Complexity Classes}
+\begin{notation}[Time and Space Complexity Classes]
+  \begin{gather*}
+    DSPACE(S(n))=\left\{ L|\exists \text{ DTM }M, L(M)=L\wedge M\text{ is
+    }S(n)\text{ space bounded.} \right\} \\
+    DTIME(T(n))=\left\{ L|\exists \text{ DTM }M, L(M)=L\wedge M\text{ is
+    }T(n)\text{ time bounded.} \right\} \\
+    NSPACE(S(n))=\left\{ L|\exists \text{ NTM }M, L(M)=L\wedge M\text{ is
+    }S(n)\text{ space bounded.} \right\} \\
+    NTIME(T(n))=\left\{ L|\exists \text{ NTM }M, L(M)=L\wedge M\text{ is
+    }T(n)\text{ time bounded.} \right\} 
+  \end{gather*}
+\end{notation}
+
+\begin{theorem}[Relationships between Complexity Classes]
+  \begin{gather*}
+    DTIME\left( S\left( n \right)  \right) \subseteq DSPACE\left( S\left( n
+    \right)  \right) \\
+    \text{If }L\in DSPACE\left( S\left( n \right)  \right)\text{ and }S\left(
+    n \right) \ge\log{n}\text{, then there exists a constant }c(L)\in
+    \mathbb{R_+^{*}}, L\in DTIME\left( c^{S\left( n \right) } \right)\\
+    \text{If }L \in NTIME\left( T\left( n \right) \right)\text{, then there
+    exists a constant } c(L)\in \mathbb{R}^{*}_+, L\in DTIME\left( c^{T\left( n
+    \right) } \right) 
+  \end{gather*}
+\end{theorem}
+
+\begin{theorem}[Savitch's Theorem]
+  If $S(n)\ge \log{n}$, and $S\left( n \right) $ is fully space constructible, then
+  \[NSPACE\left( S\left( n \right)  \right) \subseteq DSPACE\left( {\left( S\left( n \right)  \right) }^{2} \right).\] 
+\end{theorem}
+
+\begin{theorem}
+  The class of languages that can be accepted in polynomial space by a DTM
+  $PSPACE$ is equal to the class of languages that can be accepted in
+  polynomial space by a NTM $NPSPACE$. $PSPACE=NPSPACE$
+\end{theorem}
+
+\subsubsection{Hierachy Theorems}
+\begin{theorem}
+  If $L$ is accepted by a $S(n)\ge \log{n}$ space bounded TM, then $L$ can be
+  accepted by a $S(n)$ space bounded machine which halts on all inputs.
+\end{theorem}
+Hence, WLOG, we may assume that a TM with a large enough space bound halts on
+all inputs.
+\begin{theorem}[Space Hierachy]
+  Suppose $S_2(n),S_1(n)\ge \log{n}$. If $S_2(n)$ is fully space constructible and
+  \[\lim_{n \to \infty} \frac{S_1(n)}{S_2(n)}=0,\] 
+  there is a language in $DSPACE\left( S_2\left( n \right)  \right)
+  -DSPACE\left( S_1\left( n \right)  \right) $.
+\end{theorem}
+\begin{proof}
+  Consider the TM $M$ which is $S_2\left( n \right) $ space bounded, with a
+  fixed number of tapes.
+  \begin{lstlisting}[mathescape]
+  M$\left(x\right)$:
+    if $x$ is of the form $1^k$, reject.
+    Mark out space $S_2\left(\left|1^{k}0x\right|\right)$ on the work tape.
+    Simulate machine $M_x$ on input $1^{k}0x$.
+    if $M_x$ attempts to use more than $S_2\left(\left|1^k 0x\right|\right)$, $M$ rejects.
+    if $M_x$ halts and rejects the input, $M$ accepts.
+  endM
+  \end{lstlisting}
+  Let $L=L(M)$. Since $M$ is $S_2(n)$ space bounded, $L\in DSPACE\left(
+  S_2\left( n \right)  \right) $.\\
+
+  Suppose by way of contradiction that some TM $M'$ is $S_1(n)$ space bounded
+  accepting $L$. There exists another $2$-tape machine $M_x$ accepting $L$
+  using space $\le dS_1(n)$ for some constant $d$. WLOG, assume $M_x$ halts on
+  all inputs.\\
+
+  Simulation of $M_x$ requires space $cS_1(n)$ for some constant $c$. Hence, let
+  $k$ be large enough such that
+  \[cS_1\left( \left| 1^{k}0x \right|  \right) <S_2\left( \left| 1^{k}0x
+  \right|  \right).\]
+  The simulation of $M_x$ must complete, and $M$ accepts $\iff$ $M_x$ did not.
+  $M_x$ accepts a different language than $L$. A contradiction. \qed
+\end{proof}
+
+\begin{theorem}[Time Hierachy]
+  Suppose $T_2(n),T_1(n)\ge \left( 1+\epsilon \right) {n}$. If $T_2(n)$ is
+  fully time constructible and
+  \[\lim_{n \to \infty} \frac{T_1(n)\log{\left( T_1\left( n \right)  \right) }}{T_2(n)}=0,\] 
+  there is a language in $DTIME\left( T_2\left( n \right)  \right) -DTIME\left(
+  T_1\left( n \right)  \right) $.
+\end{theorem}
+\begin{proof}
+  Consider a machine $M$ with at least $5$ tapes (or more for fully time
+  constructibility of $T_2\left( n \right) $). While running $M$, $M$ keeps
+  track of the number of steps taken, and rejects if $T_2(n)$ time is exceeded.
+  \begin{lstlisting}[mathescape]
+  M$\left(x\right)$:
+    if $x$ is of the form $1^k$, reject.
+    Simulate $M_x$ on input $1^{k}0x$.
+    if $M_x$ halts (does not exceed the time limit) and rejects the input, $M$ accepts.
+  \end{lstlisting}
+  Let $L=L(M)$. Since $M$ is $O(T_2(n))$ time bounded, $L \in DTIME\left(
+  T_2(n) \right) $by linear speedup.
+
+  Suppose by way of contradiction that some TM $M'$ is $T_1(n)$ time bounded
+  accepting $L$. There exists another $2$-tape machine $M_x$ accepting $L$
+  that is $dT_1(n)\log{T_1(n)}$ time bounded, for some constant $d$.\\
+
+  Simulation of $M_x$ requires time $cT_1(n)\log{T_1(n)}$ for some constant
+  $c$. Hence, let $k$ be large enough such that
+  \[cT_1\left( \left| 1^{k}0x \right|  \right)\log{\left( T_1\left( \left|
+  1^{k}0x \right|  \right)  \right) } <T_2\left( \left| 1^{k}0x \right|
+\right).\]
+  The simulation of $M_x$ must complete, and $M$ accepts $\iff$ $M_x$ did not.
+  $M_x$ accepts a different language than $L$. A contradiction. \qed
+\end{proof}
