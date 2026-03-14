@@ -1,0 +1,33 @@
+\section{Exceptions}
+\begin{verbatim}
+try { // do something }
+catch (Exception e) { // handle exception }
+finally { // clean up
+   // no matter exception occurred or not 
+}
+\end{verbatim}
+\begin{center}
+  \vspace{-5mm}
+  \includegraphics[width=0.5\linewidth]{exception}
+  \vspace{-4mm}
+\end{center}
+\textcolor{Blue}{Checked exceptions} might still happen with perfect code,
+programmer has no control.  Must be handled to compile.\\
+\textcolor{Blue}{Unchecked exceptions} are caused by programmer errors that cause
+Runtime Exceptions.
+\paragraph{Catch}
+\begin{verbatim}
+} catch (ExceptionX e) { 
+   ...
+} catch (ExceptionY e) {
+\end{verbatim}
+Exceptions are checked in order. If $\verb|ExceptionY|<:\verb|ExceptionX|$, the
+second catch will never run $\Rightarrow$ \textcolor{Bittersweet}{Exception!}
+\paragraph{Design principles}
+\begin{enumerate}
+  \item Catch exceptions to clean up, even if just ``passing the buck''
+  \item Do NOT catch all (Exception e)
+  \item Do not overreact (Exiting the program)
+  \item Do not break abstraction (Leaking abstraction throwing \verb|FileNotFound| etc.)
+  \item Do not use as flow control mechanism
+\end{enumerate}

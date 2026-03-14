@@ -1,0 +1,32 @@
+\section{Encapsulation}
+Abstraction over types/functions, exposing \emph{ONLY} a certain interface
+\begin{itemize}
+  \item Ability to create complex data types
+  \item Creates an abstraction barrier
+\end{itemize}
+\paragraph{Composition}
+Models a \emph{HAS-A} relationship. Further abstraction and encapsulation.\\
+\textcolor{Bittersweet}{Dangers of Aliasing}: Sharing references between objects
+\paragraph{Information Hiding}
+To enforce the abstraction barrier using access modifiers, to avoid direct
+access to info and data
+
+\begin{tabular}{c c c c c c}
+  & \multirow{2}{*}{Same class} & \multicolumn{2}{c}{Same Package} & \multicolumn{2}{c}{Different Package}\\
+  & & Sub & Non-Sub & Sub & Non-Sub\\
+  private &\textcolor{OliveGreen}{\cmark}&\textcolor{Bittersweet}{\xmark}&\textcolor{Bittersweet}{\xmark}&\textcolor{Bittersweet}{\xmark}&\textcolor{Bittersweet}{\xmark}\\
+  default &\textcolor{OliveGreen}{\cmark}&\textcolor{OliveGreen}{\cmark}&\textcolor{OliveGreen}{\cmark}&\textcolor{Bittersweet}{\xmark}&\textcolor{Bittersweet}{\xmark}\\
+  protected &\textcolor{OliveGreen}{\cmark}&\textcolor{OliveGreen}{\cmark}&\textcolor{OliveGreen}{\cmark}&\textcolor{OliveGreen}{\cmark}&\textcolor{Bittersweet}{\xmark}\\
+  public &\textcolor{OliveGreen}{\cmark}&\textcolor{OliveGreen}{\cmark}&\textcolor{OliveGreen}{\cmark}&\textcolor{OliveGreen}{\cmark}&\textcolor{OliveGreen}{\cmark}
+\end{tabular}
+
+\paragraph{Tell, Don't Ask}
+\textcolor{OliveGreen}{Telling the object what to do}, instead of
+\textcolor{Bittersweet}{Asking for state} + Performing task on behalf. 
+\begin{itemize}
+  \item Prevent leakage of class implementation details
+  \item Keep encapsulation intact
+  \item Reduce coupling between client and class
+\end{itemize}
+Tasks performed only on fields should be implemented in the class
+

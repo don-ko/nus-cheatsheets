@@ -1,0 +1,87 @@
+\section{Nested Classes}
+Defining a class within another class/method, to group logically relevant
+classes within the same encapsulation.\\
+\textcolor{Bittersweet}{NOTE:\@ Container class CAN access private fields of
+nested class!}
+\begin{verbatim}
+public/[default] class OuterClass {
+   static class StaticNestedClass { ... }
+   class InnerClass { ... }
+}
+\end{verbatim}
+\paragraph{Access Modifiers}
+Nested classes can be \verb$private$, \verb$protected$, \verb$[default]$,
+\verb$public$. Private nested classes' instances can still be returned and
+exist outside of the class, but their methods and fields cannot be used, even
+if they are \verb$public$.\\
+Should only be exposed $\iff$ no implementation details leaked, and is an essential part of
+interface of outer class.
+\subsection{Static Nested Class}
+Associated with the containing \emph{class}. Can only access \textcolor{Blue}{static
+fields and methods} of containing class.
+\begin{verbatim}
+Outer.Inner iObj = new Outer.Inner();
+\end{verbatim}
+\subsection{Inner Class}
+Associated with the containing \emph{instance}. Can access \textcolor{Blue}{all
+fields and methods} of containing class.
+\begin{verbatim}
+Outer oObj = new Outer();
+Outer.Inner iObj = oObj.new Inner();
+\end{verbatim}
+\paragraph{Local Class}
+Class defined within a function, scoped within the method. Can access
+\textcolor{Blue}{fields and methods} of containing class, and
+\textcolor{Blue}{local variables} of enclosing method. A local class in a
+static method can only access static members of the containing class.
+\paragraph{Anonymous Class}
+Declaration AND instantiation of a local class in a single statement.
+\begin{center}
+  \verb$new SuperClass(args) { body }$
+\end{center}
+Fields, extra methods, instance initialisers and local classes are allowed in
+\verb$body$, like a normal class \textcolor{Bittersweet}{without constructors}.
+\subsection{Variable Capture}
+Creating a copy of local variables inside the local class.\ \emph{Language
+design decision} to only allow variables that are \verb$final$
+\textcolor{Bittersweet}{or ``effectively final''}. Mutation not by
+reassignment is still allowed.
+\paragraph{Shadowing}
+When the inner class declares a variable with the same name as one of the
+enclosing class, it shadows the variable.\\
+\verb$this.x$ refers to the inner class' member, while \verb$Outer.this.x$
+refers to the outer class' member.
+\paragraph{Stack and Heap}
+On the stack and heap, a new instance of this class will include a copy of the
+variables required in the inner class, \verb$Outer.this$, and the inner class'
+variables.
+\subsection{Lambda Expression}
+\begin{center}
+  \verb$@FunctionalInterface$
+\end{center}
+for interfaces with exactly \textbf{one} abstract method. Able to use lambda
+expressions as syntactic sugar to simplify \emph{usage of functions as
+first-class citizens}.\\
+Similar to anonymous classes without introducing a new level of scoping.
+Declarations, and variable references are \emph{interpreted just as they are}
+in the enclosing environment. No shadowing issues \verb$:)$
+\textcolor{Bittersweet}{Not allowed to redeclare variables, even as a parameter.}
+\paragraph{Curried Functions}
+\begin{center}
+  $(X,Y)\rightarrow Z\equiv X\rightarrow Y\rightarrow Z$
+\end{center}
+Translating a $n$-ary function to a sequence of $n$ unary functions–a
+higher-order function. Each lambda expression is a \textcolor{Blue}{closure},
+\emph{storing data from the environment} where it is defined.
+\paragraph{Method Referencing}
+Referencing an existing method rather than specifying a new lambda. Can be used for:
+\begin{itemize}
+  \item Static method \verb$A::foo$ $\Rightarrow$ \verb$(args) -> A.foo(args)$
+  \item Instance method\\
+    \verb$aObj::foo$ $\Rightarrow$ \verb$args -> aObj.foo(args)$\\
+    \verb$A::foo$$\Rightarrow$\verb$(args[1..])->args[0].foo(args[1..])$
+  \item Constructors \verb$A::new$ $\Rightarrow$ \verb$args -> new A(args)$
+\end{itemize}
+During compilation, type inference is used to match the given reference to a
+matching method.\ \textcolor{Bittersweet}{Compilation Error} if multiple matches
+or ambiguity.

@@ -1,0 +1,10 @@
+\section{Complex Types}
+\paragraph{Variance of Types}
+Let $C(S)$ be some complex type based on $S$.\\
+$C$ is Covariant $\iff (S<:T \rightarrow C(S)<:C(T))$\\
+$C$ is Contravariant $\iff (S<:T \rightarrow C(T)<:C(S))$\\
+$C$ is Invariant $\iff C$ is not covariant $\wedge\ C$ is not contravariant
+\paragraph{Arrays}
+Covariant for reference types \textcolor{Bittersweet}{ONLY}.\\
+Technically violates the LSP\@. Unable to put \verb|Object| in \verb|Integer[]|,
+even though $\verb|Integer[]|<:\verb|Object[]|$

@@ -1,0 +1,27 @@
+\section{Polymorphism}
+Difference in code behaviour without changing existing code. Allows succinct,
+future-proof code.
+\paragraph{Dynamic Binding}
+Determining which method to be invoked from RTT of object.
+\verb|x.invokedMethod(params...)|
+\begin{enumerate}
+  \item During compile time
+    \begin{enumerate}
+      \item Determine method descriptor of invoked method with \verb|CTT(x)|
+      \item Search \emph{ALL} methods in \verb|CTT(x)| that can be invoked
+    \item Choose the \emph{most specific} method.\ \textcolor{Bittersweet}{If none exists, error.}
+      \item Store method descriptor in the bytecode
+    \end{enumerate}
+  \item During run-time
+    \begin{enumerate}
+      \item Retrieve method descriptor from bytecode
+      \item Search for first matching method:\\
+        $\Rightarrow$ Starting from \verb|RTT(x)|, iterating to parent class
+    \end{enumerate}
+\end{enumerate}
+\textcolor{Blue}{Most Specific Method}: If arguments to \verb|M| can be passed
+into \verb|N| without compilation error, \verb|M| is more specific than
+\verb|N|
+
+\textcolor{Bittersweet}{Class Methods}: No Dynamic Binding. Step 1 taken and
+CTT's method is executed.

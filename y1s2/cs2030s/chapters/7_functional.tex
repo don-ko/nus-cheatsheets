@@ -1,0 +1,38 @@
+\section{Functional Programming}
+Avoiding change altogether
+\begin{itemize}
+  \item Ease of reasoning and understanding
+  \item Enable safe sharing of objects: \textcolor{ForestGreen}{Cached single copy of origin}
+  \item Enable safe sharing of internals: \textcolor{ForestGreen}{Return new
+    object with same cached array with different start/end indices etc.}
+  \item Enable safe concurrent execution \textcolor{Bittersweet}{$\iff$ no
+    mutation within abstraction barrier}
+\end{itemize}
+\subsection{Referential Transparency}
+Suppose \verb$s.get(0)$ returns \verb$k$.\\
+\textcolor{Blue}{Deterministic and Immutable}: We are then able to replace all invocations of \verb$s.get(0)$
+with \verb$k$, and \\
+\textcolor{Blue}{No Side Effects}: usages of \verb$T t = s.get(0)$ with \verb$s.get(0)$.
+\paragraph{Immutability}
+Instances with no visible changes outside abstraction barrier
+$\Rightarrow$ Every call of the instance's method behaves the same way
+throughout the lifetime of the instance. How:
+\begin{enumerate}
+  \item Prevent Inheritance: \textcolor{Bittersweet}{IMPT\@! Ensure no change in behaviour}
+  \item Prevent field reassigning: Ensure no mutation of fields
+  \item Prevent field mutation: Fields have to be immutable
+\end{enumerate}
+\paragraph{No Side Effects}
+\begin{multicols*}{2}
+\begin{itemize}
+  \item Printing to screen
+  \item Writing to files
+  \item Throwing Exceptions
+\end{itemize}
+\begin{itemize}
+  \item Changing other variables
+  \item Modifying arguments
+\end{itemize}
+\end{multicols*}
+\textcolor{ForestGreen}{void functions, and division operations} are not pure.
+\textcolor{Bittersweet}{Overflow} is not an error.

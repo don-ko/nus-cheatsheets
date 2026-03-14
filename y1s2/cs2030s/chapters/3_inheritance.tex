@@ -1,0 +1,40 @@
+\section{Inheritance}
+\verb|Subclass| <: \verb|Superclass|\\
+Models the \emph{IS-A} relationship. To extend certain properties of classes.
+\textcolor{Bittersweet}{Technically breaks the abstraction barrier}\\
+\verb|final| Keyword in declarations to prevent class inheritance, method
+overriding and field re-assignment
+\paragraph{Method Overriding \& Overloading}
+\textcolor{Blue}{Method Signature}: Number, type, order of params., and name\\
+\textcolor{Blue}{Method Descriptor}: Method Signature + Return type\\
+\verb|@Override|: When subclass defines an \emph{instance} method with the same
+method signature, a return sub-type, and throws sub-type checked exception, or
+doesn't throw an exception\\
+Overloading: When class defines two or more methods with the same name but
+different method signatures.
+\paragraph{Liskov Substitution Principle}
+Let $\phi(x)$ be a property provable $\forall x$ of type \verb|T|. Then
+$\phi(y)$ should be true $\forall y$ of type \verb|S| where
+$\verb|S|<:\verb|T|$, ie.\\
+$\Rightarrow$ Subclass is substitutable, and pass all test cases of superclass
+$\Rightarrow$ Ensures inheritance with method overriding is safe\\
+\textcolor{Bittersweet}{Needs to be enforced by programmer, not compiler}
+\paragraph{Inheriting}
+Classes can extend $\le1$ superclasses, implement $\ge0$ interfaces.\\
+Interfaces can extend $\ge0$ interfaces.
+\begin{itemize}
+  \item \textcolor{Blue}{Abstract Class}
+    \begin{itemize}
+      \item Allow general \& extensible code writing for other classes
+      \item To demonstrate \emph{IS-A} relationships, without specific implementation
+      \item May have no abstract method
+      \item Cannot be instantiated
+    \end{itemize}
+  \item \textcolor{Blue}{Interface}
+    \begin{itemize}
+      \item Modelling behaviour across class hierachies
+      \item Methods are \verb|public abstract|
+      \item Fields are \verb|public static final|
+    \end{itemize}
+\end{itemize}
+\textcolor{Bittersweet}{Note}: \emph{ANY} object can be casted to \emph{ANY} interface

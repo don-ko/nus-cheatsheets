@@ -1,0 +1,30 @@
+\section{Heap and Stack}
+The Heap stores dynamically allocated objects. Persists across method
+invocations. Dealloc $\iff!\exists$ reference\\
+The Stack (actual stack) stores variables, and call frames. $\varnothing$ for
+uninitialised variables. Dealloc when method returns\\
+\begin{center}
+  \vspace{-4mm}
+  \includegraphics[width=0.5\linewidth]{heapandstack}
+\end{center}
+\vspace{-5mm}
+\paragraph{Primitive Types}
+\begin{center}
+ $\verb|byte|<:\verb|short|<:\verb|int|<:\verb|long|<:\verb|float|<:\verb|double|$\\
+ $\verb||\verb|char|<:\verb|                   |$
+\end{center}
+\textcolor{Bittersweet}{Note}: 
+\begin{itemize}
+  \item Uninitialised fields have default values, but not variables
+  \item Methods call by value for primitives, call by reference for objects
+\end{itemize}
+\paragraph{Wrapper Classes}
+Encapsulates the primitive types to write general code for all reference types.
+Immutable $\Rightarrow$ Much more expensive than primitives.
+\begin{verbatim}
+Integer i = Integer.valueOf(4);
+int j = i.intValue();
+\end{verbatim}
+Type conversion between primitive and wrapper done by
+\textcolor{Blue}{auto-boxing} and \textcolor{Blue}{unboxing}
+\textcolor{Bittersweet}{ONLY} with the equivalent wrappers.

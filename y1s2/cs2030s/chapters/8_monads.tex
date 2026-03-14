@@ -1,0 +1,23 @@
+\section{Monads}
+Equipped with two functions \verb|of| and \verb|flatMap| satisfying the laws:
+\begin{enumerate}
+  \item Left Identity Law\\
+    $\verb|Monad.of|(x)\verb|.flatMap|(x\rightarrow f(x))\equiv f(x)$
+  \item Right Identity Law\\
+    $\verb|m.flatMap|(x\rightarrow\verb|Monad.of|(x))\equiv\verb|m|$
+  \item Associative Law\\
+    $\verb|m.flatMap|(x\rightarrow f(x))\verb|.flatMap|(y\rightarrow g(y))\equiv\\
+     \verb|m.flatMap|(x\rightarrow f(x)\verb|.flatMap|(y\rightarrow g(y)))$
+\end{enumerate}
+\paragraph{Functor}
+\begin{center}
+  $\verb|Monad|\Rightarrow\verb|Functor|\quad\verb|Functor|\nLeftarrow\verb|Monad|$
+\end{center}
+Sufficient for lambdas to be applied sequentially to a value.
+\begin{enumerate}
+  \item Identity Preservation\\
+    $\verb|f.map|(x\rightarrow x)\equiv\verb|f|$
+  \item Composition Preservation\\
+    $\verb|f.map|(x\rightarrow f(x))\verb|.map|(x\rightarrow g(x))\equiv\\
+    \verb|f.map|(x\rightarrow g(f(x)))$
+\end{enumerate}

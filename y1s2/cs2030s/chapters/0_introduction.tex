@@ -1,0 +1,18 @@
+\section{Compiled, Typed Languages}
+\verb|java| $\xRightarrow{\text{compiled}}$ \verb|bytecode|
+$\xRightarrow[\text{interpreted}]{\text{compiled}}$ \verb|machine code|\\
+\textbf{Why Compile?} Able to debug while program is still
+being developed\\
+\textbf{Why not?} Source code is analysed
+without running, cannot always ensure correctness $\Rightarrow$ Conservative /
+Permissive Checking\\
+\textcolor{OliveGreen}{eg.}
+$CTT(\verb|c|)=\verb|Shape|$, $RTT(\verb|c|)=\verb|Circle|$
+\begin{verbatim}
+Shape c = new Circle();
+c.getRadius();
+\end{verbatim}
+\paragraph{Type Conversions}
+Suppose $\verb|S|<:\verb|T|$.
+Then implicit type conversion from \verb|S| to \verb|T| (narrowing) is allowed.
+Type conversion from \verb|T| to \verb|S| (widening) requires type casting.

@@ -1,0 +1,108 @@
+\section{Concurrency and Parallelelisation}
+\textcolor{Blue}{Parallelism}: multiple subtasks run at the same time, with a
+processor that runs multiple instructions, or with multiple processors.\\
+\textcolor{Blue}{Concurrency}: the ``illusion'' of parallelism.
+\begin{center}
+  $Parallel\Rightarrow Concurrent,Concurrent\nLeftarrow Parallel$
+\end{center}
+Parallelisation is \textcolor{Bittersweet}{non-deterministic}: no order of
+which processes start and complete.
+\paragraph{Parallelisability}
+\begin{itemize}
+  \item No Interference: No modification of the stream during execution of
+    terminal operation. Throws
+    \textcolor{Bittersweet}{ConcurrentModificationException}
+  \item Stateless: The result does not depend on any state that might change
+    during executiion of the stream \textcolor{ForestGreen}{Previous elements,
+    Input}
+  \item No Side-effects: No concurrent modification of non-thread safe objects
+    that may result in incorrect behaviour
+\end{itemize}
+Operations that fulfil these conditions are known as \textcolor{Blue}{embarrassingly parallel}.
+\begin{center}
+  Parallelising $\neq$ Performance
+\end{center}
+Creating too many threads will \textcolor{Bittersweet}{outweigh benefits} of
+parallelisation.
+For \textbf{streams}, particularly for
+\begin{verbatim}
+stream.reduce(U i,
+   BiFunc<U, ? super T, U> acc,
+   BinOp<U> comb>)
+\end{verbatim}
+which accumulates each substream and combines the result, parallelisation
+further requires:
+\begin{itemize}
+  \item $\verb|combiner.apply(i, x)|\equiv\verb|x|,\forall x$
+  \item \verb|combiner| and \verb|accumulator| are associative.
+  \item \verb|combiner| and \verb|accumulator| are compatible.\\
+  $\verb|comb.apply(u, acc.apply(i, v))|\equiv\\\verb|acc.apply(u,v)|,\forall u,v$
+\end{itemize}
+Streams themselves may define encounter order:
+\begin{multicols*}{2}
+  \textcolor{ForestGreen}{\textbf{Ordered}}
+  \begin{itemize}
+    \item \verb$Stream::iterate$
+    \item \verb$Stream::of$
+    \item Ordered Collections
+  \end{itemize}
+  \textcolor{Bittersweet}{\textbf{Unordered}}
+  \begin{itemize}
+    \item \verb$Stream::generate$
+    \item Unordered Collections
+  \end{itemize}
+\end{multicols*}
+Operations that respect encounter order: \verb|distinct|, \verb|sorted|,
+\verb$findFirst$, \verb$limit$, \verb$skip$ are expensive.
+\verb|stream.unordered()| if original order is not important.
+\paragraph{Threads}
+In Java, threads divide computation into subtasks, to improve utilisation of
+processor.
+\begin{center}
+  \verb$new Thread(RUNNABLE).start();$
+\end{center}
+The execution flow of each thread can be separately programmed with
+\verb$Runnable.run()$. Program exits only after \emph{ALL} created threads run
+to their completion.
+\paragraph{CompletableFuture<T>}
+\emph{A MONAD}. A \verb$CF$ is either completed or not complete.\\
+To \textbf{Create a CF}:
+\begin{itemize}
+  \item \verb|CF<U> CF.completedFuture(U value)|
+  \item \verb|CF<Void> runAsync(Runnable r)|
+  \item \verb|CF<T> supplyAsync(Supplier<T> s)|
+\end{itemize}
+To \textbf{Chain CFs}:
+\begin{itemize}
+  \item \verb|CF<Void> thenAccept(Consumer<T> c)|
+  \item \verb|CF<U> thenApply(Function<T, U> map)|
+  \item \verb|CF<U> thenCompose(Function<T, CF<U>> map)|
+  \item \begin{verbatim}
+CF<U> thenCombine(CF<V> other,
+                  BiFunc<T, V, U> fn)
+    \end{verbatim}
+  \item \verb|CF<Void> thenRun(Runnable r)|
+\end{itemize}
+To \textbf{get CF result}:
+\begin{itemize}
+  \item \verb|T get()| throws \textcolor{Bittersweet}{InterruptedException, ExecutionException}
+  \item \verb|T join()| throws any \textcolor{Bittersweet}{Exception} that occurs
+\end{itemize}
+\textbf{Handling Exceptions}:
+\begin{itemize}
+  \item \verb|CF<T> exceptionally(Func<Throwable, T> f)|
+  \item \verb|whenComplete(BiCons<T, Throwable> cons)|
+  \item \verb|CF<R> handle(BiFunc<V, E, R> f)|
+\end{itemize}
+\begin{center}
+  \vspace{-4mm}
+  \includegraphics[width=\linewidth]{recursivetask}
+  \vspace{-5mm}
+\end{center}
+\begin{enumerate}
+  \item Idle Thread: Take head of own deque. If empty, take tail of another deque, and compute.
+  \item \verb|fork()| called: Invoker adds itself to the head of current deque.
+  \item \verb|join()| called: If complete, read result and join returns. If not
+    stolen, compute on current thread. If stolen, do another task while waiting.
+\end{enumerate}
+Order of fork join: ``Palindrome'', with only ONE compute in the middle

@@ -1,0 +1,93 @@
+\section{Generics}
+A generic type takes other types as type parameters.\\
+\textcolor{Blue}{Generic Class} Pair<S,T> with \textcolor{Blue}{Type
+Parameters} \verb|S, T| \textcolor{Bittersweet}{$\leftarrow$ SCOPED}\\
+\textcolor{Blue}{Type Arguments} \verb|String, Integer| are passed in, to
+create\\
+\textcolor{Blue}{Parametrised Type} \verb|Pair<String, Integer>|
+\textcolor{Blue}{Generic Methods} are methods that are parameterised with type
+parameters
+\paragraph{Type Erasure}
+Implementation of Generics in Java: \textcolor{ForestGreen}{Code Sharing}.
+After type checking, type parameters and arguments are erased.\\
+\textcolor{Gray}{Alternative: Code Specialisation–Code for every
+instantiated type.}\\
+We denote $|T|$ for the erasure of type $T$.
+\begin{itemize}
+  \item The erasure of a parameterized type \verb$G<T1,\ldots,Tn>$ is \verb$|G|$.
+  \item The erasure of a nested type \verb$T.C$ is \verb,|T|.C,.
+  \item The erasure of an array type \verb.T[]. is \verb+|T|[]+.
+  \item The erasure of a type variable is the erasure of its leftmost bound.
+  \item The erasure of every other type is the type itself.
+\end{itemize}
+\emph{Bridging Methods} are generated when the class extends a parameterised
+type, to match the type erased signature of the parent class's method.
+\begin{verbatim}
+public void foo(Object arg) {
+   foo((Param-edType) arg);
+} // Bridging Method
+public void foo(Param-edType arg) { ... }
+\end{verbatim}
+\paragraph{Reifiable Types}
+Where type information is fully available at runtime–none erased during
+compilation. A
+type is \emph{reifiable} $\iff$ any of the following:
+\begin{itemize}
+  \item It refers to a non-generic class or interface type declaration.
+  \item It is a parameterized type in which all type arguments are unbounded wildcards.
+  \item It is a raw type: Generic Class or Interface without type arguments.
+    \textcolor{Bittersweet}{DO NOT USE\@. No type checking at all.}
+  \item It is a primitive type.
+  \item It is an array type whose element type is reifiable.
+  \item It is a nested type, for each type \verb$T$ separated by a \verb$.$, \verb$T$ is reifiable.
+\end{itemize}
+\textcolor{ForestGreen}{Arrays' Reifiability} allows covariance: When a
+variable of the wrong type is put in the array, it throws a
+\verb$RuntimeException$. \\
+Type refiability prevents \textcolor{Bittersweet}{\textbf{Heap
+Pollution}}–where a variable of a parameterised type refers to an object not of
+that parameterised type.\\
+\textcolor{Blue}{Resolved by}: Invariance of Generics, and Checking type safety during compile time\\
+\textcolor{Blue}{To create Generic Type Arrays}: Ensure no heap pollution $\Rightarrow$
+\verb$@SuppressWarnings("unchecked")$ on array \emph{declaration}
+\paragraph{Bounding Type Parameters}
+Constraining valid type arguments, to allow assert certain properties or method
+usages: \verb|T extends U, R super S|\\
+\textcolor{Blue}{Wildcards} To write general code despite generic invariance:
+Enforce subtyping relationships on type arguments.\\
+\begin{center}\vspace{-3mm}\textcolor{Bittersweet}{\textbf{Producer Extends,
+Consumer Extends}}\end{center}
+Whether the variable ``\emph{produces}''–returns variables of type \verb|T|–or
+``\emph{consumes}''–accepts variables of type \verb|T|\\
+\textcolor{ForestGreen}{Unbounded Wildcards} \verb$T<?>$ is the maximum element
+of the partial order $<\colon$. BUT \verb$CTT(T<?>.produce())=Object$, \verb$T<?>.consume(null)$ ONLY
+\paragraph{Type Inference}
+When type witness is unspecified: Calling a generic method, or using the diamond operator.
+\begin{enumerate}
+  \item A bound set is generated from a list of type
+    parameter declarations $P_1,\ldots,P_p$ and associated inference variables
+    $\alpha_1,\ldots,\alpha_p$ to be determined. For each $l\in\{1..p\}$:
+    \begin{itemize}
+      \item If $P_l$ has no bound, $\alpha<\colon Object$ is added.
+      \item Otherwise, for each $T$ delimited by $\&$ in the bound, $\alpha_1<\colon T$ is added.
+      \item If no proper upper bound for $\alpha_l$ is added, $\alpha_l<\colon Object$ is added.
+    \end{itemize}
+  \item Reduction: Simplifying a set of constraint formulas into a bound set.
+    Constraint formulas are given by:
+    \begin{itemize}
+      \item Type of return variable: Target Typing
+      \item Type of Method Arguments
+    \end{itemize}
+  \item Incorporation: To infer new bounds based on assertions of original bounds.
+  \item Resolution: For a bound set that does not contain the bound $false$, a
+    subset of the inference variables may be resolved.
+    \begin{itemize}
+      \item If $\alpha_i$ has one or more proper lower bounds $L_1,\ldots,L_k$,
+        $T_i=\operatorname{lub}(L_1,\ldots,L_k)$
+      \item Otherwise, if $\alpha_i$ has one or more proper upper bounds
+        $U_1,\ldots,U_k$, $T_i=\operatorname{glb}(U_1,\ldots,U_k)$
+    \end{itemize}
+\end{enumerate}
+\begin{center}
+  \includegraphics[width=\linewidth]{generictypes}
+\end{center}
