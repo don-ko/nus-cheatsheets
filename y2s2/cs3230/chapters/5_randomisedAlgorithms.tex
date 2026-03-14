@@ -1,0 +1,10 @@
+\section{Randomised Algorithms}
+\paragraph{\textcolor{ForestGreen}{Freivalds' Algorithm}}
+To verify if $AB=C$ for $n\times n$ matrices $A,B,C$, we can use Freivalds' algorithm:
+\begin{enumerate}
+  \item Pick a random vector $r\in \{0,1\}^n$.
+  \item Compute $Br$, then $A(Br)$, and $Cr$.
+  \item If $A(Br)\neq Cr$, return $AB\neq C$; else, return $AB=C$.
+\end{enumerate}
+\textcolor{Blue}{Principle of deferred decisions}:
+\[\forall x,\quad \mathbb{P}\left\{ E | X = x \right\} \ge p\implies\mathbb{P}\left\{ E \right\} \ge p.\] 

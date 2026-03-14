@@ -1,0 +1,23 @@
+\section{Proof of Correctness}
+\subsection{Iterative Algorithms}
+\begin{itemize}
+  \item \textbf{Loop Invariant}: A property that holds before each iteration of a loop.
+  \item \textbf{Initialization}: The invariant holds at the start of the first iteration.
+  \item \textbf{Maintenance}: If the invariant holds before an iteration, it
+    holds after the iteration.
+  \item \textbf{Termination}: After the loop terminates, the invariant (and the
+    termination condition) implies the correctness of the algorithm.
+\end{itemize}
+\textcolor{ForestGreen}{e.g. Selection Sort}:
+\[\left( \verb+A[1..j-1]+ \text{ is sorted} \right) \text{and }\]
+\[\left( \forall x\in \verb|A[1..j-1]|,y\in \verb|A[j..n]|,\quad x\le y\right) .\] 
+
+\subsection{Recursive Algorithms}
+\begin{itemize}
+  \item \textbf{Base Case}: The algorithm works for the base case(s)
+    (no recursive calls).
+  \item \textbf{Inductive Hypothesis}: Assume the algorithm is correct for all
+    inputs of size less than $n$.
+  \item \textbf{Inductive Step}: Show that the algorithm works for an input of
+    size $n$, using the inductive hypothesis.
+\end{itemize}

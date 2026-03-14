@@ -1,0 +1,78 @@
+\section{Asymptotic Analysis}
+Algorithmic Analysis involves the \textcolor{Bittersweet}{resources needed} by
+a algorithm:
+\begin{itemize}
+  \item {\textbf{Time}}: the number of steps taken to complete. 
+  \item {\textbf{Space}}: the amount of memory used to complete. 
+    data fits in memory)
+\end{itemize}
+\textcolor{Blue}{Running time} is a function of the
+\textcolor{Bittersweet}{size of the input}, denoted as $n$, which can be
+measured in various ways, such as the number of elements in an array, the
+number of nodes in a graph, etc.
+
+Typically, we perform \textbf{worst-case analysis} considering the
+\textcolor{Bittersweet}{maximum running time} for any input of size (at most)
+$n$, or \textbf{average-case analysis} considering the
+\textcolor{Bittersweet}{expected running time} over all inputs of size $n$
+under some probability distribution.
+
+\paragraph{RAM Model of Computation}
+In our model, we analyse algorithms under the assumptions that:
+\begin{itemize}
+  \item Each basic unit of memory is a \textcolor{Blue}{word}.
+  \item \textcolor{Blue}{RAM} is an array of words, storing instructions and
+    data.
+  \item One unit of time taken to access any word.
+  \item \textcolor{Bittersweet}{Constant time} for each operation. (\emph{Except exponentiation})
+  \item If input or output is too large, time taken depends on the number of
+    words needed to store it.
+\end{itemize}
+Running time is \textcolor{Bittersweet}{roughly proportional to the number of
+instructions} executed in the RAM model, independent of the actual machine.
+
+\subsection{Asymptotic Notation}
+\paragraph{Definitions}
+\textcolor{Blue}{$\mathbf{f \in O(g)}$} if 
+\[\exists c,n_0>0\quad \forall n\ge n_0\quad 0\le f(n)\le c\cdot g(n).\] 
+\[\lim_{n \to \infty} \frac{f(n)}{g(n)}<\infty\implies f\in O(g).\] 
+
+$f$ grows \textcolor{Bittersweet}{at most as fast as $g$} asymptotically.
+
+\textcolor{Blue}{$\mathbf{f \in \Omega(g)}$} if
+\[\exists c,n_0>0\quad \forall n\ge n_0\quad 0\le c\cdot g(n)\le f(n).\]
+\[0<\lim_{n \to \infty} \frac{f(n)}{g(n)}\implies f\in \Omega(g).\]
+
+$f$ grows \textcolor{Bittersweet}{at least as fast as $g$} asymptotically.
+
+\textcolor{Blue}{$\mathbf{f \in \Theta(g)}$} if $f\in O(g)$ and $f\in \Omega(g)$, i.e. 
+\[\exists c_1,c_2,n_0>0, \forall n\ge n_0, 0\le c_1 g(n)\le
+f(n)\le c_2 g(n).\]
+\[\lim_{n \to \infty} \frac{f(n)}{g(n)}=c\in (0,\infty)\implies f\in \Theta(g).\]
+
+$f$ grows \textcolor{Bittersweet}{as fast as $g$} asymptotically.
+
+\textcolor{Blue}{$\mathbf{f \in o(g)}$} if
+\[\forall c>0\quad \exists n_0>0\quad \forall n\ge n_0\quad 0\le f(n)< c\cdot g(n).\]
+\[\lim_{n \to \infty} \frac{f(n)}{g(n)}=0\implies f\in o(g).\] 
+
+$f$ grows \textcolor{Bittersweet}{slower than $g$} asymptotically.
+
+\textcolor{Blue}{$\mathbf{f \in \omega(g)}$} if
+\[\forall c>0\quad \exists n_0>0\quad \forall n\ge n_0\quad 0\le c\cdot g(n)< f(n).\]
+\[\lim_{n \to \infty} \frac{f(n)}{g(n)}=\infty\implies f\in \omega(g).\]
+
+$f$ grows \textcolor{Bittersweet}{faster than $g$} asymptotically.
+
+\paragraph{Properties}
+For functions $f,g,h$:
+\begin{itemize}
+  \item \textcolor{Blue}{Reflexitivty}: $f\in O(f)$, $f\in \Omega(f)$, $f\in \Theta(f)$.
+  \item \textcolor{Blue}{Transitivity}: For $A\in \left\{
+    O,\Omega,\Theta,o,\omega \right\} $
+    \[f\in A(g)\text{ and }g\in A(h)\implies f\in A(h).\]
+  \item \textcolor{Blue}{Symmetry}: $f\in \Theta(g)\iff g\in \Theta(f)$.
+  \item \textcolor{Blue}{Complementarity}: 
+    \[f\in O(g)\iff g\in \Omega(f)\]
+    \[f\in o(g)\iff g\in \omega(f)\]
+\end{itemize}
