@@ -1,0 +1,59 @@
+\section{Sorting}
+\textbf{\textcolor{Blue}{Input}}: An array $A$ of $n$ elements, and a total order $\le$ on the elements.\\
+\textbf{\textcolor{Blue}{Output}}: A permutation of $A$ such that $A[1]\le A[2]\le \ldots \le A[n]$.
+
+\paragraph{Properties of Sorting Algorithms}
+\textcolor{Blue}{Time complexity}: in the worst case, average case, or best
+case.
+
+\textcolor{Blue}{Stability}: Original ordering is preserved for elements of
+equal values.
+
+\textcolor{Blue}{In-place}: Very little extra space is used (e.g. $O(1)$ or
+$O(\log n)$).
+
+\subsection{Comparison-based Sorting}
+\textcolor{Blue}{Comparison-based sorting}: Sorting algorithms that
+only uses comparisons (and no other information) to determine the order of
+elements.
+
+\paragraph{Lower bound for Comparison-based Sorting}
+\textbf{Claim}: The \textcolor{Blue}{worst-case time complexity} of any
+comparison-based sorting algorithm is $\Omega(n\log n)$.
+
+\textbf{Proof}:
+Comparison-based sorting can be modelled as a
+\textbf{\textcolor{Bittersweet}{binary decision tree}}. Each internal node
+represents a \textcolor{Bittersweet}{comparison} between two elements, and each
+leaf represents a possible permutation of the input.
+
+The worst-case runing time $\ge $ worst-case number of comparisons = height of
+the tree.
+
+Since the \textcolor{Bittersweet}{binary tree has at least $n\mathpunct{!}$
+leaves}, we have the height of the tree $h\ge \log{\left( n\mathpunct{!}
+\right) }$. Using Stirling's approximation, we have $\log{\left( n\mathpunct{!}
+\right) } = \Theta(n\log n)$.
+
+\subsection{Average-case Analysis for Quick Sort}
+If worst-case time complexities do not capture an algorithm's typical
+performance, we use \textcolor{Blue}{average-case analysis} for it's expected
+time complexity.
+
+\textbf{Claim}: The average-case time complexity of Quick Sort is $O(n\log n)$.
+
+\textbf{Proof}: WLOG, assume all elements are distinct. Suppose
+$a_1<a_2<\cdots<a_{n}$. The input array is a \textcolor{Bittersweet}{random
+permutation $\pi$} of $\left( a_1,a_2,\ldots,a_{n} \right) $. Suppose $\pi$ is
+\textcolor{Bittersweet}{\textbf{uniformly random}}. That is, each of the
+$n\mathpunct{!}$ permutations is equally likely to be the input.
+
+Then the pivot is equally likely to be any of the $n$ elements, and the
+permutations for each of the recursive calls are also uniformly random. Then
+the \textcolor{Blue}{expected running time $A(n)$} is given by the recurrence:
+\begin{align*}
+  A(n)&=\frac{1}{n}\sum_{j=1}^{n} \left[ A\left( j-1 \right) +A\left( n-j
+\right)  \right] +cn\\
+      &=\frac{2}{n}\sum_{j=0}^{n-1} A(j) +cn
+\end{align*}
+Solving the recurrence, we have $A(n) \in O(n log n)$.

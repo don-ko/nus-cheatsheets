@@ -1,0 +1,23 @@
+\section{math voodoo}
+%\vspace{-4mm}
+\begin{itemize}
+  \item $e^{x}\ge 1+x$
+  \item $\ln(x)\le x-1$
+  \item $\log_b{a}=\frac{1}{\log_a{b}}$
+  \item $a^{\log_{b}{a}}=c^{\log_b{a}}$
+  \item Stirling's approximation:
+    \[n!=\sqrt{2\pi n}{\left(\frac{n}{e}\right)}^n
+    \left(1+O\left(\frac{1}{n}\right)\right)\]
+  \item $\log\left( n\mathpunct{!} \right) \in \Theta\left( n\log {n} \right) $
+  \item  Sum of geometric series:
+    \[\sum_{i=0}^n r^i=\begin{cases}
+      \frac{1-r^{n+1}}{1-r} & r\neq 1\\
+      n+1 & r=1
+    \end{cases}\]
+  \item Sum of arithmetic series:
+    \[\sum_{i=1}^n i=\frac{n(n+1)}{2}\]
+  \item Sum of first $n$ integers to the $k$-th power (Faulhaber's formula):
+    \[\sum_{i=1}^n i^k=\frac{n^{k+1}}{k+1}+O(n^k)\]
+  \item Harmonic Number:
+    \[\sum_{i=1}^n \frac{1}{i}=\ln n + O(1)\]
+\end{itemize}
